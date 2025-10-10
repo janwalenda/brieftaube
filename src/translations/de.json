@@ -1,0 +1,36 @@
+{
+    "hello": "Hallo",
+    "description": "Der einfache E-Mail Editor",
+    "dock.code": "Lass dir den HTML anzeigen um den Code zu kopieren und in deinem E-Mail editor einzufügen",
+    "dock.preview": "Hier siehst du, wie deine Email final aussehen wird",
+    "dock.save": "Speichere deine Vorlage auf deiner Maschine um nicht immer alles neu zu schreiben",
+
+    "fab.plus": "Füge einen Textblock oder ein Bild hinzu",
+    "fab.textblock": "Füge Textblock hinzu",
+    "fab.image": "Füge Bild hinzu",
+
+    "field.delete": "Feld löschen",
+    "fields.info": "Hier kannst du weitere Felder hinzufügen indem du auf den + Button clicks",
+
+    "theme-switch.dark": "Dunkel",
+    "theme-switch.light": "Hell",
+
+    "image-field.button.url": "Gib den Link zu deinem Bild ein",
+    "image-field.button.upload": "Lade dein bild hoch (Hinweis: Hier nur kleine bilder)",
+    "image-field.width": "Wähle eine Breite für dein Bild aus",
+    "image-field.legend": "Gieb ein bild an",
+    "image-field.small": "Kein",
+    "image-field.medium": "Mittel",
+    "image-field.large": "Groß",
+
+    "text-block.heading": "Gebe hier den Title des Blocks ein",
+    "text-block.textarea": "Gebe hier den Text des Blocks ein",
+
+    "email.title": "Der Titel deiner Email",
+    "email.salutation": "Wen sprichst du an?",
+    "email.main-content": "Hier ist der Haupt bereich deiner E-Mail. Den text kannst du mit Markdow formattieren.",
+    "email.greetings": "Mit freundlichen oder solidarischen Grüßen? 🤔",
+    "email.sender-name": "Sag deinen namen!",
+    "email.role": "Welche Rolle nimmst du ein? Sprecher*in, Organisator*in oder anderes?",
+    "email.disclaimer": "Zeige für wen oder was du schreibst. Deine LAG, BAG, LV oder BV oder ähnliches"    
+}
