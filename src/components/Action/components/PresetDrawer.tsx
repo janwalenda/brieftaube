@@ -1,3 +1,4 @@
+"use client"
 import { IoList, IoTrash } from "react-icons/io5";
 import { usePreset } from "../../../hooks/usePreset";
 import { InputVariant } from "../../Base/types/InputVariant";

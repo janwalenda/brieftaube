@@ -1,10 +1,11 @@
-import { t } from "@/app/[lang]/dictionaries";
+import { t } from "@/dictionaries";
+import { Lang } from "@/types/Lang";
 import { IoEye } from "react-icons/io5";
 
 export default async function ThemeSwitch({
   params
 }: {
-  params: Promise<{ lang: "de" | "en" }>
+  params: Promise<{ lang: Lang | string }>
 }) {
   const { lang } = await params;
   return (
@@ -21,7 +22,7 @@ export default async function ThemeSwitch({
               className="radio radio-sm theme-controller"
               value="light"
             />
-            {await t('theme-switch.light', lang)}
+            {await t('theme-switch.light', lang as Lang)}
           </label>
           <label className="flex gap-2 cursor-pointer items-center">
             <input
@@ -48,7 +49,7 @@ export default async function ThemeSwitch({
               className="radio radio-sm theme-controller"
               value="dark"
             />
-            {await t('theme-switch.dark', lang)}
+            {await t('theme-switch.dark', lang as Lang)}
           </label>
       </div>
     </details>

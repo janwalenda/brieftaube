@@ -1,3 +1,4 @@
+"use client"
 export function useLocalStorage() {
   const get = (key: string) => {
     return localStorage.getItem(key);
@@ -25,6 +26,6 @@ export function useLocalStorage() {
     remove,
     clear,
     getAll,
-    length: localStorage.length || 0
+    length: (localStorage || []).length || 0
   }
 }

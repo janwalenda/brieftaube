@@ -1,3 +1,4 @@
+"use client"
 import { IoAdd, IoImage, IoText } from "react-icons/io5";
 import { useField } from "../../../hooks/useField";
 import { FieldType } from "../../Base/types/FieldType";

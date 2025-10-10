@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { IoLanguage } from "react-icons/io5";
 import cx from "classnames";
+import { Lang } from "@/types/Lang";
 
 export default async function LangSwitch({
   params
 }: {
   params: Promise<{
-    lang: "de" | "en";
+    lang: Lang | string;
   }>
 }) {
   const baseStyle = "btn btn-ghost btn-sm";
   const { lang } = await params;
+
   return (
     <details className="dropdown">
       <summary className="btn m-1">
@@ -25,6 +27,9 @@ export default async function LangSwitch({
           <Link href="/en" className={cx(baseStyle, {
             "btn-active": lang === "en",
           })}>English</Link>
+          <Link href="/fr" className={cx(baseStyle, {
+            "btn-active": lang === "fr",
+          })}>Français</Link>
       </div>
     </details>
   );

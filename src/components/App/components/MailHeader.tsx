@@ -1,3 +1,4 @@
+"use client"
 import { IoImage, IoLink, IoText } from "react-icons/io5"
 import { Input } from "@/components/Base"
 import { useField } from "@/hooks/useField"
@@ -113,7 +114,6 @@ export default function MailHeader() {
         preview="edit"
         onChange={(value) => setMainContent(value || "")}
         onHTMLChange={(value) => {
-          console.log(value);
           setMainContentHTML(value || "");
         }}
         value={mail.mainContent}

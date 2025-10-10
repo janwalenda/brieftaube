@@ -2,14 +2,14 @@ import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { NextRequest, NextResponse } from "next/server";
  
-let locales = ['en', 'de']
+const locales = ['en', 'de', 'fr']
  
 //Get the preferred locale, similar to the above or using a library
 function getLocale() {
-    let headers = { 'accept-language': 'en-US,en;q=0.5' }
-    let languages = new Negotiator({ headers }).languages()
-    let locales = ['en', 'de']
-    let defaultLocale = 'en'
+    const headers = { 'accept-language': 'en-US,en;q=0.5' }
+    const languages = new Negotiator({ headers }).languages()
+    const locales = ['en', 'de', 'fr']
+    const defaultLocale = 'en'
 
     return match(languages, locales, defaultLocale) // -> 'en-US'
 }
@@ -23,9 +23,7 @@ export function middleware(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  console.log(pathname)
-
-  if(pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith('/robots.txt')) {
+  if(pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith('/robots.txt') || pathname.startsWith('/site.')) {
     return NextResponse.next()
   }
 

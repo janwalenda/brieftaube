@@ -5,7 +5,7 @@ import type { Field } from "@/components/Base/types/Field";
 import SortableItem from "@/components/Base/components/SortableItem";
 import { useTranslate } from "@/hooks/useTranslate";
 
-export default function FieldSwitch({ type, id, index }: Field & { index: number}) {
+export default function FieldSwitch({ type, id }: Field & { index: number}) {
   const { t } = useTranslate();
   switch (type) {
     case FieldType.TextBlock:

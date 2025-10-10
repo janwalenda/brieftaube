@@ -1,3 +1,4 @@
+"use client"
 import { useState, type FC, type ReactNode } from "react";
 import { FieldContext } from "./FieldContext";
 import { FieldType } from "../components/Base/types/FieldType";

@@ -1,10 +1,11 @@
+"use client"
 import { useField } from "../../../hooks/useField";
 import { FieldSwitch } from "@/components/InputFields"
 import { IoInformationCircle } from "react-icons/io5";
 import Button from "../../Base/components/Button";
 import { TooltipPosition } from "@/components/Base/types/TooltipPosition";
 import { InputVariant } from "@/components/Base/types/InputVariant";
-import { closestCenter, DndContext, DragEndEvent, DragOverlay, DragStartEvent, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, UniqueIdentifier, useSensor, useSensors } from '@dnd-kit/core';
+import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useTranslate } from "@/hooks/useTranslate";
 

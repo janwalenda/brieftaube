@@ -1,5 +1,3 @@
-"use client"
-
 import FieldContextProvider from "@/context/FieldContextProvider"
 import {
   MailHeader,
@@ -15,15 +13,13 @@ import TranslationContextProvider from "@/context/TranslateContextProvider"
 
 function App({
   dictionary,
-  lang
 }: {
-  lang: string;
   dictionary: {
     [key: string]: string;
   }
 }) {
   return (
-    <TranslationContextProvider dictionary={dictionary} lang={lang}>
+    <TranslationContextProvider dictionary={dictionary}>
       <FieldContextProvider>
       <PresetContextProvider>
         <MailHeader />

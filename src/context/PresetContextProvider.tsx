@@ -1,3 +1,4 @@
+"use client"
 import { FC, ReactNode, useState } from "react";
 import { PresetContext } from "./PresetContext";
 import { Preset } from "../types/Preset";

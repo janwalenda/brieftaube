@@ -40,7 +40,7 @@ export default function Textarea({
 
       onHTMLChange(wrapper.innerHTML);
     }
-  }, [props.value]);
+  }, [onHTMLChange, props.value]);
 
   return (
     <Tooltip variant={variant} tooltip={tooltip} className="w-[inherit]">

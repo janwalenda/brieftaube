@@ -1,25 +1,28 @@
+"use client"
 import { FC } from "react";
 import { TranslateContext } from "./TranslateContext";
+import { useParams } from "next/navigation";
+import { Lang } from "@/types/Lang";
 
 const TranslationContextProvider: FC<{
   children: React.ReactNode;
-  lang: string;
   dictionary: {
     [key: string]: string;
   }
 }> = ({ 
   children, 
   dictionary, 
-  lang 
 }) => {
+
+  const { lang } = useParams<{ lang: Lang }>()
   const t = (key: string) => {
-    console.log(dictionary)
     if (key in dictionary) {
       return dictionary[key];
     }
 
     throw new Error('Could not find translation key');
   };
+
 
   return (
     <TranslateContext.Provider value={{

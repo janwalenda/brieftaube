@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
-import { t } from "./dictionaries";
+import { t } from "../../dictionaries";
 import { ThemeSwitch, LangSwitch } from "@/components/Action";
-import Logo from "./Logo.svg";
+import Logo from "@/components/Logo.svg";
+import { Lang } from "@/types/Lang";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,26 +16,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: 'de' | 'en' }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: Lang }> }): Promise<Metadata> {
   const { lang } = await params;
 
   return {
     title: "Brieftaube",
     description: await t('description', lang) as unknown as string,
+    authors: {
+      name: "Jan Walenda",
+      url: "https://www.janwalenda.de"
+    },
+    keywords: ["Email", "Nextjs", "Brieftaube", "Html"],
+    generator: "Next.js",
+    manifest: "/site.webmanifest"
   }
 }
 
 export default async function RootLayout({
   children,
   params
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ lang: "de" | "en" }>,
-}>) {
-  const { lang } = await params;
-
+}: LayoutProps<'/[lang]'>) {
   return (
-    <html lang={lang} data-theme="light">
+    <html lang={(await params).lang} data-theme="light">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

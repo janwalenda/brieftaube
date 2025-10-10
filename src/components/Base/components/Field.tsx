@@ -3,7 +3,7 @@ import { useField } from "../../../hooks/useField";
 import { InputVariant } from "../types/InputVariant";
 import Button from "./Button";
 import { TooltipPosition } from "../types/TooltipPosition";
-import { DetailedHTMLProps, FieldsetHTMLAttributes, useRef, useState } from "react";
+import { DetailedHTMLProps, FieldsetHTMLAttributes } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { UniqueIdentifier } from "@dnd-kit/core";
 import Fieldset from "./Fieldset";
@@ -50,7 +50,6 @@ export default function Field({
   );
 
   function handleDelete() {
-    console.log(fieldId)
     removeField(fieldId);
   }
 }

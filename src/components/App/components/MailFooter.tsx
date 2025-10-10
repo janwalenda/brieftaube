@@ -1,3 +1,4 @@
+"use client"
 import { useEffect } from "react";
 import { useField } from "../../../hooks/useField";
 import { InputVariant } from "../../Base/types/InputVariant";
