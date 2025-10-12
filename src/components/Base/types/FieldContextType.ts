@@ -12,7 +12,6 @@ export type FieldContextType = {
     setTitle: (title: string) => void;
     setSalutation: (salutation: string) => void;
     setMainContent: (mainContent?: string) => void;
-    setMainContentHTML: (html: string) => void;
     setLogoUrl: (logoUrl: string) => void;
     setName: (name: string) => void;
     setClosing: (greetings: string) => void;

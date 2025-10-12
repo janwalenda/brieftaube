@@ -32,5 +32,11 @@
     "email.greetings": "Mit freundlichen oder solidarischen Grüßen? 🤔",
     "email.sender-name": "Sag deinen namen!",
     "email.role": "Welche Rolle nimmst du ein? Sprecher*in, Organisator*in oder anderes?",
-    "email.disclaimer": "Zeige für wen oder was du schreibst. Deine LAG, BAG, LV oder BV oder ähnliches"    
+    "email.disclaimer": "Zeige für wen oder was du schreibst.",
+
+    "dock.copy.title": "HTML zum kopieren",
+    "dock.preview.title": "Email Vorschau",
+    "dock.save.title": "Vorlage speichern",
+
+    "copy": "Kopieren"
 }

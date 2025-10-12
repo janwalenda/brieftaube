@@ -32,5 +32,11 @@
     "email.greetings": "With kind regards or in solidarity? 🤔",
     "email.sender-name": "Say your name!",
     "email.role": "What role do you play? Speaker, organizer, or other?",
-    "email.disclaimer": "Show who or what you are writing for. Your LAG, BAG, LV or BV, or similar."
+    "email.disclaimer": "Show who or what you are writing for",
+
+    "dock.copy.title": "HTML to copy",
+    "dock.preview.title": "Email preview",
+    "dock.save.title": "Save template",
+
+    "copy": "Copy"
 }

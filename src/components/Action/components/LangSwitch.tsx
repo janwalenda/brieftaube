@@ -14,7 +14,7 @@ export default async function LangSwitch({
   const { lang } = await params;
 
   return (
-    <details className="dropdown">
+    <details className="dropdown dropdown-end">
       <summary className="btn m-1">
         <IoLanguage />
       </summary>
