@@ -20,7 +20,6 @@ export default function MailHeader() {
     setLogoUrl,
     setSalutation,
     setMainContent,
-    setMainContentHTML,
   } = useField();
   const [switchState, setSwitchState] = useState(false);
   const { t } = useTranslate();
@@ -32,31 +31,6 @@ export default function MailHeader() {
   const fileButtonClass = cx("join-item", {
     'btn-active': !switchState,
   });
-
-  const handleURLChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLogoUrl(event.target.value);
-  }
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    const file = files && files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e: ProgressEvent<FileReader>) {
-        const result = e.target?.result as string | undefined; // Base64 data
-        // Typescript-friendly: handle result appropriately, e.g., set state or call setProperty
-        setLogoUrl(result || "");
-        const urlInput = document.getElementById("headerImageUrl") as HTMLInputElement | null;
-        if (urlInput) {
-          urlInput.value = "";
-        }
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setLogoUrl("");
-    }
-  }
 
   return (
     <div className="p-4 flex flex-col gap-4 w-full max-w-3xl items-center justify-center">
@@ -111,14 +85,40 @@ export default function MailHeader() {
       />
       <Textarea variant={InputVariant.Primary}
         className="w-full"
-        preview="edit"
-        onChange={(value) => setMainContent(value || "")}
-        onHTMLChange={(value) => {
-          setMainContentHTML(value || "");
-        }}
+        onChange={handleMainBodyChange}
         value={mail.mainContent}
         tooltip={t('email.main-content')}
       />
     </div>
-  )
+  );
+
+  function handleURLChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setLogoUrl(event.target.value);
+  }
+
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = event.target.files;
+    const file = files && files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e: ProgressEvent<FileReader>) {
+        const result = e.target?.result as string | undefined; // Base64 data
+
+        // Typescript-friendly: handle result appropriately, e.g., set state or call setProperty
+        setLogoUrl(result || "");
+        const urlInput = document.getElementById("headerImageUrl") as HTMLInputElement | null;
+        if (urlInput) {
+          urlInput.value = "";
+        }
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setLogoUrl("");
+    }
+  }
+
+  function handleMainBodyChange(value: string | undefined) {
+    setMainContent(value)
+  }
 }
