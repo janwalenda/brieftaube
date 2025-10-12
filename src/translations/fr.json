@@ -26,5 +26,11 @@
   "email.greetings": "Bien cordialement ou en solidarité ? 🤔",
   "email.sender-name": "Dites votre nom !",
   "email.role": "Quel rôle jouez-vous ? Orateur, organisateur ou autre ?",
-  "email.disclaimer": "Indiquez pour qui ou pour quoi vous écrivez. Votre LAG, BAG, LV ou BV, ou équivalent."
+  "email.disclaimer": "Indiquez pour qui ou pour quoi vous écrivez",
+
+  "dock.copy.title": "HTML à copier",
+  "dock.preview.title": "Aperçu de l'e-mail",
+  "dock.save.title": "Enregistrer le modèle",
+
+  "copy": "Copier"
 }

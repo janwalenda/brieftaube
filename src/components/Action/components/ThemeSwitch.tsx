@@ -9,7 +9,7 @@ export default async function ThemeSwitch({
 }) {
   const { lang } = await params;
   return (
-    <details className="dropdown">
+    <details className="dropdown dropdown-end">
       <summary className="btn m-1">
         <IoEye />
       </summary>

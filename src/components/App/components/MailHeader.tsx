@@ -61,7 +61,6 @@ export default function MailHeader() {
             value={mail.image}
           />}
         {switchState && <div className="w-full">
-          <p>Oder File Hochladen</p>
           <FileInput variant={InputVariant.Primary}
             onChange={handleFileChange}
             className="w-full"

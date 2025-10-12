@@ -123,17 +123,14 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     });
   }
 
-  const setMainContent = (mainContent: string, ) => {
+  const setMainContent = (mainContent?: string, ) => {
+    if(!mainContent) {
+      return;
+    }
+
     setMail({
       ...mail,
       mainContent,
-    });
-  }
-
-  const setMainContentHTML = (html: string) => {
-    setMail({
-      ...mail,
-      mainContentHTML: html,
     });
   }
 
@@ -208,7 +205,6 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setTitle,
       setMail,
       renderHTML,
-      setMainContentHTML
     }}>
       {children}
     </FieldContext.Provider>

@@ -1,5 +1,5 @@
 "use client"
-import { IoClipboard, IoCode, IoSave } from "react-icons/io5";
+import { IoClipboard, IoCode, IoMail, IoSave } from "react-icons/io5";
 import Button from "../../Base/components/Button";
 import { InputVariant } from "../../Base/types/InputVariant";
 import { IoMdPaper } from "react-icons/io";
@@ -46,33 +46,33 @@ export default function Dock() {
           <IoSave className="size-6" />
         </Button>
       </nav>
-      <Modal title="HTML zum einfügen" ref={htmlRef}>
+      <Modal title={t('dock.copy.title')} ref={htmlRef}>
+        <div className="flex flex-row gap-2 sticky w-full items-center justify-start mb-4">
+          <Button variant={InputVariant.Secondary}
+            title={t('copy')}
+            onClick={handleCopyClick}
+            tooltip={t('copy')}
+          >
+            <IoClipboard />
+          </Button>
+
+        </div>
         <div className="mockup-code w-full mb-4">
           <div className="p-4 flex flex-row items-center justify-between">
             <code>
               {html}
             </code>
-            <Button variant={InputVariant.Secondary}
-              title="Kopieren"
-              className="mb-4"
-              onClick={() => {
-                navigator.clipboard.writeText(html);
-              }}
-              tooltip="Kopieren!"
-            >
-              <IoClipboard />
-            </Button>
           </div>
         </div>
       </Modal>
-      <Modal title="E-Mail Vorschau" ref={previewRef}>
+      <Modal title={t('dock.preview.title')} ref={previewRef}>
         <div className="sm:mockup-window bg-base-100 sm:border border-base-200">
           <div className="sm:p-4">
             <iframe srcDoc={html} className="w-full h-[80vh] border-0" title="E-Mail Vorschau"></iframe>
           </div>
         </div>
       </Modal>
-      <Modal title="Vorlage Speichern" ref={saveRef} className="[&>.modal-box]:w-auto">
+      <Modal title={t('dock.save.title')} ref={saveRef} className="[&>.modal-box]:w-auto">
         <Input variant={InputVariant.Primary} defaultValue={presetName} onChange={(e) => {
           setPresetName(e.target.value);
         }} />
@@ -85,6 +85,10 @@ export default function Dock() {
       </Modal>
     </>
   )
+
+  function handleCopyClick() {
+    navigator.clipboard.writeText(html);
+  }
 
   function handleHTMLClick() {
     const generatedHTML = renderHTML();
