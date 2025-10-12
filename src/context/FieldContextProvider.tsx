@@ -179,7 +179,7 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     email.appendImage(mail.image, "6rem");
     email.appendMainTitle(mail.title);
     email.appendGreeting(mail.salutation);
-    email.appendMainBody(mail.mainContentHTML || "");
+    email.appendMainBody(mail.mainContent);
 
     email.appendFields(mail.fields);
 

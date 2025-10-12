@@ -1,5 +1,6 @@
+"use client"
 import { useField } from "../../../hooks/useField";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useRef } from "react";
 import { Field, Input, Textarea} from "@/components/Base"
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { useTranslate } from "@/hooks/useTranslate";
@@ -12,6 +13,7 @@ export default function TextBlockField({
 }) {
   const { setFieldProperty, getFieldProperty } = useField();
   const { t } = useTranslate();
+  const outputRef = useRef<HTMLDivElement>(null);
 
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldProperty(id, 'title' , e.target.value);
@@ -29,10 +31,19 @@ export default function TextBlockField({
         className="w-full"
         value={getFieldProperty(id, 'content')}
         preview="edit"
-        onChange={(value) => setFieldProperty(id, 'content', value || "")}
-        onHTMLChange={(value) => setFieldProperty(id, 'contentHTML', value || "")}
+        onChange={(value) => {
+          setFieldProperty(id, 'content', value || "")
+
+          if(!outputRef.current) {
+            return;
+          }
+
+          const html = outputRef.current;
+
+          return setFieldProperty(id, 'contentHTML', html.innerHTML);
+        }}
         tooltip={t('text-block.textarea')}
-        >
+      >
       </Textarea>
     </Field>
   )

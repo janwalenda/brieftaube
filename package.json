@@ -18,6 +18,7 @@
     "@uiw/react-md-editor": "^4.0.8",
     "cla": "^0.0.3",
     "classnames": "^2.5.1",
+    "marked": "^16.4.0",
     "negotiator": "^1.0.0",
     "next": "15.5.4",
     "next-i18next": "^15.4.2",

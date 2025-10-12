@@ -1,3 +1,4 @@
+import { marked } from "marked";
 import { Field } from "../components/Base/types/Field";
 import { FieldType } from "../components/Base/types/FieldType";
 
@@ -22,6 +23,7 @@ export default class Email {
     this.container.style.border = "1px solid #ddd";
     this.container.style.borderRadius = "8px";
     this.container.style.backgroundColor = "#fff";
+
     this.body.appendChild(this.container);
   }
 
@@ -67,13 +69,13 @@ export default class Email {
   appendMainBody(mainBodyContent: string){
     const articleMainBody = this.document.createElement("article");
     articleMainBody.style.marginBottom = "15px";
-    articleMainBody.innerHTML = mainBodyContent;
+    articleMainBody.innerHTML = marked.parse(mainBodyContent) as string;
 
     articleMainBody.querySelectorAll('strong').forEach((strong) => {
       strong.style.color = this.primaryColor;
     });
 
-    this.container.innerHTML += mainBodyContent;
+    this.container.appendChild(articleMainBody);
   }
 
   appendFields(fields: Field[]) {
@@ -95,14 +97,14 @@ export default class Email {
 
     const articleContent = this.document.createElement('article');
     articleContent.style.marginBottom = "15px";
-    articleContent.innerHTML = content;
+    articleContent.innerHTML = marked.parse(content) as string;
 
     articleContent.querySelectorAll('strong').forEach((strong) => {
       strong.style.color = this.primaryColor;
     });
 
     this.container.appendChild(h2Title);
-    this.container.innerHTML += content;
+    this.container.appendChild(articleContent);
   }
 
   appendClosing(closing: string) {

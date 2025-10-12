@@ -1,20 +1,20 @@
+"use client"
 import cx from "classnames";
 import { InputVariant } from "../types/InputVariant";
 import Tooltip from "./Tooltip";
-import MDEditor, { commands, MDEditorProps } from "@uiw/react-md-editor";
-import { useEffect, useRef } from "react";
+import { MDEditorProps } from "@uiw/react-md-editor";
+import dynamic from "next/dynamic";
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 type InputProps = MDEditorProps & {
   variant?: InputVariant,
   tooltip?: string,
-  onHTMLChange: (html: string) => void,
 }
 
 export default function Textarea({
   variant,
-  className: _className,
+  className,
   tooltip,
-  onHTMLChange,
   ...props
 }: InputProps) {
   const variantClasses = {
@@ -24,41 +24,16 @@ export default function Textarea({
     [InputVariant.Ghost]: 'textarea-ghost',
   };
 
-  const className = cx('textarea', _className, {
-    [variantClasses[variant || InputVariant.Neutral]]: true
-  });
-
-  const outPutRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if(outPutRef.current) {
-      const wrapper = outPutRef.current;
-
-      wrapper.querySelectorAll('strong').forEach(el => {
-        el.style.color = '#ff0000';
-      });
-
-      onHTMLChange(wrapper.innerHTML);
-    }
-  }, [onHTMLChange, props.value]);
-
   return (
     <Tooltip variant={variant} tooltip={tooltip} className="w-[inherit]">
-      <MDEditor
-        className={className} {...props}
-        commands={[
-          commands.bold,
-          commands.italic,
-          commands.strikethrough,
-          commands.hr,
-          commands.heading,
-          commands.table
-        ]}
+      <MDEditor 
+        aria-label={tooltip}
+        className={cx('textarea', className, {
+          [variantClasses[variant || InputVariant.Neutral]]: true
+        })}
         preview="edit"
+        {...props}
       />
-      <MDEditor.Markdown source={props.value || ""} style={{ display: "none" }} wrapperElement={{
-        ref: outPutRef
-      }} />
     </Tooltip>
-  )
+  );
 }
