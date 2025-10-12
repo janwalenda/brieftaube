@@ -1,5 +1,5 @@
 "use client"
-import { IoClipboard, IoClose, IoCode, IoHelp, IoSave } from "react-icons/io5";
+import { IoClipboard, IoCode, IoHelp, IoSave } from "react-icons/io5";
 import Button from "../../Base/components/Button";
 import { InputVariant } from "../../Base/types/InputVariant";
 import { IoMdPaper } from "react-icons/io";
