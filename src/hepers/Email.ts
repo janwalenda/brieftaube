@@ -27,9 +27,10 @@ export default class Email {
     this.body.appendChild(this.container);
   }
 
-  constructor() {
+  constructor(color: string) {
     this.prepareBody();
     this.prepareContainer();
+    this.primaryColor = color;
   }
 
   appendImage(url: string = '', width: string = "6rem") {
@@ -54,7 +55,7 @@ export default class Email {
     const titleElement = this.document.createElement('h1');
 
     titleElement.textContent = title;
-    titleElement.style.color = "#ff0000";
+    titleElement.style.color = this.primaryColor;
 
     this.container.appendChild(titleElement);
   }

@@ -12,4 +12,5 @@ export type Mail = {
   closing: string;
   disclaimer: string;
   tooltip: boolean;
+  primaryColor: string;
 }

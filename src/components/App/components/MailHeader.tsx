@@ -12,6 +12,8 @@ import {
 import { InputVariant } from "@/components/Base/types/InputVariant";
 import { PresetDrawer } from "@/components/Action";
 import { useTranslate } from "@/hooks/useTranslate";
+import ColorInput from "@/components/Base/components/ColorInput";
+import { InputForm } from "@/components/Base/types/InputForm";
 
 export default function MailHeader() {
   const {
@@ -20,6 +22,7 @@ export default function MailHeader() {
     setLogoUrl,
     setSalutation,
     setMainContent,
+    setPrimaryColor,
   } = useField();
   const [switchState, setSwitchState] = useState(false);
   const { t } = useTranslate();
@@ -34,7 +37,14 @@ export default function MailHeader() {
 
   return (
     <div className="p-4 flex flex-col gap-4 w-full max-w-3xl items-center justify-center">
-      <PresetDrawer/>
+      <PresetDrawer />
+      <ColorInput
+        placeholder="#eeeeee"
+        value={mail.primaryColor}
+        variant={InputVariant.Primary}
+        form={InputForm.Block}
+        onChange={(event) => setPrimaryColor(event.target.value)}
+      />
       <div className="w-full">
         <div className="join mb-4">
           <Button className={urlButtonClass}
@@ -84,7 +94,7 @@ export default function MailHeader() {
       />
       <Textarea variant={InputVariant.Primary}
         className="w-full"
-        onChange={handleMainBodyChange}
+        onChange={(value) => handleMainBodyChange(value || "")}
         value={mail.mainContent}
         tooltip={t('email.main-content')}
       />
