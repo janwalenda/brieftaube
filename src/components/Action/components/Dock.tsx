@@ -1,5 +1,5 @@
 "use client"
-import { IoClipboard, IoClose, IoCode, IoHelp, IoSave } from "react-icons/io5";
+import { IoClipboard, IoCode, IoDownload, IoHelp, IoSave } from "react-icons/io5";
 import Button from "../../Base/components/Button";
 import { InputVariant } from "../../Base/types/InputVariant";
 import { IoMdPaper } from "react-icons/io";
@@ -33,6 +33,7 @@ export default function Dock() {
           variant={InputVariant.Primary}
           form={InputForm.Circle}
           onClick={handleHTMLClick}
+          className="rounded-full"
           tooltip={t('dock.code')}
         >
           <IoCode className="size-4" />
@@ -41,6 +42,7 @@ export default function Dock() {
           variant={InputVariant.Primary}
           form={InputForm.Circle}
           onClick={handlePreviewClick}
+          className="rounded-full"
           tooltip={t('dock.preview')}
         >
           <IoMdPaper className="size-4" />
@@ -49,7 +51,7 @@ export default function Dock() {
           variant={InputVariant.Primary}
           form={InputForm.Circle}
           onClick={handleOpenSaveClick}
-          className="btn-circle btn-md"
+          className="rounded-full"
           tooltip={t('dock.save')}
           >
           <IoSave className="size-4" />
@@ -58,7 +60,7 @@ export default function Dock() {
           variant={InputVariant.Primary}
           form={InputForm.Circle}
           title={tooltipButtonTitle}
-          className={cx({
+          className={cx("rounded-full", {
             "btn-active": !mail.tooltip
           })}
           onClick={toggleTooltip}
@@ -68,12 +70,33 @@ export default function Dock() {
       </nav>
       <Modal title={t('dock.copy.title')} ref={htmlRef}>
         <div className="flex flex-row gap-2 sticky w-full items-center justify-start mb-4">
-          <Button variant={InputVariant.Secondary}
+          <Button variant={InputVariant.Primary}
             title={t('copy')}
             onClick={handleCopyClick}
             tooltip={t('copy')}
           >
             <IoClipboard />
+          </Button>
+          <Button variant={InputVariant.Secondary}
+            title={t('download')}
+            onClick={() => {
+              const anchor = document.createElement('a');
+              const emailBlob = new Blob([`data:message/rfc822 eml,\nSubject: ${mail.title}\nX-Unsent: 1\nContent-Type: text/html;charset="utf-8"\n\n${html}`], {
+                type: 'message/rfc822'
+              });
+              const url = URL.createObjectURL(emailBlob);
+              
+              anchor.href = url;
+              anchor.download = 'email.eml';
+
+              document.body.appendChild(anchor);
+            
+              anchor.click();
+              anchor.remove();
+            }}
+            tooltip={t('download')}
+          >
+            <IoDownload/>
           </Button>
 
         </div>

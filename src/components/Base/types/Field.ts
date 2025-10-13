@@ -7,27 +7,11 @@ interface BaseField {
   type: FieldType;
 }
 
-export interface ListField extends BaseField {
-    id: UniqueIdentifier;
-    type: FieldType.List;
-    title?: string;
-    content?: string;
-}
-
-export interface FooterField extends BaseField {
-  id: UniqueIdentifier;
-  type: FieldType.Footer;
-  name?: string;
-  position?: string;
-  disclaimer?: string;
-}
-
 export interface TextBlock extends BaseField {
   id: UniqueIdentifier;
   type: FieldType.TextBlock;
   title?: string;
   content?: string;
-  contentHTML?: string;
 }
 
 export interface ImageField extends BaseField {
@@ -37,6 +21,6 @@ export interface ImageField extends BaseField {
   width?: ImageWidth;
 }
 
-export type FieldKeys = keyof ImageField | keyof ListField | keyof FooterField | keyof TextBlock;
+export type FieldKeys = keyof ImageField | keyof TextBlock;
 
-export type Field = ListField | TextBlock | ImageField | FooterField;
+export type Field = TextBlock | ImageField;

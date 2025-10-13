@@ -2,7 +2,7 @@
 import { useState, type FC, type ReactNode } from "react";
 import { FieldContext } from "./FieldContext";
 import { FieldType } from "../components/Base/types/FieldType";
-import type { Field, FieldKeys, FooterField, ImageField, ListField, TextBlock } from "../components/Base/types/Field";
+import type { Field, FieldKeys, ImageField, TextBlock } from "../components/Base/types/Field";
 import type { Mail } from "../types/Mail";
 import Email from "../hepers/Email";
 import { UniqueIdentifier } from "@dnd-kit/core";
@@ -21,12 +21,21 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     tooltip: true,
   });
 
-  const addField = (type: FieldType.Image | FieldType.TextBlock | FieldType.Footer | FieldType.List) => {
+  const addField = (type: FieldType.Image | FieldType.TextBlock) => {
     const id = mail.fields.length + 1;
     const newField: Field = {
       id,
       type,
     };
+
+    switch(type) {
+      case FieldType.Image:
+        (newField as ImageField).url = 'https://placehold.co/600x150/000000/ffffff?text=Kein+Bild+angegeben';
+        break
+      case FieldType.TextBlock:
+        (newField as TextBlock).title = 'Titel';
+        (newField as TextBlock).content = 'Schreib was du willst';
+    }
 
     setMail({
       ...mail,
@@ -75,20 +84,6 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         const f = field as TextBlock;
         if (property in f) {
           return (f as TextBlock)[property as keyof TextBlock] as string;
-        }
-        break;
-      }
-      case FieldType.List: {
-        const f = field as ListField;
-        if (property in f) {
-          return (f as ListField)[property as keyof ListField] as string;
-        }
-        break;
-      }
-      case FieldType.Footer: {
-        const f = field as FooterField;
-        if (property in f) {
-          return (f as FooterField)[property as keyof FooterField] as string;
         }
         break;
       }
