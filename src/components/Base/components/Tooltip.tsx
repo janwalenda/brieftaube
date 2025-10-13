@@ -2,6 +2,7 @@
 import cx from "classnames";
 import { InputVariant } from "../types/InputVariant";
 import { TooltipPosition } from "../types/TooltipPosition";
+import { useField } from "@/hooks/useField";
 
 export type TooltipProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   variant?: InputVariant,
@@ -19,6 +20,7 @@ export default function Tooltip({
   tooltipPosition,
   ...props
 }: TooltipProps) {
+  const { mail } = useField()
   const variants = {
     [InputVariant.Neutral]: '',
     [InputVariant.Primary]: 'tooltip-primary',
@@ -35,10 +37,11 @@ export default function Tooltip({
 
   const classN = cx([
     className,
-    'tooltip',
-    variants[variant || InputVariant.Neutral],
-    position[tooltipPosition || TooltipPosition.Top]
-  ]);
+  ], {
+    'tooltip': mail.tooltip  || tooltip,
+    [variants[variant || InputVariant.Neutral]]: mail.tooltip || tooltip,
+    [position[tooltipPosition || TooltipPosition.Top]]: mail.tooltip  || tooltip,
+  });
   return (
     <div className={classN} {...props} data-tip={tooltip}>
       {children}

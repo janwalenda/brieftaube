@@ -32,5 +32,8 @@
   "dock.preview.title": "Aperçu de l'e-mail",
   "dock.save.title": "Enregistrer le modèle",
 
+  "dock.activate-tooltips.title": "Activer les info-bulles expliquant l'interface",
+  "dock.deactivate-tooltips.title": "Désactiver les info-bulles",
+
   "copy": "Copier"
 }

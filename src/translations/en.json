@@ -37,6 +37,8 @@
     "dock.copy.title": "HTML to copy",
     "dock.preview.title": "Email preview",
     "dock.save.title": "Save template",
+    "dock.activate-tooltips.title": "Activate tips that explain the interface",
+    "dock.deactivate-tooltips.title": "Deactivate tips",
 
     "copy": "Copy"
 }
