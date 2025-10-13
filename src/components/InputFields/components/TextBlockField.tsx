@@ -1,6 +1,6 @@
 "use client"
 import { useField } from "../../../hooks/useField";
-import { ChangeEvent, useRef } from "react";
+import { ChangeEvent } from "react";
 import { Field, Input, Textarea} from "@/components/Base"
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { useTranslate } from "@/hooks/useTranslate";
