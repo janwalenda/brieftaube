@@ -1,4 +1,4 @@
-import FieldContextProvider from "@/context/FieldContextProvider"
+import MailContextProvider from "@/context/MailContextProvider"
 import {
   MailHeader,
   FieldList,
@@ -20,7 +20,7 @@ function App({
 }) {
   return (
     <TranslationContextProvider dictionary={dictionary}>
-      <FieldContextProvider>
+      <MailContextProvider>
       <PresetContextProvider>
         <MailHeader />
         <FieldList />
@@ -28,7 +28,7 @@ function App({
         <FAB />
         <Dock />
       </PresetContextProvider>
-    </FieldContextProvider>
+    </MailContextProvider>
     </TranslationContextProvider>
   )
 }

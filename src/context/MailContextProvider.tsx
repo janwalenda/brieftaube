@@ -1,13 +1,13 @@
 "use client"
 import { useState, type FC, type ReactNode } from "react";
-import { FieldContext } from "./FieldContext";
+import { MailContext } from "./MailContext";
 import { FieldType } from "../components/Base/types/FieldType";
 import type { Field, FieldKeys, ImageField, TextBlock } from "../components/Base/types/Field";
 import type { Mail } from "../types/Mail";
 import Email from "../hepers/Email";
 import { UniqueIdentifier } from "@dnd-kit/core";
 
-const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const MailContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [mail, setMail] = useState<Mail>({
     title: "Mein Newsletter",
     salutation: "Moin,",
@@ -19,6 +19,7 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     name: "Dein Name",
     role: "Deine Rolle",
     tooltip: true,
+    primaryColor: '#123455',
   });
 
   const addField = (type: FieldType.Image | FieldType.TextBlock) => {
@@ -91,6 +92,13 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     return undefined;
   }
 
+  const setPrimaryColor = (primaryColor: string) => {
+    setMail({
+      ...mail,
+      primaryColor,
+    })
+  }
+
   const setTitle = (title: string) => {
     setMail({
       ...mail,
@@ -113,13 +121,9 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   const setMainContent = (mainContent?: string, ) => {
-    if(!mainContent) {
-      return;
-    }
-
     setMail({
       ...mail,
-      mainContent,
+      mainContent: mainContent ?? "",
     });
   }
 
@@ -160,7 +164,7 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 
   const renderHTML = () => {
-    const email = new Email();
+    const email = new Email(mail.primaryColor);
 
     email.appendImage(mail.image, "6rem");
     email.appendMainTitle(mail.title);
@@ -178,7 +182,7 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   return (
-    <FieldContext.Provider value={{
+    <MailContext.Provider value={{
       mail,
       addField,
       getFieldProperty,
@@ -195,10 +199,11 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setMail,
       renderHTML,
       toggleTooltip,
+      setPrimaryColor,
     }}>
       {children}
-    </FieldContext.Provider>
+    </MailContext.Provider>
   );
 }
 
-export default FieldContextProvider
+export default MailContextProvider
