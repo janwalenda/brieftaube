@@ -40,5 +40,9 @@
     "dock.activate-tooltips.title": "Activate tips that explain the interface",
     "dock.deactivate-tooltips.title": "Deactivate tips",
 
+    "modal.close": "Close modal",
+
+    "download": "Download",
+
     "copy": "Copy"
 }

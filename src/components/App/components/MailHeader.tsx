@@ -25,11 +25,11 @@ export default function MailHeader() {
   const { t } = useTranslate();
 
   const urlButtonClass = cx("join-item", {
-    'btn-active': switchState,
+    'btn-active': !switchState,
   });
 
   const fileButtonClass = cx("join-item", {
-    'btn-active': !switchState,
+    'btn-active': switchState,
   });
 
   return (

@@ -38,7 +38,7 @@ export default function Tooltip({
   const classN = cx([
     className,
   ], {
-    'tooltip': mail.tooltip  || tooltip,
+    'tooltip': mail.tooltip && typeof tooltip === "string",
     [variants[variant || InputVariant.Neutral]]: mail.tooltip && typeof tooltip === "string",
     [position[tooltipPosition || TooltipPosition.Top]]: mail.tooltip  && typeof tooltip === "string",
   });

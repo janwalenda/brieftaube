@@ -85,7 +85,7 @@ export default class Email {
           this.appendImage(field.url, field.width);
           break;
         case FieldType.TextBlock:
-          this.appendTextBlock(field.title, field.contentHTML)
+          this.appendTextBlock(field.title, field.content)
       }
     });
   }
@@ -97,6 +97,7 @@ export default class Email {
 
     const articleContent = this.document.createElement('article');
     articleContent.style.marginBottom = "15px";
+    
     articleContent.innerHTML = marked.parse(content) as string;
 
     articleContent.querySelectorAll('strong').forEach((strong) => {
@@ -140,6 +141,6 @@ export default class Email {
   }
 
   render(): string {
-    return `${this.document.body.innerHTML}`
+    return `<!DOCTYPE html><html>${this.document.documentElement.outerHTML}</html>`
   }
 }

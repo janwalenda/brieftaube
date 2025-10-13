@@ -11,13 +11,13 @@ export default function FieldSwitch({ type, id }: Field & { index: number}) {
     case FieldType.TextBlock:
       return (
         <SortableItem id={id}>
-          <TextBlockField id={id} key={id} />
+          <TextBlockField fieldId={id} key={id} />
         </SortableItem>
       );
     case FieldType.Image:
       return (
         <SortableItem id={id}>
-          <ImageField id={id} key={id} legend={t('image-field.legend')} />
+          <ImageField fieldId={id} key={id} legend={t('image-field.legend')} />
         </SortableItem>
       );
     default:

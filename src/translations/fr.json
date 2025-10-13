@@ -35,5 +35,9 @@
   "dock.activate-tooltips.title": "Activer les info-bulles expliquant l'interface",
   "dock.deactivate-tooltips.title": "Désactiver les info-bulles",
 
+  "modal.close": "Fermer la fenêtre modale",
+
+  "download": "Télécharger",
+
   "copy": "Copier"
 }

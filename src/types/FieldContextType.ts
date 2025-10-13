@@ -5,7 +5,7 @@ import type { Mail } from "./Mail";
 import { UniqueIdentifier } from "@dnd-kit/core";
 
 export type FieldContextType = {
-    addField: (type: FieldType.Image | FieldType.TextBlock | FieldType.Footer) => number;
+    addField: (type: FieldType.Image | FieldType.TextBlock) => number;
     removeField: (id: UniqueIdentifier) => void;
     setFieldProperty: (id: UniqueIdentifier, property: FieldKeys, value: string) => void;
     getFieldProperty: (id: UniqueIdentifier, property: FieldKeys) => string | undefined;

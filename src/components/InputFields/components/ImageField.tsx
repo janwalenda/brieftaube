@@ -17,21 +17,21 @@ import { useTranslate } from "@/hooks/useTranslate";
 
 export default function ImageField({
   legend,
-  id,
+  fieldId: id,
 }: {
   legend: ReactNode;
-  id: UniqueIdentifier;
+  fieldId: UniqueIdentifier;
 }) {
   const [switchState, setSwitchState] = useState(false);
   const { setFieldProperty, getFieldProperty } = useField();
   const { t } = useTranslate()
 
   const urlButtonClass = cx("join-item", {
-    'btn-active': switchState,
+    'btn-active': !switchState,
   });
 
   const fileButtonClass = cx("join-item", {
-    'btn-active': !switchState,
+    'btn-active': switchState,
   });
 
   const handleURLChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +64,7 @@ export default function ImageField({
   }
 
   return (
-    <Field legend={legend} fieldId={id} draggable>
+    <Field legend={legend} fieldId={id}>
       <div className="join">
         <Button className={urlButtonClass}
           onClick={() => setSwitchState(false)}
@@ -83,6 +83,7 @@ export default function ImageField({
       </div>
       {!switchState && <Input placeholder="URL"
         startIcon={<IoLink/>}
+        value={getFieldProperty(id, "url")}
         onChange={handleURLChange}
         className="w-full"
       />}
