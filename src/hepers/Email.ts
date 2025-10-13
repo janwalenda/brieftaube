@@ -141,6 +141,6 @@ export default class Email {
   }
 
   render(): string {
-    return `${this.document.body.innerHTML}`
+    return `<!DOCTYPE html><html>${this.document.documentElement.outerHTML}</html>`
   }
 }
