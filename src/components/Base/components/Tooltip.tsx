@@ -39,8 +39,8 @@ export default function Tooltip({
     className,
   ], {
     'tooltip': mail.tooltip  || tooltip,
-    [variants[variant || InputVariant.Neutral]]: mail.tooltip || tooltip,
-    [position[tooltipPosition || TooltipPosition.Top]]: mail.tooltip  || tooltip,
+    [variants[variant || InputVariant.Neutral]]: mail.tooltip && typeof tooltip === "string",
+    [position[tooltipPosition || TooltipPosition.Top]]: mail.tooltip  && typeof tooltip === "string",
   });
   return (
     <div className={classN} {...props} data-tip={tooltip}>
