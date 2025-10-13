@@ -2,8 +2,11 @@
 import cx from "classnames";
 import { InputVariant } from "../types/InputVariant";
 import Tooltip from "./Tooltip";
-import { MDEditorProps } from "@uiw/react-md-editor";
+import { commands, MDEditorProps } from "@uiw/react-md-editor";
 import dynamic from "next/dynamic";
+import { IoCode } from "react-icons/io5";
+import { FaBold, FaItalic, FaLine, FaRulerHorizontal, FaStrikethrough } from "react-icons/fa";
+import { FaHeading } from "react-icons/fa6";
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 type InputProps = MDEditorProps & {
