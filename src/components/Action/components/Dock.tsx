@@ -1,5 +1,5 @@
 "use client"
-import { IoClipboard, IoCode, IoMail, IoSave } from "react-icons/io5";
+import { IoClipboard, IoClose, IoCode, IoHelp, IoSave } from "react-icons/io5";
 import Button from "../../Base/components/Button";
 import { InputVariant } from "../../Base/types/InputVariant";
 import { IoMdPaper } from "react-icons/io";
@@ -9,10 +9,12 @@ import { useField } from "../../../hooks/useField";
 import { usePreset } from "../../../hooks/usePreset";
 import { Input } from "@/components/Base"
 import { useTranslate } from "@/hooks/useTranslate";
+import cx from "classnames"
+import { InputForm } from "@/components/Base/types/InputForm";
 
 export default function Dock() {
   const [html, setHTML] = useState<string>("");
-  const { renderHTML, mail } = useField();
+  const { renderHTML, toggleTooltip, mail } = useField();
   const [presetName, setPresetName] = useState(mail.title);
   const { addPreset } = usePreset();
   const { t } = useTranslate();
@@ -21,29 +23,47 @@ export default function Dock() {
   const previewRef = useRef<HTMLDialogElement>(null);
   const saveRef = useRef<HTMLDialogElement>(null);
 
+  const tooltipButtonTitle = mail.tooltip ?
+    t('dock.deactivate-tooltips.title') :
+    t('dock.activate-tooltips.title');
   return (
     <>
-      <nav className="fixed bottom-4 left-1/2 transform-[translate(-50%,0)] flex flex-row gap-2 bg-base-100/50 backdrop-blur-lg rounded-full items-center p-2 hover:opacity-100 justify-center border border-primary">
-        <Button variant={InputVariant.Primary}
-          className="btn-circle btn-md"
+      <nav className="fixed bottom-4 left-1/2 transform-[translate(-50%,0)] flex flex-row gap-2 bg-base-100/30 backdrop-blur-lg rounded-full items-center p-2 hover:opacity-100 justify-center border border-primary">
+        <Button 
+          variant={InputVariant.Primary}
+          form={InputForm.Circle}
           onClick={handleHTMLClick}
           tooltip={t('dock.code')}
         >
-          <IoCode className="size-6" />
+          <IoCode className="size-4" />
         </Button>
-        <Button variant={InputVariant.Primary}
-          className="btn-circle btn-md"
+        <Button
+          variant={InputVariant.Primary}
+          form={InputForm.Circle}
           onClick={handlePreviewClick}
           tooltip={t('dock.preview')}
         >
-          <IoMdPaper className="size-6" />
+          <IoMdPaper className="size-4" />
         </Button>
-        <Button variant={InputVariant.Primary}
-          className="btn-circle btn-md"
+        <Button 
+          variant={InputVariant.Primary}
+          form={InputForm.Circle}
           onClick={handleOpenSaveClick}
+          className="btn-circle btn-md"
           tooltip={t('dock.save')}
+          >
+          <IoSave className="size-4" />
+        </Button>
+        <Button
+          variant={InputVariant.Primary}
+          form={InputForm.Circle}
+          title={tooltipButtonTitle}
+          className={cx({
+            "btn-active": !mail.tooltip
+          })}
+          onClick={toggleTooltip}
         >
-          <IoSave className="size-6" />
+          <IoHelp className="size-4" />
         </Button>
       </nav>
       <Modal title={t('dock.copy.title')} ref={htmlRef}>

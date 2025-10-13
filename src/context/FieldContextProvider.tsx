@@ -3,7 +3,6 @@ import { useState, type FC, type ReactNode } from "react";
 import { FieldContext } from "./FieldContext";
 import { FieldType } from "../components/Base/types/FieldType";
 import type { Field, FieldKeys, FooterField, ImageField, ListField, TextBlock } from "../components/Base/types/Field";
-import { ImageWidth } from "../types/ImageWidth";
 import type { Mail } from "../types/Mail";
 import Email from "../hepers/Email";
 import { UniqueIdentifier } from "@dnd-kit/core";
@@ -12,26 +11,14 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [mail, setMail] = useState<Mail>({
     title: "Mein Newsletter",
     salutation: "Moin,",
-    fields: [
-      {
-        id: 0,
-        type: FieldType.Image,
-        url: '',
-        width: ImageWidth.SM,
-      },
-      {
-        id: 1,
-        type: FieldType.Image,
-        url: '',
-        width: ImageWidth.FULL,
-      }
-    ],
+    fields: [],
     disclaimer: "Diese E-Mail wurde von [Organisation/Person] versandt.",
     mainContent: "Hier ist der Hauptinhalt deines Newsletters. Du kannst Text, Bilder und andere Elemente hinzufügen, um deine Botschaft zu vermitteln.",
     image: "https://placehold.co/600x150/000000/ffffff?text=Kein+Bild+angegeben",
     closing: "Solidarische Grüße",
     name: "Dein Name",
     role: "Deine Rolle",
+    tooltip: true,
   });
 
   const addField = (type: FieldType.Image | FieldType.TextBlock | FieldType.Footer | FieldType.List) => {
@@ -62,6 +49,13 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         return field;
       }),
     });
+  }
+
+  const toggleTooltip = () => {
+    setMail({
+      ...mail,
+      tooltip: !mail.tooltip,
+    })
   }
 
   // Variante 2: diskreter Typ-Abgleich
@@ -205,6 +199,7 @@ const FieldContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setTitle,
       setMail,
       renderHTML,
+      toggleTooltip,
     }}>
       {children}
     </FieldContext.Provider>

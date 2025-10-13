@@ -11,4 +11,5 @@ export type Mail = {
   role: string;
   closing: string;
   disclaimer: string;
+  tooltip: boolean;
 }
