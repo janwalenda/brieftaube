@@ -3,57 +3,44 @@ import { InputVariant } from "../types/InputVariant";
 import Tooltip from "./Tooltip";
 import { InputForm } from "../types/InputForm";
 import { InputSize } from "../types/InputSize";
+import { HexColorPicker } from "react-colorful";
+import Fieldset from "./Fieldset";
 
-type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
+type InputProps = & {
   variant?: InputVariant,
   tooltip?: string,
   size?: InputSize,
   form?: InputForm,
+  className?: string,
+  color: string,
+  onChange: (newColor: string) => void,
 }
 
 export default function ColorInput({
   variant,
-  className,
   tooltip,
-  size,
-  form,
-  ...props
+  className,
+  color,
+  onChange
 }: InputProps) {
-  const variantClasses = {
-    [InputVariant.Primary]: 'input-primary',
-    [InputVariant.Secondary]: 'input-secondary',
-    [InputVariant.Neutral]: 'input-neutral',
-    [InputVariant.Ghost]: 'input-ghost',
-  };
 
-  const formClasses = {
-    [InputForm.Circle]: 'btn-circle',
-    [InputForm.Square]: 'btn-square',
-    [InputForm.Block]: 'btn-block',
-    [InputForm.Default]: '',
-  }
-
-  const sizeClasses = {
-    [InputSize.XS]: 'btn-xs',
-    [InputSize.SM]: 'btn-sm',
-    [InputSize.MD]: 'btn-md',
-    [InputSize.LG]: 'btn-lg',
-    [InputSize.XL]: 'btn-xl'
-  }
-
+  console.log(color)
   return (
-    <Tooltip tooltip={tooltip} variant={variant} className="w-[inherit]">
-      <label className={cx([
-        'input',
-        'validator',
-        variantClasses[variant || InputVariant.Neutral],
-        sizeClasses[size || InputSize.MD],
-        formClasses[form || InputForm.Default],
-        className,
-      ])}>
-        <div className="size-4 rounded-full" style={{background: props.value as string ?? '#ffffff'}} />
-        <input type="text" {...props} />
-      </label>
-    </Tooltip>
+    <Fieldset className="w-full">
+      <Tooltip tooltip={tooltip} variant={variant} className="w-[inherit]">
+        <div className={cx([
+          'flex flex-row items-center justify-start gap-2 w-full',
+          className
+        ])}>
+          <div className="flex flex-col gap-2 items-center justify-center w-full">
+            <HexColorPicker color={color as string} onChange={onChange} style={{ width: '100%' }} />
+            <label className="input input-accent input-sm">
+              <span>HEX</span>
+              <input onChange={(event) => onChange(event.target.value)} value={color as string} />
+            </label>
+          </div>
+        </div>
+      </Tooltip>
+    </Fieldset>
   )
-}
+} 

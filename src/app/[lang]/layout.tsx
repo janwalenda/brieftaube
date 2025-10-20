@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { t } from "../../dictionaries";
-import { ThemeSwitch, LangSwitch } from "@/components/Action";
 import { Lang } from "@/types/Lang";
-import { Logo } from "../../components/Logo";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,22 +40,12 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="flex flex-col items-center justify-center">
-          <div className="w-full max-w-3xl flex items-center justify-between p-4">
-              <Logo/>
-            <div className="flex flex-row gap-2 items-center">
-              <ThemeSwitch  params={params}/>
-              <LangSwitch params={params} /> 
-            </div>
+        {children}
+        <footer className="w-full flex items-center justify-center px-4 py-8">
+          <div className="max-w-3xl w-full">
+            <small>An app developed by <b><Link href="https://www.janwalenda.de" className="link">Jan Walenda</Link></b></small>
           </div>
-          <hr className="text-base-300 w-full"/>
-        </header>
-        <main>
-          <div className="w-full h-full flex flex-col items-center justify-center md:px-4 md:pt-4 bg-base-200 pb-20">
-            {children}
-          </div>
-        </main>
-        <footer></footer>
+        </footer>
       </body>
     </html>
   );

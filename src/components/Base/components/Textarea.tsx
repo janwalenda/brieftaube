@@ -4,7 +4,7 @@ import { InputVariant } from "../types/InputVariant";
 import Tooltip from "./Tooltip";
 import { MDEditorProps } from "@uiw/react-md-editor";
 import dynamic from "next/dynamic";
-const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
+const MDEditor = dynamic(() => import('@/components/MDEditor/components/MDEditor'), { ssr: false })
 
 type InputProps = MDEditorProps & {
   variant?: InputVariant,
@@ -26,13 +26,11 @@ export default function Textarea({
 
   return (
     <Tooltip variant={variant} tooltip={tooltip} className="w-[inherit]">
-      <MDEditor 
+      <MDEditor
         aria-label={tooltip}
-        extraCommands={[]}
         className={cx('textarea', className, {
           [variantClasses[variant || InputVariant.Neutral]]: true
         })}
-        preview="edit"
         {...props}
       />
     </Tooltip>

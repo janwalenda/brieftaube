@@ -10,7 +10,6 @@ import {
   Button
 } from "@/components/Base";
 import { InputVariant } from "@/components/Base/types/InputVariant";
-import { PresetDrawer } from "@/components/Action";
 import { useTranslate } from "@/hooks/useTranslate";
 import ColorInput from "@/components/Base/components/ColorInput";
 import { InputForm } from "@/components/Base/types/InputForm";
@@ -27,6 +26,7 @@ export default function MailHeader() {
   const [switchState, setSwitchState] = useState(false);
   const { t } = useTranslate();
 
+
   const urlButtonClass = cx("join-item", {
     'btn-active': !switchState,
   });
@@ -35,15 +35,14 @@ export default function MailHeader() {
     'btn-active': switchState,
   });
 
+
   return (
-    <div className="p-4 flex flex-col gap-4 w-full max-w-3xl items-center justify-center">
-      <PresetDrawer />
+    <div className="px-4 flex flex-col gap-4 w-full max-w-3xl items-center justify-center relative pb-4">
       <ColorInput
-        placeholder="#eeeeee"
-        value={mail.primaryColor}
+        color={mail.primaryColor}
         variant={InputVariant.Primary}
         form={InputForm.Block}
-        onChange={(event) => setPrimaryColor(event.target.value)}
+        onChange={setPrimaryColor}
       />
       <div className="w-full">
         <div className="join mb-4">
