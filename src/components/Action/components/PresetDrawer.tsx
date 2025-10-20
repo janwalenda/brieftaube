@@ -8,14 +8,13 @@ export default function PresetDrawer() {
   const { presets, setPresetGlobally, removePreset } = usePreset();
 
   return (
-    <div className="drawer">
+    <div className="drawer w-fit">
       <input id="presetDrawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-end justify-center">
         {/* Page content here */}
-        <label htmlFor="presetDrawer" className="btn btn-primary drawer-button">
+        <label htmlFor="presetDrawer" className="btn btn-accent drawer-button">
           <IoList />
         </label>
-      </div>
+
       <div className="drawer-side">
         <label htmlFor="presetDrawer" aria-label="close sidebar" className="drawer-overlay">
           Schließen

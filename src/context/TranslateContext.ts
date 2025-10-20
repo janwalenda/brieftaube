@@ -1,6 +1,6 @@
 "use client"
 
-import { TranslateContextType } from "@/types/TranslateContextType";
 import { createContext } from "react";
+import { TranslateContextType } from "@/types/TranslateContextType";
 
 export const TranslateContext = createContext<TranslateContextType | null>(null);

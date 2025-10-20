@@ -1,16 +1,15 @@
-import { t } from "@/dictionaries";
-import { Lang } from "@/types/Lang";
+import { useTheme } from "@/hooks/useTheme";
+import { useTranslate } from "@/hooks/useTranslate";
+import { Theme } from "@/types/Theme";
 import { IoEye } from "react-icons/io5";
 
-export default async function ThemeSwitch({
-  params
-}: {
-  params: Promise<{ lang: Lang | string }>
-}) {
-  const { lang } = await params;
+export default function ThemeSwitch() {
+  const { t } = useTranslate();
+  const { theme, switchTheme, getSystemTheme } = useTheme();
+
   return (
     <details className="dropdown dropdown-end">
-      <summary className="btn m-1">
+      <summary className="btn btn-accent">
         <IoEye />
       </summary>
 
@@ -21,8 +20,29 @@ export default async function ThemeSwitch({
               name="theme-radios"
               className="radio radio-sm theme-controller"
               value="light"
+              checked={theme === Theme.LIGHT}
+              onChange={(event) => {
+                if(event.target.checked) {
+                  switchTheme(Theme.LIGHT)
+                }
+              }}
             />
-            {await t('theme-switch.light', lang as Lang)}
+            {t('theme-switch.light')}
+          </label>
+          <label className="flex gap-2 cursor-pointer items-center">
+            <input
+              type="radio"
+              name="theme-radios"
+              className="radio radio-sm theme-controller"
+              value="dark"
+              checked={theme === Theme.DARK}
+              onChange={(event) => {
+                if(event.target.checked) {
+                  switchTheme(Theme.DARK)
+                }
+              }}
+            />
+            {t('theme-switch.dark')}
           </label>
           <label className="flex gap-2 cursor-pointer items-center">
             <input
@@ -30,6 +50,12 @@ export default async function ThemeSwitch({
               name="theme-radios"
               className="radio radio-sm theme-controller"
               value="retro"
+              checked={theme === Theme.RETRO}
+              onChange={(event) => {
+                if(event.target.checked) {
+                  switchTheme(Theme.RETRO)
+                }
+              }}
             />
             Retro
           </label>
@@ -39,6 +65,12 @@ export default async function ThemeSwitch({
               name="theme-radios"
               className="radio radio-sm theme-controller"
               value="cyberpunk"
+              checked={theme === Theme.CYBERPUNK}
+              onChange={(event) => {
+                if(event.target.checked) {
+                  switchTheme(Theme.CYBERPUNK)
+                }
+              }}
             />
             Cyberpunk
           </label>
@@ -47,9 +79,15 @@ export default async function ThemeSwitch({
               type="radio"
               name="theme-radios"
               className="radio radio-sm theme-controller"
-              value="dark"
+              value={getSystemTheme()}
+              checked={theme === Theme.SYSTEM}
+              onChange={(event) => {
+                if(event.target.checked) {
+                  switchTheme(Theme.SYSTEM)
+                }
+              }}
             />
-            {await t('theme-switch.dark', lang as Lang)}
+            System
           </label>
       </div>
     </details>

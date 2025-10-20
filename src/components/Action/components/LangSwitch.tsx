@@ -1,21 +1,14 @@
 import Link from "next/link";
 import { IoLanguage } from "react-icons/io5";
 import cx from "classnames";
-import { Lang } from "@/types/Lang";
+import { useTranslate } from "@/hooks/useTranslate";
 
-export default async function LangSwitch({
-  params
-}: {
-  params: Promise<{
-    lang: Lang | string;
-  }>
-}) {
+export default function LangSwitch() {
+  const { lang } = useTranslate();
   const baseStyle = "btn btn-ghost btn-sm";
-  const { lang } = await params;
-
   return (
     <details className="dropdown dropdown-end">
-      <summary className="btn m-1">
+      <summary className="btn btn-accent">
         <IoLanguage />
       </summary>
 

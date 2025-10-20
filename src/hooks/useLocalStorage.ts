@@ -12,14 +12,14 @@ export function useLocalStorage() {
 
   // Initialisiere storage nach Mount aus localStorage
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const entries: Storage = {};
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key) entries[key] = localStorage.getItem(key) || "";
-      }
-      setStorage(entries);
-    }
+    // if (typeof window !== "undefined") {
+    //   const entries: Storage = {};
+    //   for (let i = 0; i < localStorage.length; i++) {
+    //     const key = localStorage.key(i);
+    //     if (key) entries[key] = localStorage.getItem(key) || "";
+    //   }
+    //   setStorage(entries);
+    // }
     isMounted.current = true;
   }, []);
 
@@ -30,7 +30,7 @@ export function useLocalStorage() {
 
   const set = (key: string, value: string) => {
     setStorage(prev => ({ ...prev, [key]: value }));
-    if (isMounted.current && typeof window !== "undefined") {
+    if (isMounted.current) {
       localStorage.setItem(key, value);
     }
   };
@@ -41,14 +41,14 @@ export function useLocalStorage() {
       delete copy[key];
       return copy;
     });
-    if (isMounted.current && typeof window !== "undefined") {
+    if (isMounted.current) {
       localStorage.removeItem(key);
     }
   };
 
   const clear = () => {
     setStorage({});
-    if (isMounted.current && typeof window !== "undefined") {
+    if (isMounted.current) {
       localStorage.clear();
     }
   };
