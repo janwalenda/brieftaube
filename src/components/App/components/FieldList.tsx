@@ -24,7 +24,7 @@ export default function FieldList() {
   return (
     <>
       {mail.fields.length > 0 && (
-        <div className="grid grid-cols-1 px-4 pb-4 pt-8 gap-4 w-full max-w-3xl bg-base-100 rounded-field max-sm:rounded-none relative">
+        <div className="menu bg-base-100 mt-4 relative p-4 min-lg:rounded-field">
           <div className="absolute right-2 top-2">
             <Button
               className="btn-circle btn-info btn-sm"
@@ -53,9 +53,9 @@ export default function FieldList() {
   );
 
   function handleDragEnd(event: DragEndEvent) {
-    const {active, over} = event;
-    
-    if(!over) return;
+    const { active, over } = event;
+
+    if (!over) return;
 
     if (active.id !== over.id) {
 
@@ -67,7 +67,7 @@ export default function FieldList() {
         const newIndex = items.fields.findIndex(({ id }) => {
           return id === over.id;
         });
-        
+
         return {
           ...mail,
           fields: arrayMove(items.fields, oldIndex, newIndex),

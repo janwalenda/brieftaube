@@ -3,7 +3,6 @@ import MailContextProvider from "@/context/MailContextProvider"
 import {
   MailHeader,
   FieldList,
-  MailFooter
 } from "@/components/App"
 import {
   Dock,
@@ -32,7 +31,6 @@ function App({
               <div className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
                 <MailHeader />
                 <FieldList />
-                <MailFooter />
                 <FAB />
                 <Dock />
               </div>

@@ -49,12 +49,13 @@ export default function MDEditor({
         '[&_.w-md-editor-toolbar]:!border-none',
         '[&_.w-md-editor-toolbar]:!bg-base-200',
         '[&_.w-md-editor-toolbar]:!rounded-field', 
+        '[&_.w-md-editor-text]:h-full',
         className
       ])}
       preview="edit"
       components={{
         textarea: (props) => {
-          return <textarea {...props as HTMLAttributes<HTMLTextAreaElement>} />;
+          return <textarea className="h-full" {...props as HTMLAttributes<HTMLTextAreaElement>} />;
         },
         toolbar: (command, disabled, executeCommand) => {
           switch(command.name) {

@@ -11,6 +11,7 @@
   "fields.info": "Ici, vous pouvez ajouter davantage de champs en cliquant sur le bouton +",
   "theme-switch.dark": "Sombre",
   "theme-switch.light": "Clair",
+  
   "image-field.button.url": "Saisissez le lien de votre image",
   "image-field.button.upload": "Téléversez votre image (Remarque : seules les petites images sont autorisées ici)",
   "image-field.width": "Sélectionnez une largeur pour votre image",
@@ -18,8 +19,16 @@
   "image-field.small": "Petit",
   "image-field.medium": "Moyen",
   "image-field.large": "Grand",
+
   "text-block.heading": "Saisissez le titre du bloc ici",
   "text-block.textarea": "Saisissez le texte du bloc ici",
+  "text-block.style.default": "Défaut",
+  "text-block.style.salutation": "Salutation",
+  "text-block.style.signatur": "Signature",
+  "text-block.style.title-only": "Titre uniquement",
+  "text-block.style.disclaimer": "Avertissement",
+  "text-block.style.content-only": "Contenu uniquement",
+
   "email.title": "Le titre de votre e-mail",
   "email.salutation": "À qui vous adressez-vous ?",
   "email.main-content": "Voici le corps principal de votre e-mail. Vous pouvez formater le texte avec Markdown.",
