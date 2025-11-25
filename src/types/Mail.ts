@@ -1,4 +1,4 @@
-import { Field } from "../components/Base/types/Field";
+import { Field } from "./Field";
 
 export type Mail = {
   fields: Field[];

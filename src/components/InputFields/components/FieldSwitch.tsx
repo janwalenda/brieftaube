@@ -1,8 +1,8 @@
-import { FieldType } from "@/components/Base/types/FieldType";
+import { FieldType } from "@/types/FieldType";
 import TextBlockField from "./TextBlockField";
 import ImageField from "./ImageField";
-import type { Field } from "@/components/Base/types/Field";
-import SortableItem from "@/components/Base/components/SortableItem";
+import type { Field } from "@/types/Field";
+import SortableItem from "@/components/UI/SortableItem/SortableItem";
 import { useTranslate } from "@/hooks/useTranslate";
 
 export default function FieldSwitch({ type, id }: Field & { index: number}) {
@@ -10,13 +10,13 @@ export default function FieldSwitch({ type, id }: Field & { index: number}) {
   switch (type) {
     case FieldType.TextBlock:
       return (
-        <SortableItem id={id}>
+        <SortableItem itemId={id}>
           <TextBlockField fieldId={id} key={id} />
         </SortableItem>
       );
     case FieldType.Image:
       return (
-        <SortableItem id={id}>
+        <SortableItem itemId={id}>
           <ImageField fieldId={id} key={id} legend={t('image-field.legend')} />
         </SortableItem>
       );

@@ -5,13 +5,13 @@ import {
   FieldList,
 } from "@/components/App"
 import {
-  Dock,
   FAB,
 } from '@/components/Action'
 import PresetContextProvider from '@/context/PresetContextProvider'
 import TranslationContextProvider from "@/context/TranslateContextProvider"
-import { Header } from "./components/Header"
+import { Header} from "@/components/App"
 import ThemeContextProvider from "@/context/ThemeContextProvider"
+import { Dock } from "../Action"
 
 function App({
   dictionary,

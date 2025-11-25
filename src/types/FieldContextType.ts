@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import type { FieldKeys } from "../components/Base/types/Field";
-import type { FieldType } from "../components/Base/types/FieldType";
+import type { FieldKeys } from "./Field";
+import type { FieldType } from "./FieldType";
 import type { Mail } from "./Mail";
 import { UniqueIdentifier } from "@dnd-kit/core";
 

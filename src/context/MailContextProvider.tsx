@@ -1,13 +1,13 @@
 "use client"
 import { useState, type FC, type ReactNode } from "react";
 import { MailContext } from "./MailContext";
-import { FieldType } from "../components/Base/types/FieldType";
-import type { Field, FieldKeys, ImageField, TextBlock } from "../components/Base/types/Field";
+import { FieldType } from "../types/FieldType";
+import type { Field, FieldKeys, ImageField, TextBlock } from "../types/Field";
 import type { Mail } from "../types/Mail";
 import Email from "../hepers/Email";
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { ImageWidth } from "@/types/ImageWidth";
-import { TextBlockStyle } from "@/components/Base/types/TextBlockStyle";
+import { TextBlockStyle } from "@/types/TextBlockStyle";
 
 const MailContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [mail, setMail] = useState<Mail>({

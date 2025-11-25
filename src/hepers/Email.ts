@@ -1,7 +1,7 @@
 import { marked } from "marked";
-import { Field } from "../components/Base/types/Field";
-import { FieldType } from "../components/Base/types/FieldType";
-import { TextBlockStyle } from "@/components/Base/types/TextBlockStyle";
+import { Field } from "../types/Field";
+import { FieldType } from "../types/FieldType";
+import { TextBlockStyle } from "@/types/TextBlockStyle";
 
 export default class Email {
   private document = document.implementation.createHTMLDocument();
@@ -115,6 +115,6 @@ export default class Email {
   }
 
   render(): string {
-    return `<!DOCTYPE html><html>${this.document.documentElement.outerHTML}</html>`
+    return `${this.document.documentElement.outerHTML}`
   }
 }

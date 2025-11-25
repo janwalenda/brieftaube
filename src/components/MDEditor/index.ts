@@ -1,4 +1,4 @@
-import MDEditor from "./components/MDEditor"
+import MDEditor from "./MDEditor/MDEditor"
 
 export {
     MDEditor,

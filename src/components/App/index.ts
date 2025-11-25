@@ -1,7 +1,11 @@
-import MailHeader from "./components/MailHeader";
-import FieldList from "./components/FieldList";
+import MailHeader from "./MailHeader";
+import FieldList from "./FieldList";
+import App from "./App";
+import Header from "./Header";
 
 export {
     FieldList,
-    MailHeader
+    MailHeader,
+    App,
+    Header,
 }

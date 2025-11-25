@@ -3,15 +3,15 @@ import { IoImage, IoLink } from "react-icons/io5";
 import { useState } from "react";
 import cx from "classnames";
 import { useField } from "../../../hooks/useField";
-import Select from "../../Base/components/Select";
+import Select from "../../UI/Select/Select";
 import { ImageWidth } from "../../../types/ImageWidth";
-import { InputVariant } from "../../Base/types/InputVariant";
+import { InputVariant } from "../../UI/Shared/InputVariant";
 import {
   Button,
   FileInput,
   Field,
   Input
-} from "@/components/Base";
+} from "@/components/UI";
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { useTranslate } from "@/hooks/useTranslate";
 

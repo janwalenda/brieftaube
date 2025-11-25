@@ -1,13 +1,13 @@
-import Dock from "./components/Dock";
-import FAB from "./components/FAB";
-import LangSwitch from "./components/LangSwitch";
-import PresetDrawer from "./components/PresetDrawer";
-import ThemeSwitch from "./components/ThemeSwitch";
+import FAB from "./FAB";
+import LangSwitch from "./LangSwitch";
+import PresetDrawer from "./PresetDrawer";
+import ThemeSwitch from "./ThemeSwitch";
+import Dock from "./Dock"
 
 export {
-    Dock,
     FAB,
     LangSwitch,
     PresetDrawer,
     ThemeSwitch,
+    Dock,
 }
