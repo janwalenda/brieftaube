@@ -1,6 +1,7 @@
 import { marked } from "marked";
-import { Field } from "../components/Base/types/Field";
-import { FieldType } from "../components/Base/types/FieldType";
+import { Field } from "../types/Field";
+import { FieldType } from "../types/FieldType";
+import { TextBlockStyle } from "@/types/TextBlockStyle";
 
 export default class Email {
   private document = document.implementation.createHTMLDocument();
@@ -16,7 +17,7 @@ export default class Email {
     this.body.style.padding = "0";
   }
 
-  private prepareContainer(){
+  private prepareContainer() {
     this.container.style.maxWidth = "600px";
     this.container.style.margin = "20px auto";
     this.container.style.padding = "20px";
@@ -31,6 +32,19 @@ export default class Email {
     this.prepareBody();
     this.prepareContainer();
     this.primaryColor = color;
+  }
+
+
+  appendFields(fields: Field[]) {
+    fields.forEach(field => {
+      switch (field.type) {
+        case FieldType.Image:
+          this.appendImage(field.url, field.width);
+          break;
+        case FieldType.TextBlock:
+          this.appendTextBlock(field.content, field.style);
+      }
+    });
   }
 
   appendImage(url: string = '', width: string = "6rem") {
@@ -51,97 +65,56 @@ export default class Email {
     this.container.appendChild(image);
   }
 
-  appendMainTitle(title: string) {
-    const titleElement = this.document.createElement('h1');
+  appendTextBlock(content: string = "", style: TextBlockStyle = TextBlockStyle.Default) {
+    console.log("Appending TextBlock with style:", style);
+    const article = this.document.createElement("article");
+  
+    article.innerHTML = marked.parse(content, {
+      breaks: true,
+    }) as string;
 
-    titleElement.textContent = title;
-    titleElement.style.color = this.primaryColor;
+    switch (style) {
+      case TextBlockStyle.Signature: {
+        article.style.marginTop = "20px";
+        article.style.fontSize = "0.9em";
+        article.style.color = "#777";
+        article.style.borderTop = "1px solid #eee";
+        article.style.paddingTop = "10px";
 
-    this.container.appendChild(titleElement);
-  }
-
-  appendGreeting(greeting: string) {
-    const pGreeting = this.document.createElement("p");
-    pGreeting.style.marginBottom = "15px";
-    pGreeting.textContent = greeting;
-    this.container.appendChild(pGreeting);
-  }
-
-  appendMainBody(mainBodyContent: string){
-    const articleMainBody = this.document.createElement("article");
-    articleMainBody.style.marginBottom = "15px";
-    articleMainBody.innerHTML = marked.parse(mainBodyContent) as string;
-
-    articleMainBody.querySelectorAll('strong').forEach((strong) => {
-      strong.style.color = this.primaryColor;
-    });
-
-    this.container.appendChild(articleMainBody);
-  }
-
-  appendFields(fields: Field[]) {
-    fields.forEach(field => {
-      switch (field.type) {
-        case FieldType.Image:
-          this.appendImage(field.url, field.width);
-          break;
-        case FieldType.TextBlock:
-          this.appendTextBlock(field.title, field.content)
+        break;
       }
-    });
-  }
 
-  appendTextBlock(title: string = "", content: string = "") {
-    const h2Title = this.document.createElement('h2');
-    h2Title.textContent = title;
-    h2Title.style.color = this.primaryColor;
+      case TextBlockStyle.Disclaimer: {
+        article.style.marginTop = "20px";
+        article.style.fontSize = "0.9em";
+        article.style.color = "#777";
+        article.style.textAlign = "center";
+        article.style.borderTop = "1px solid #eee";
+        article.style.paddingTop = "10px";
 
-    const articleContent = this.document.createElement('article');
-    articleContent.style.marginBottom = "15px";
+        break
+      }
+
+      case TextBlockStyle.Default:
+      default: {
+        article.style.marginBottom = "15px";
+
+        break;
+      }
+    }
     
-    articleContent.innerHTML = marked.parse(content) as string;
+    article.querySelectorAll('strong,h1,h2,h3,h4,h5,h6,a').forEach((strong) => {
+      if(!(strong instanceof HTMLElement)) {
+        return;
+      }
 
-    articleContent.querySelectorAll('strong').forEach((strong) => {
       strong.style.color = this.primaryColor;
     });
-
-    this.container.appendChild(h2Title);
-    this.container.appendChild(articleContent);
-  }
-
-  appendClosing(closing: string) {
-    const pClosing = this.document.createElement("p");
-    pClosing.style.marginTop = "20px";
-    pClosing.textContent = closing;
-    this.container.appendChild(pClosing);
-  }
-
-  appendSender(sender: string, role?: string) {
-    const pSender = this.document.createElement("p");
-    pSender.style.marginBottom = "0";
-    pSender.textContent = sender;
-
-    if (role) {
-      pSender.appendChild(this.document.createElement("br"));
-      pSender.appendChild(this.document.createTextNode(role));
-    }
-
-    this.container.appendChild(pSender);
-  }
-
-  appendDisclaimer(disclaimer: string) {
-    const divFooter = this.document.createElement("div");
-    divFooter.style.marginTop = "20px";
-    divFooter.style.fontSize = "0.9em";
-    divFooter.style.color = "#777";
-    divFooter.style.textAlign = "center";
-    divFooter.style.borderTop = "1px solid #eee";
-    divFooter.style.paddingTop = "10px";
-    divFooter.textContent = disclaimer;
-    this.container.appendChild(divFooter);
+  
+    return this.container.appendChild(article);
   }
 
   render(): string {
-    return `<!DOCTYPE html><html>${this.document.documentElement.outerHTML}</html>`
+    return `${this.document.documentElement.outerHTML}`
   }
 }

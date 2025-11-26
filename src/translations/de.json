@@ -25,6 +25,12 @@
 
     "text-block.heading": "Gebe hier den Title des Blocks ein",
     "text-block.textarea": "Gebe hier den Text des Blocks ein",
+    "text-block.style.default": "Standard",
+    "text-block.style.salutation": "Anrede",
+    "text-block.style.signatur": "Signatur",
+    "text-block.style.title-only": "Nur Titel",
+    "text-block.style.disclaimer": "Disclaimer",
+    "text-block.style.content-only": "Nur Inhalt",
 
     "email.title": "Der Titel deiner Email",
     "email.salutation": "Wen sprichst du an?",

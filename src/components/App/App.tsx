@@ -3,16 +3,15 @@ import MailContextProvider from "@/context/MailContextProvider"
 import {
   MailHeader,
   FieldList,
-  MailFooter
 } from "@/components/App"
 import {
-  Dock,
   FAB,
 } from '@/components/Action'
 import PresetContextProvider from '@/context/PresetContextProvider'
 import TranslationContextProvider from "@/context/TranslateContextProvider"
-import { Header } from "./components/Header"
+import { Header} from "@/components/App"
 import ThemeContextProvider from "@/context/ThemeContextProvider"
+import { Dock } from "../Action"
 
 function App({
   dictionary,
@@ -32,7 +31,6 @@ function App({
               <div className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
                 <MailHeader />
                 <FieldList />
-                <MailFooter />
                 <FAB />
                 <Dock />
               </div>

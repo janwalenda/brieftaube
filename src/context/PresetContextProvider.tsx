@@ -25,7 +25,7 @@ const PresetContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
       preset: mail,
     };
 
-    set('preset' + preset.id, JSON.stringify(preset))
+    set(preset.id, JSON.stringify(preset))
   }
 
   const getPreset = (id: string) => {
@@ -55,7 +55,7 @@ const PresetContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   const setPresetGlobally = (id: string) => {
-    const preset = presets.find(preset => preset.id === id)
+    const preset = getPreset(id);
 
     if(preset) {
       setMail(preset.preset);

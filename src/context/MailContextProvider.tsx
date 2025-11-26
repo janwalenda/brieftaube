@@ -1,23 +1,46 @@
 "use client"
 import { useState, type FC, type ReactNode } from "react";
 import { MailContext } from "./MailContext";
-import { FieldType } from "../components/Base/types/FieldType";
-import type { Field, FieldKeys, ImageField, TextBlock } from "../components/Base/types/Field";
+import { FieldType } from "../types/FieldType";
+import type { Field, FieldKeys, ImageField, TextBlock } from "../types/Field";
 import type { Mail } from "../types/Mail";
 import Email from "../hepers/Email";
 import { UniqueIdentifier } from "@dnd-kit/core";
+import { ImageWidth } from "@/types/ImageWidth";
+import { TextBlockStyle } from "@/types/TextBlockStyle";
 
 const MailContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [mail, setMail] = useState<Mail>({
-    title: "Mein Newsletter",
-    salutation: "Moin,",
-    fields: [],
-    disclaimer: "Diese E-Mail wurde von [Organisation/Person] versandt.",
-    mainContent: "Hier ist der Hauptinhalt deines Newsletters. Du kannst Text, Bilder und andere Elemente hinzufügen, um deine Botschaft zu vermitteln.",
-    image: "https://placehold.co/600x150/000000/ffffff?text=Kein+Bild+angegeben",
-    closing: "Solidarische Grüße",
-    name: "Dein Name",
-    role: "Deine Rolle",
+    fields: [
+      {
+        id: 0,
+        type: FieldType.Image,
+        url: 'https://placehold.co/600x150/000000/ffffff?text=LOGO',
+        width: ImageWidth.SM,
+      },
+      {
+        id: 1,
+        type: FieldType.TextBlock,
+        style: TextBlockStyle.Default,
+        content: '# Willkommen zu meinem Newsletter\nDas ist ein Beispieltext. Du kannst ihn ganz einfach bearbeiten, indem du auf das Textfeld klickst und deinen eigenen Text eingibst.',
+      },
+      {
+        id: 2,
+        type: FieldType.TextBlock,
+        style: TextBlockStyle.Signature,
+        content: `Max Mustermann
+CEO, Beispiel GmbH
+[01234 23643234](tel:0123423643234)
+[kontakt@maxmustermann.de](mailto:kontakt@maxmustermann.de)`,
+      },
+      {
+        id: 3,
+        type: FieldType.TextBlock,
+        style: TextBlockStyle.Disclaimer,
+        content: `
+Diese E-Mail wurde von [Organisation/Person] versandt.`,
+      }
+    ],
     tooltip: true,
     primaryColor: '#123455',
   });
@@ -34,7 +57,6 @@ const MailContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         (newField as ImageField).url = 'https://placehold.co/600x150/000000/ffffff?text=Kein+Bild+angegeben';
         break
       case FieldType.TextBlock:
-        (newField as TextBlock).title = 'Titel';
         (newField as TextBlock).content = 'Schreib was du willst';
     }
 
@@ -99,62 +121,6 @@ const MailContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     })
   }
 
-  const setTitle = (title: string) => {
-    setMail({
-      ...mail,
-      title,
-    });
-  }
-
-  const setDisclaimer = (disclaimer: string) => {
-    setMail({
-      ...mail,
-      disclaimer,
-    });
-  }
-
-  const setSalutation = (salutation: string) => {
-    setMail({
-      ...mail,
-      salutation,
-    });
-  }
-
-  const setMainContent = (mainContent?: string, ) => {
-    setMail({
-      ...mail,
-      mainContent: mainContent ?? "",
-    });
-  }
-
-  const setLogoUrl = (image: string) => {
-    setMail({
-      ...mail,
-      image,
-    });
-  }
-
-  const setName = (name: string) => {
-    setMail({
-      ...mail,
-      name,
-    });
-  }
-
-  const setClosing = (closing: string) => {
-    setMail({
-      ...mail,
-      closing,
-    });
-  }
-
-  const setRole = (role: string) => {
-    setMail({
-      ...mail,
-      role,
-    });
-  }
-
   const removeField = (id: UniqueIdentifier) => {
     setMail({
       ...mail,
@@ -166,17 +132,7 @@ const MailContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const renderHTML = () => {
     const email = new Email(mail.primaryColor);
 
-    email.appendImage(mail.image, "6rem");
-    email.appendMainTitle(mail.title);
-    email.appendGreeting(mail.salutation);
-    email.appendMainBody(mail.mainContent);
-
     email.appendFields(mail.fields);
-
-    email.appendClosing(mail.closing);
-    email.appendSender(mail.name, mail.role);
-
-    email.appendDisclaimer(mail.disclaimer);
 
     return email.render();
   }
@@ -188,14 +144,6 @@ const MailContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
       getFieldProperty,
       setFieldProperty,
       removeField,
-      setDisclaimer,
-      setClosing,
-      setLogoUrl,
-      setMainContent,
-      setName,
-      setRole,
-      setSalutation,
-      setTitle,
       setMail,
       renderHTML,
       toggleTooltip,
