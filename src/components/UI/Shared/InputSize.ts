@@ -1,7 +1,7 @@
 export enum InputSize {
-  XS,
-  SM,
-  MD,
-  LG,
-  XL,
+  XS = "xs",
+  SM = "sm",
+  MD = "default",
+  LG = "lg",
+  XL = "xl",
 }

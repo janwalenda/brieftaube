@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@/components/UI";
-import { InputSize } from "@/components/UI/Shared/InputSize";
-import { InputVariant } from "@/components/UI/Shared/InputVariant";
-import { TooltipPosition } from "@/components/UI/Shared/TooltipPosition";
+import { Button } from "@/components/ui/button";
+import { InputSize } from "@/components/ui/Shared/InputSize";
+import { InputVariant } from "@/components/ui/Shared/InputVariant";
+import { TooltipPosition } from "@/components/ui/Shared/TooltipPosition";
 import { commands } from "@uiw/react-md-editor";
 
 export function EditorButton({
@@ -13,13 +13,16 @@ export function EditorButton({
   children: React.ReactNode;
 }) {
   return <Button
-    variant={InputVariant.Ghost}
+    buttonStyle={InputVariant.Ghost}
+    className="md:btn-sm"
     size={InputSize.XS}
     disabled={disabled}
-    tooltip={command.name}
-    tooltipPosition={TooltipPosition.Bottom}
-    onClick={(env) => {
-      env.stopPropagation();
+    tooltip={{
+      content: command.name,
+      placement: TooltipPosition.Bottom
+    }}
+    onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
       executeCommand(command, command.groupName);
     }}
   >

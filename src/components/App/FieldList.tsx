@@ -2,16 +2,18 @@
 import { useField } from "../../hooks/useField";
 import { FieldSwitch } from "@/components/InputFields"
 import { IoInformationCircle } from "react-icons/io5";
-import Button from "../UI/Button/Button";
-import { TooltipPosition } from "@/components/UI/Shared/TooltipPosition";
-import { InputVariant } from "@/components/UI/Shared/InputVariant";
+import { Button } from "@/components/ui/button";
+import { TooltipPosition } from "@/components/ui/Shared/TooltipPosition";
+import { InputVariant } from "@/components/ui/Shared/InputVariant";
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { useTranslate } from "@/hooks/useTranslate";
+import { useTranslateStore } from "@/store/useTranslateStore";
+import { ColorInput } from "../ui/colorInput";
+import { useEffect, useState } from "react";
 
 export default function FieldList() {
-  const { mail, setMail } = useField();
-  const { t } = useTranslate();
+  const { mail, setMail, setPrimaryColor } = useField();
+  const { t } = useTranslateStore();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -21,16 +23,44 @@ export default function FieldList() {
     useSensor(TouchSensor)
   );
 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <>
       {mail.fields.length > 0 && (
-        <div className="menu bg-base-100 mt-4 relative p-4 min-lg:rounded-field">
+        <div className="
+          bg-base-100 
+          mt-4 
+          relative 
+          p-4 
+          space-y-4 
+          min-lg:rounded-field 
+          min-w-1/3 
+          w-full 
+          md:w-1/2 
+          lg:w-3xl
+        ">
+          <ColorInput
+            color={mail.primaryColor}
+            variant={InputVariant.Secondary}
+            onChange={(newColor) => setPrimaryColor(newColor as string)}
+          />
           <div className="absolute right-2 top-2">
             <Button
               className="btn-circle btn-info btn-sm"
-              tooltip={t('fields.info')}
-              tooltipPosition={TooltipPosition.Left}
-              variant={InputVariant.Ghost}
+              tooltip={{
+                placement: TooltipPosition.Left,
+                content: t('fields.info'),
+              }}
+              buttonStyle={InputVariant.Ghost}
             >
               <IoInformationCircle />
             </Button>

@@ -1,11 +1,23 @@
-import { useTheme } from "@/hooks/useTheme";
-import { useTranslate } from "@/hooks/useTranslate";
+"use client"
+import { useTranslateStore } from "@/store/useTranslateStore";
+import { useThemeStore } from "@/store/useThemeStore";
 import { Theme } from "@/types/Theme";
 import { IoEye } from "react-icons/io5";
+import { useEffect, useState } from "react";
 
 export default function ThemeSwitch() {
-  const { t } = useTranslate();
-  const { theme, switchTheme, getSystemTheme } = useTheme();
+  const { t } = useTranslateStore();
+  const { theme, switchTheme, getSystemTheme } = useThemeStore();
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <details className="dropdown dropdown-end">
@@ -13,8 +25,8 @@ export default function ThemeSwitch() {
         <IoEye />
       </summary>
 
-      <div className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-        <label className="flex gap-2 cursor-pointer items-center">
+      <div className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm gap-2">
+        <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input
             type="radio"
             name="theme-radios"
@@ -29,7 +41,7 @@ export default function ThemeSwitch() {
           />
           {t('theme-switch.light')}
         </label>
-        <label className="flex gap-2 cursor-pointer items-center">
+        <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input
             type="radio"
             name="theme-radios"
@@ -44,7 +56,7 @@ export default function ThemeSwitch() {
           />
           {t('theme-switch.dark')}
         </label>
-        <label className="flex gap-2 cursor-pointer items-center">
+        <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input
             type="radio"
             name="theme-radios"
@@ -59,7 +71,7 @@ export default function ThemeSwitch() {
           />
           Retro
         </label>
-        <label className="flex gap-2 cursor-pointer items-center">
+        <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input
             type="radio"
             name="theme-radios"
@@ -74,7 +86,7 @@ export default function ThemeSwitch() {
           />
           Cyberpunk
         </label>
-        <label className="flex gap-2 cursor-pointer items-center">
+        <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input
             type="radio"
             name="theme-radios"

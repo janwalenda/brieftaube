@@ -1,12 +1,12 @@
-import { IoHandLeft, IoTrash } from "react-icons/io5";
+import { IoReorderThreeOutline, IoTrash } from "react-icons/io5";
 import { useField } from "../../../hooks/useField";
-import { InputVariant } from "../Shared/InputVariant";
-import Button from "../Button/Button";
-import { TooltipPosition } from "../Shared/TooltipPosition";
+import { Button } from "@/components/ui/button";
 import { useSortable } from "@dnd-kit/sortable";
 import Fieldset from "../Fieldset/Fieldset";
-import { useTranslate } from "@/hooks/useTranslate";
 import { FieldProps } from "./FieldProps";
+import { InputVariant } from "@/components/ui/Shared/InputVariant";
+import { TooltipPosition } from "@/components/ui/Shared/TooltipPosition";
+import { useTranslateStore } from "@/store/useTranslateStore";
 
 export default function Field({
   children,
@@ -14,7 +14,7 @@ export default function Field({
   ...props
 }: FieldProps) {
   const { removeField } = useField();
-  const { t } = useTranslate();
+  const { t } = useTranslateStore();
 
   const { listeners } = useSortable({
     id: fieldId,
@@ -25,14 +25,16 @@ export default function Field({
       {typeof fieldId !== "undefined" && (
         <div className="flex w-full items-center justify-end gap-2">
           <Button {...listeners} className="btn btn-sm btn-square cursor-grab">
-            <IoHandLeft />
+            <IoReorderThreeOutline />
           </Button>
           <Button
             className="btn-sm btn-square"
             onClick={handleDelete}
             variant={InputVariant.Neutral}
-            tooltip={t('field.delete')}
-            tooltipPosition={TooltipPosition.Left}
+            tooltip={{
+              content: t('field.delete'),
+              placement: TooltipPosition.Left
+            }}
           >
             <IoTrash />
           </Button>

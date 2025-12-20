@@ -1,19 +1,17 @@
 import type { ReactNode } from "react";
 import { IoImage, IoLink } from "react-icons/io5";
 import { useState } from "react";
-import cx from "classnames";
 import { useField } from "../../../hooks/useField";
-import Select from "../../UI/Select/Select";
+import Select from "../../ui/select";
 import { ImageWidth } from "../../../types/ImageWidth";
-import { InputVariant } from "../../UI/Shared/InputVariant";
-import {
-  Button,
-  FileInput,
-  Field,
-  Input
-} from "@/components/UI";
+import { InputVariant } from "../../ui/Shared/InputVariant";
 import { UniqueIdentifier } from "@dnd-kit/core";
-import { useTranslate } from "@/hooks/useTranslate";
+import Field from "@/components/ui/Field/Field";
+import { Button } from "@/components/ui/button";
+import { Input as FileInput } from "@/components/ui/fileInput";
+import { LabeledInput } from "@/components/ui/labeledInput";
+import { cn } from "@/lib/utils";
+import { useTranslateStore } from "@/store/useTranslateStore";
 
 export default function ImageField({
   legend,
@@ -24,13 +22,13 @@ export default function ImageField({
 }) {
   const [switchState, setSwitchState] = useState(false);
   const { setFieldProperty, getFieldProperty } = useField();
-  const { t } = useTranslate()
+  const { t } = useTranslateStore()
 
-  const urlButtonClass = cx("join-item", {
+  const urlButtonClass = cn("join-item", {
     'btn-active': !switchState,
   });
 
-  const fileButtonClass = cx("join-item", {
+  const fileButtonClass = cn("join-item", {
     'btn-active': switchState,
   });
 
@@ -48,7 +46,10 @@ export default function ImageField({
         const result = e.target?.result as string | undefined; // Base64 data
         // Typescript-friendly: handle result appropriately, e.g., set state or call setProperty
         setFieldProperty(id, "url", result || "");
-        const urlInput = document.getElementById("headerImageUrl") as HTMLInputElement | null;
+
+        const urlInput =
+          document.getElementById("headerImageUrl") as HTMLInputElement | null;
+
         if (urlInput) {
           urlInput.value = "";
         }
@@ -68,21 +69,21 @@ export default function ImageField({
       <div className="join">
         <Button className={urlButtonClass}
           onClick={() => setSwitchState(false)}
-          tooltip={t('image-field.button.url')}
+          tooltip={{ content: t('image-field.button.url') }}
           variant={InputVariant.Neutral}
         >
           <IoLink />
         </Button>
         <Button className={fileButtonClass}
           onClick={() => setSwitchState(true)}
-          tooltip={t('image-field.button.upload')}
+          tooltip={{ content: t('image-field.button.upload') }}
           variant={InputVariant.Neutral}
         >
           <IoImage />
         </Button>
       </div>
-      {!switchState && <Input placeholder="URL"
-        startIcon={<IoLink/>}
+      {!switchState && <LabeledInput placeholder="URL"
+        startIcon={<IoLink />}
         value={getFieldProperty(id, "url")}
         onChange={handleURLChange}
         className="w-full"
@@ -93,7 +94,7 @@ export default function ImageField({
       <Select id={`image_width_${id}`}
         defaultValue={getFieldProperty(id, 'width')}
         onChange={handleWidthChange}
-        tooltip={t('image-field.width')}
+        tooltip={{ content: t('image-field.width') }}
         className="w-full"
       >
         <option value={ImageWidth.SM}>{t('image-field.small')} (6rem)</option>
