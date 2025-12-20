@@ -6,7 +6,6 @@ import { Lang } from "@/types/Lang";
 import Link from "next/link";
 import { Header } from "@/components/App";
 import StoreInitializer from "@/store/StoreInitializer";
-import { Dock } from "@/components/Action";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -42,7 +41,7 @@ export default async function RootLayout({
         className={`${interTight.variable} antialiased`}
       >
         <StoreInitializer lang={lang as Lang} dictionary={dictionary} />
-        <Header lang={lang as Lang} dictionary={dictionary} />
+        <Header lang={lang as Lang} />
         <main>
           {children}
         </main>

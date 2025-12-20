@@ -5,7 +5,6 @@ import { Button } from "./button";
 import { Modal, ModalAction } from "./modal";
 import { useEffect, useRef, useState } from "react";
 import { Pipette } from "lucide-react";
-import Fieldset from "./Fieldset/Fieldset";
 import { inputVariants } from "./input";
 import { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";

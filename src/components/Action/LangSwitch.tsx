@@ -3,15 +3,12 @@ import Link from "next/link";
 import { IoLanguage } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import { Lang } from "@/types/Lang";
-import { useTranslateStore } from "@/store/useTranslateStore";
 import { useEffect, useState } from "react";
 
 export default function LangSwitch({
   lang,
-  dictionary,
 }: {
   lang: Lang;
-  dictionary: Record<string, string>;
 }) {
   const [isClient, setIsClient] = useState(false);
 
