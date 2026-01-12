@@ -30,7 +30,8 @@ export default function DesignPage() {
       <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
         <Link href="/">
           <Button
-            variant={InputVariant.Ghost}
+            variant={InputVariant.Neutral}
+            buttonStyle="ghost"
             className="btn-circle"
             tooltip={{
               content: t('back'),
