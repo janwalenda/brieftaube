@@ -94,7 +94,8 @@ export default class Email {
     button.style.color = Email.getContrastColor(this.primaryColor);
     button.style.border = "none";
     button.style.borderRadius = `${this.roundedCorners}rem`;
-    button.style.padding = "1rem 2rem";
+    button.style.margin = "20px 0";
+    button.style.padding = "10px 15px";
     button.style.cursor = "pointer";
     button.innerHTML = content;
 
