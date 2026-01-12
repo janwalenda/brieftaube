@@ -1,0 +1,76 @@
+{
+    "hello": "Hallo",
+    "description": "Der einfache E-Mail Editor",
+    "dock": {
+        "code": "Lass dir den HTML anzeigen um den Code zu kopieren und in deinem E-Mail editor einzufügen",
+        "preview": {
+            "tooltip": "Hier siehst du, wie deine Email final aussehen wird",
+            "title": "Email Vorschau"
+        },
+        "save": {
+            "tooltip": "Speichere deine Vorlage auf deiner Maschine um nicht immer alles neu zu schreiben",
+            "title": "Vorlage speichern"
+        },
+        "copy": {
+            "title": "HTML zum kopieren"
+        },
+        "activate-tooltips": {
+            "title": "Aktiviere Tips, die dir das Interface erklären"
+        },
+        "deactivate-tooltips": {
+            "title": "Deaktiviere Tips"
+        }
+    },
+    "fab": {
+        "plus": "Füge einen Textblock oder ein Bild hinzu",
+        "textblock": "Füge Textblock hinzu",
+        "image": "Füge Bild hinzu"
+    },
+    "field": {
+        "delete": "Feld löschen"
+    },
+    "fields": {
+        "info": "Hier kannst du weitere Felder hinzufügen indem du auf den + Button clicks"
+    },
+    "theme-switch": {
+        "dark": "Dunkel",
+        "light": "Hell"
+    },
+    "image-field": {
+        "button": {
+            "url": "Gib den Link zu deinem Bild ein",
+            "upload": "Lade dein bild hoch (Hinweis: Hier nur kleine bilder)"
+        },
+        "width": "Wähle eine Breite für dein Bild aus",
+        "legend": "Gieb ein bild an",
+        "small": "Kein",
+        "medium": "Mittel",
+        "large": "Groß"
+    },
+    "text-block": {
+        "heading": "Gebe hier den Title des Blocks ein",
+        "textarea": "Gebe hier den Text des Blocks ein",
+        "style": {
+            "default": "Standard",
+            "salutation": "Anrede",
+            "signatur": "Signatur",
+            "title-only": "Nur Titel",
+            "disclaimer": "Disclaimer",
+            "content-only": "Nur Inhalt"
+        }
+    },
+    "email": {
+        "title": "Der Titel deiner Email",
+        "salutation": "Wen sprichst du an?",
+        "main-content": "Hier ist der Haupt bereich deiner E-Mail. Den text kannst du mit Markdow formattieren.",
+        "greetings": "Mit freundlichen oder solidarischen Grüßen? 🤔",
+        "sender-name": "Sag deinen namen!",
+        "role": "Welche Rolle nimmst du ein? Sprecher*in, Organisator*in oder anderes?",
+        "disclaimer": "Zeige für wen oder was du schreibst."
+    },
+    "modal": {
+        "close": "Modal schließen"
+    },
+    "download": "Runterladen",
+    "copy": "Kopieren"
+}

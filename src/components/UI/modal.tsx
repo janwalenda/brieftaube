@@ -2,9 +2,9 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils"
-import { InputVariant } from "./Shared/InputVariant";
-import { Button } from "./button";
-import { InputForm } from "./Shared/InputForm";
+import { InputVariant } from "@/types/inputVariant";
+import { Button } from "@/components/ui/button";
+import { InputForm } from "@/types/inputForm";
 import { IoClose } from "react-icons/io5";
 
 const modalVariants = cva(
