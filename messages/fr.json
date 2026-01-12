@@ -1,0 +1,76 @@
+{
+  "hello": "Bonjour",
+  "description": "L'éditeur d'e-mails simple",
+  "dock": {
+    "code": "Voir le HTML pour copier et coller le code dans votre éditeur d'e-mails",
+    "preview": {
+      "tooltip": "Ici, vous pouvez voir à quoi ressemblera votre e-mail final",
+      "title": "Aperçu de l'e-mail"
+    },
+    "save": {
+      "tooltip": "Enregistrez votre modèle sur votre ordinateur afin de ne pas tout réécrire à chaque fois.",
+      "title": "Enregistrer le modèle"
+    },
+    "copy": {
+      "title": "HTML à copier"
+    },
+    "activate-tooltips": {
+      "title": "Activer les info-bulles expliquant l'interface"
+    },
+    "deactivate-tooltips": {
+      "title": "Désactiver les info-bulles"
+    }
+  },
+  "fab": {
+    "plus": "Ajouter un bloc de texte ou une image",
+    "textblock": "Ajouter un bloc de texte",
+    "image": "Ajouter une image"
+  },
+  "field": {
+    "delete": "Supprimer le champ"
+  },
+  "fields": {
+    "info": "Ici, vous pouvez ajouter davantage de champs en cliquant sur le bouton +"
+  },
+  "theme-switch": {
+    "dark": "Sombre",
+    "light": "Clair"
+  },
+  "image-field": {
+    "button": {
+      "url": "Saisissez le lien de votre image",
+      "upload": "Téléversez votre image (Remarque : seules les petites images sont autorisées ici)"
+    },
+    "width": "Sélectionnez une largeur pour votre image",
+    "legend": "Saisissez une image",
+    "small": "Petit",
+    "medium": "Moyen",
+    "large": "Grand"
+  },
+  "text-block": {
+    "heading": "Saisissez le titre du bloc ici",
+    "textarea": "Saisissez le texte du bloc ici",
+    "style": {
+      "default": "Défaut",
+      "salutation": "Salutation",
+      "signatur": "Signature",
+      "title-only": "Titre uniquement",
+      "disclaimer": "Avertissement",
+      "content-only": "Contenu uniquement"
+    }
+  },
+  "email": {
+    "title": "Le titre de votre e-mail",
+    "salutation": "À qui vous adressez-vous ?",
+    "main-content": "Voici le corps principal de votre e-mail. Vous pouvez formater le texte avec Markdown.",
+    "greetings": "Bien cordialement ou en solidarité ? 𝄢",
+    "sender-name": "Dites votre nom !",
+    "role": "Quel rôle jouez-vous ? Orateur, organisateur ou autre ?",
+    "disclaimer": "Indiquez pour qui ou pour quoi vous écrivez"
+  },
+  "modal": {
+    "close": "Fermer la fenêtre modale"
+  },
+  "download": "Télécharger",
+  "copy": "Copier"
+}

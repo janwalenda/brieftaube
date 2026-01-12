@@ -1,0 +1,76 @@
+{
+    "hello": "Hello",
+    "description": "The simple E-Mail Editor",
+    "dock": {
+        "code": "View the HTML to copy and paste the code into your email editor",
+        "preview": {
+            "tooltip": "Here you can see what your final email will look like",
+            "title": "Email preview"
+        },
+        "save": {
+            "tooltip": "Save your template on your machine so you don't have to rewrite everything every time.",
+            "title": "Save template"
+        },
+        "copy": {
+            "title": "HTML to copy"
+        },
+        "activate-tooltips": {
+            "title": "Activate tips that explain the interface"
+        },
+        "deactivate-tooltips": {
+            "title": "Deactivate tips"
+        }
+    },
+    "fab": {
+        "plus": "Add a text block or an image",
+        "textblock": "Add text block",
+        "image": "Add image"
+    },
+    "field": {
+        "delete": "Delete field"
+    },
+    "fields": {
+        "info": "Here you can add more fields by clicking on the + button"
+    },
+    "theme-switch": {
+        "dark": "Dark",
+        "light": "Light"
+    },
+    "image-field": {
+        "button": {
+            "url": "Enter the link to your image",
+            "upload": "Upload your image (Note: Only small images are allowed here)"
+        },
+        "width": "Select a width for your image",
+        "legend": "Enter an image",
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+    },
+    "text-block": {
+        "heading": "Enter the block title here",
+        "textarea": "Enter the block text here",
+        "style": {
+            "default": "Default",
+            "salutation": "Salutation",
+            "signatur": "Signature",
+            "title-only": "Title only",
+            "disclaimer": "Disclaimer",
+            "content-only": "Content only"
+        }
+    },
+    "email": {
+        "title": "The title of your email",
+        "salutation": "Who are you addressing?",
+        "main-content": "This is the main body of your email. You can format the text with Markdown.",
+        "greetings": "With kind regards or in solidarity? 🤔",
+        "sender-name": "Say your name!",
+        "role": "What role do you play? Speaker, organizer, or other?",
+        "disclaimer": "Show who or what you are writing for"
+    },
+    "modal": {
+        "close": "Close modal"
+    },
+    "download": "Download",
+    "copy": "Copy"
+}
