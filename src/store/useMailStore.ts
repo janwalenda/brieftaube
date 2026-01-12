@@ -2,7 +2,8 @@
 
 import { create } from 'zustand';
 import { FieldType } from "../types/FieldType";
-import type { Field, FieldKeys, ImageField, TextBlock } from "../types/Field";
+import type { FieldKeys } from "../types/Field";
+import { componentRegistry } from "@/config/componentRegistry";
 import type { Mail } from "../types/Mail";
 import Email from "@/helpers/Email";
 import { UniqueIdentifier } from "@dnd-kit/core";
@@ -12,7 +13,7 @@ import { persist } from 'zustand/middleware';
 
 interface MailState {
   mail: Mail;
-  addField: (type: FieldType.Image | FieldType.TextBlock) => number;
+  addField: (type: FieldType.Image | FieldType.TextBlock | FieldType.Button) => number;
   removeField: (id: UniqueIdentifier) => void;
   setFieldProperty: (id: UniqueIdentifier, property: FieldKeys, value: string) => void;
   getFieldProperty: (id: UniqueIdentifier, property: FieldKeys) => string | undefined;
@@ -20,6 +21,7 @@ interface MailState {
   setMail: (updater: (mail: Mail) => Mail) => void;
   toggleTooltip: () => void;
   setPrimaryColor: (primaryColor: string) => void;
+  setRoundedCorners: (roundedCorners: number) => void;
 }
 
 export const useMailStore = create<MailState>()(
@@ -53,24 +55,14 @@ export const useMailStore = create<MailState>()(
       ],
       tooltip: true,
       primaryColor: '#123455',
+      roundedCorners: 0.25,
     },
 
     addField: (type) => {
       const { mail } = get();
       const id = mail.fields.length + 1;
-      const newField: Field = {
-        id,
-        type,
-      };
-
-      switch (type) {
-        case FieldType.Image:
-          (newField as ImageField).url = 'https://placehold.co/600x150/000000/ffffff?text=Kein+Bild+angegeben';
-          break;
-        case FieldType.TextBlock:
-          (newField as TextBlock).content = 'Schreib was du willst';
-          break;
-      }
+      const factory = componentRegistry[type].create;
+      const newField = factory(id);
 
       set((state) => ({
         mail: {
@@ -113,28 +105,19 @@ export const useMailStore = create<MailState>()(
       const field = mail.fields.find(field => field.id === id);
       if (!field) return undefined;
 
-      switch (field.type) {
-        case FieldType.Image: {
-          const f = field as ImageField;
-          if (property in f) {
-            return (f as ImageField)[property as keyof ImageField] as string;
-          }
-          break;
-        }
-        case FieldType.TextBlock: {
-          const f = field as TextBlock;
-          if (property in f) {
-            return (f as TextBlock)[property as keyof TextBlock] as string;
-          }
-          break;
-        }
+      if (field && property in field) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return (field as any)[property] as string;
       }
       return undefined;
     },
 
     renderHTML: () => {
       const { mail } = get();
-      const email = new Email(mail.primaryColor);
+      const email = new Email(
+        mail.primaryColor,
+        mail.roundedCorners
+      );
       email.appendFields(mail.fields);
       return email.render();
     },
@@ -162,10 +145,19 @@ export const useMailStore = create<MailState>()(
         },
       }));
     },
+
+    setRoundedCorners: (roundedCorners) => {
+      console.log(roundedCorners);
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          roundedCorners,
+        },
+      }));
+    },
   }),
     {
       name: 'mail-storage',
-      skipHydration: true,
     }
   )
 );

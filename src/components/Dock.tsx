@@ -1,5 +1,5 @@
 "use client"
-import { IoClipboard, IoCode, IoDownload, IoSave } from "react-icons/io5";
+import { IoClipboard, IoCode, IoDownload, IoSave, IoColorPalette } from "react-icons/io5";
 import { IoMdPaper } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import { useField } from "@/hooks/useField";
@@ -10,6 +10,7 @@ import { InputVariant } from "@/types/inputVariant";
 import { Modal, ModalAction } from "@/components/ui/modal";
 import { InputForm } from "@/types/inputForm";
 import { TooltipPosition } from "@/types/tooltipPosition";
+import { Link } from "@/i18n/navigation";
 
 export default function ActionDock() {
   const [html, setHTML] = useState<string>("");
@@ -69,6 +70,19 @@ export default function ActionDock() {
         >
           <IoSave className="size-4" />
         </Button>
+        <Link href="/design">
+          <Button
+            variant={InputVariant.Primary}
+            modifier={InputForm.Circle}
+            className="rounded-full"
+            tooltip={{
+              content: t('design.tooltip'),
+              placement: TooltipPosition.Top,
+            }}
+          >
+            <IoColorPalette className="size-4" />
+          </Button>
+        </Link>
       </Dock>
       <Modal title={t('dock.copy.title')} ref={htmlRef} className="max-w-full md:max-w-3/4 lg:max-w-2/3">
         <div className="mockup-code w-full mb-4">

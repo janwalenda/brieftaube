@@ -17,7 +17,7 @@ export default function ImageField({
   legend,
   fieldId: id,
 }: {
-  legend: ReactNode;
+  legend?: ReactNode;
   fieldId: UniqueIdentifier;
 }) {
   const [switchState, setSwitchState] = useState(false);

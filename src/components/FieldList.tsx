@@ -8,11 +8,10 @@ import { InputVariant } from "@/types/inputVariant";
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useTranslations } from "next-intl";
-import { ColorInput } from "@/components/ui/colorInput";
 import { useEffect, useState } from "react";
 
 export default function FieldList() {
-  const { mail, setMail, setPrimaryColor } = useField();
+  const { mail, setMail } = useField();
   const t = useTranslations();
 
   const sensors = useSensors(
@@ -48,11 +47,6 @@ export default function FieldList() {
           md:w-1/2 
           lg:w-3xl
         ">
-          <ColorInput
-            color={mail.primaryColor}
-            variant={InputVariant.Secondary}
-            onChange={(newColor) => setPrimaryColor(newColor as string)}
-          />
           <div className="absolute right-2 top-2">
             <Button
               className="btn-circle btn-info btn-sm"

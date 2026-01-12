@@ -2,6 +2,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { Tooltip, type TooltipProps } from "./tooltip"
 
 const inputVariants = cva(
   "input",
@@ -40,7 +41,8 @@ const inputVariants = cva(
 type Variant = VariantProps<typeof inputVariants>
 
 type InputProps = React.ComponentProps<"input"> & Variant & {
-  asChild?: boolean
+  asChild?: boolean,
+  tooltip?: TooltipProps,
 }
 
 function Input({
@@ -49,9 +51,23 @@ function Input({
   sizeVariant,
   inputStyle,
   asChild = false,
+  tooltip,
   ...props
 }: InputProps) {
   const Comp = asChild ? Slot : "input"
+
+
+  if (tooltip) {
+    return (
+      <Tooltip variant={variant} {...tooltip}>
+        <Comp
+          data-slot="input"
+          className={cn(inputVariants({ variant, sizeVariant, inputStyle, className }))}
+          {...props}
+        />
+      </Tooltip>
+    )
+  }
 
   return (
     <Comp

@@ -24,7 +24,11 @@
   "fab": {
     "plus": "Ajouter un bloc de texte ou une image",
     "textblock": "Ajouter un bloc de texte",
-    "image": "Ajouter une image"
+    "image": "Ajouter une image",
+    "button": "Ajouter un bouton"
+  },
+  "button-field": {
+    "tooltip": "Entrez le texte et le lien de votre bouton"
   },
   "field": {
     "delete": "Supprimer le champ"
@@ -72,5 +76,17 @@
     "close": "Fermer la fenêtre modale"
   },
   "download": "Télécharger",
-  "copy": "Copier"
+  "copy": "Copier",
+  "design": {
+    "tooltip": "Personnalisez l'apparence de votre e-mail",
+    "back": "Retour à l'éditeur",
+    "primaryColor": {
+      "label": "Couleur primaire",
+      "description": "Choisissez la couleur principale de votre e-mail."
+    },
+    "roundedCorners": {
+      "label": "Rayon d'angle",
+      "description": "Ajustez l'arrondi des boutons et des conteneurs."
+    }
+  }
 }

@@ -24,7 +24,11 @@
     "fab": {
         "plus": "Add a text block or an image",
         "textblock": "Add text block",
-        "image": "Add image"
+        "image": "Add image",
+        "button": "Add button"
+    },
+    "button-field": {
+        "tooltip": "Enter the text and the link for your button"
     },
     "field": {
         "delete": "Delete field"
@@ -72,5 +76,17 @@
         "close": "Close modal"
     },
     "download": "Download",
-    "copy": "Copy"
+    "copy": "Copy",
+    "design": {
+        "tooltip": "Customize the look of your email",
+        "back": "Back to editor",
+        "primaryColor": {
+            "label": "Primary Color",
+            "description": "Choose the main color for your email."
+        },
+        "roundedCorners": {
+            "label": "Corner Radius",
+            "description": "Adjust the roundness of buttons and containers."
+        }
+    }
 }

@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Link from "next/link";
 import Header from "@/components/Header";
+import ActionDock from "@/components/Dock";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -40,14 +41,15 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${interTight.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main>
+          <main className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
             {children}
+            <ActionDock />
           </main>
           <footer className="w-full flex items-center justify-center px-4 py-8">
             <div className="max-w-3xl w-full">
