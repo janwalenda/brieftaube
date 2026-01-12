@@ -1,19 +1,19 @@
-import { Lang } from "@/types/Lang";
-import { getDictionary } from "../../dictionaries";
-import App from "@/components/App/App";
-import { Suspense } from "react";
 
-export default async function Page({
-  params
-}: {
-  params: Promise<{ lang: Lang }>,
-}) {
-  const { lang } = await params
-  const dictionary = await getDictionary(lang);
+import {
+  FieldList,
+} from "@/components/App"
+import {
+  FAB,
+} from '@/components/Action'
+import Dock from "@/components/Action/Dock"
+
+export default function Page() {
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <App dictionary={dictionary} />
-    </Suspense>
+    <div className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
+      <FieldList />
+      <FAB />
+      <Dock />
+    </div>
   );
 }

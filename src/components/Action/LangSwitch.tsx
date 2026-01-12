@@ -1,10 +1,26 @@
+"use client"
 import Link from "next/link";
 import { IoLanguage } from "react-icons/io5";
-import cx from "classnames";
-import { useTranslate } from "@/hooks/useTranslate";
+import { cn } from "@/lib/utils";
+import { Lang } from "@/types/Lang";
+import { useEffect, useState } from "react";
 
-export default function LangSwitch() {
-  const { lang } = useTranslate();
+export default function LangSwitch({
+  lang,
+}: {
+  lang: Lang;
+}) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
+
   const baseStyle = "btn btn-ghost btn-sm";
   return (
     <details className="dropdown dropdown-end">
@@ -14,15 +30,15 @@ export default function LangSwitch() {
 
 
       <div className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-          <Link href="/de" className={cx(baseStyle, {
-            "btn-active": lang === "de",
-          })}>Deutsch</Link>
-          <Link href="/en" className={cx(baseStyle, {
-            "btn-active": lang === "en",
-          })}>English</Link>
-          <Link href="/fr" className={cx(baseStyle, {
-            "btn-active": lang === "fr",
-          })}>Français</Link>
+        <Link href="/de" className={cn(baseStyle, {
+          "btn-active": lang === "de",
+        })}>Deutsch</Link>
+        <Link href="/en" className={cn(baseStyle, {
+          "btn-active": lang === "en",
+        })}>English</Link>
+        <Link href="/fr" className={cn(baseStyle, {
+          "btn-active": lang === "fr",
+        })}>Français</Link>
       </div>
     </details>
   );

@@ -1,7 +1,5 @@
-import { useContext } from "react";
-import { MailContext } from "../context/MailContext";
-import type { MailContextType } from "../types/FieldContextType";
+import { useMailStore } from "../store/useMailStore";
 
 export function useField() {
-  return useContext(MailContext) as MailContextType;
+  return useMailStore();
 }

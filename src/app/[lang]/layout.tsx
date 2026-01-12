@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "@/app/globals.css";
-import { t } from "../../dictionaries";
+import { getDictionary, t } from "../../dictionaries";
 import { Lang } from "@/types/Lang";
 import Link from "next/link";
+import { Header } from "@/components/App";
+import StoreInitializer from "@/store/StoreInitializer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
 });
 
@@ -35,12 +32,19 @@ export default async function RootLayout({
   children,
   params
 }: LayoutProps<'/[lang]'>) {
+  const { lang } = await params;
+  const dictionary = await getDictionary(lang as Lang);
+
   return (
-    <html lang={(await params).lang} data-theme="light">
+    <html lang={lang}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${interTight.variable} antialiased`}
       >
-        {children}
+        <StoreInitializer lang={lang as Lang} dictionary={dictionary} />
+        <Header lang={lang as Lang} />
+        <main>
+          {children}
+        </main>
         <footer className="w-full flex items-center justify-center px-4 py-8">
           <div className="max-w-3xl w-full">
             <small>An app developed by <b><Link href="https://www.janwalenda.de" className="link">Jan Walenda</Link></b></small>

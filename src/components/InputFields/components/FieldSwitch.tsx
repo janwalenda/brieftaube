@@ -2,11 +2,11 @@ import { FieldType } from "@/types/FieldType";
 import TextBlockField from "./TextBlockField";
 import ImageField from "./ImageField";
 import type { Field } from "@/types/Field";
-import SortableItem from "@/components/UI/SortableItem/SortableItem";
-import { useTranslate } from "@/hooks/useTranslate";
+import SortableItem from "@/components/ui/SortableItem/SortableItem";
+import { useTranslateStore } from "@/store/useTranslateStore";
 
-export default function FieldSwitch({ type, id }: Field & { index: number}) {
-  const { t } = useTranslate();
+export default function FieldSwitch({ type, id }: Field & { index: number }) {
+  const { t } = useTranslateStore();
   switch (type) {
     case FieldType.TextBlock:
       return (

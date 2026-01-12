@@ -1,8 +1,10 @@
 "use client"
 import { useField } from "../../../hooks/useField";
-import { Field, Select, Textarea} from "@/components/UI"
 import { UniqueIdentifier } from "@dnd-kit/core";
-import { useTranslate } from "@/hooks/useTranslate";
+import Field from "@/components/ui/Field/Field";
+import Select from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useTranslateStore } from "@/store/useTranslateStore";
 
 export default function TextBlockField({
   fieldId: id,
@@ -10,11 +12,13 @@ export default function TextBlockField({
   fieldId: UniqueIdentifier;
 }) {
   const { setFieldProperty, getFieldProperty } = useField();
-  const { t } = useTranslate();
+  const { t } = useTranslateStore();
 
   return (
     <Field legend="Text Block" fieldId={id}>
-      <Select tooltip="Style" value={getFieldProperty(id, 'style')} onChange={(event) => setFieldProperty(id, 'style', event.target.value)}>
+      <Select tooltip={{
+        content: "Style",
+      }} value={getFieldProperty(id, 'style')} onChange={(event) => setFieldProperty(id, 'style', event.target.value)}>
         <option value="default">{t('text-block.style.default')}</option>
         <option value="signature">{t('text-block.style.signatur')}</option>
         <option value="disclaimer">{t('text-block.style.disclaimer')}</option>
@@ -24,9 +28,8 @@ export default function TextBlockField({
         value={getFieldProperty(id, 'content')}
         preview="edit"
         onChange={(value) => setFieldProperty(id, 'content', value || "")}
-        tooltip={t('text-block.textarea')}
-      >
-      </Textarea>
+        tooltip={{ content: t('text-block.textarea') }}
+      />
     </Field>
   )
 }

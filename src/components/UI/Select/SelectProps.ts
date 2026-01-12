@@ -1,5 +1,5 @@
-import { InputVariant } from "@/components/UI/Shared/InputVariant";
-import { TooltipPosition } from "@/components/UI/Shared/TooltipPosition";
+import { InputVariant } from "@/components/ui/Shared/InputVariant";
+import { TooltipPosition } from "@/components/ui/Shared/TooltipPosition";
 
 export type SelectProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> & {
   variant?: InputVariant;

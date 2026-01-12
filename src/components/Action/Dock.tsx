@@ -1,59 +1,91 @@
 "use client"
 import { IoClipboard, IoCode, IoDownload, IoSave } from "react-icons/io5";
 import { IoMdPaper } from "react-icons/io";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useField } from "../../hooks/useField";
-import { useTranslate } from "@/hooks/useTranslate";
-import { Button, InputForm, InputVariant, Modal, Dock } from "@/components/UI";
-
+import { useTranslateStore } from "@/store/useTranslateStore";
+import Dock from "../ui/Dock/Dock";
+import { Button } from "@/components/ui/button";
+import { InputVariant } from "@/components/ui/Shared/InputVariant";
+import { Modal, ModalAction } from "@/components/ui/modal";
+import { InputForm } from "../ui/Shared/InputForm";
+import { TooltipPosition } from "../ui/Shared/TooltipPosition";
 
 export default function ActionDock() {
   const [html, setHTML] = useState<string>("");
   const { renderHTML } = useField();
-  const { t } = useTranslate();
+  const { t } = useTranslateStore();
 
   const htmlRef = useRef<HTMLDialogElement>(null);
   const previewRef = useRef<HTMLDialogElement>(null);
   const saveRef = useRef<HTMLDialogElement>(null);
 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <>
       <Dock>
-        <Button 
+        <Button
           variant={InputVariant.Primary}
-          form={InputForm.Circle}
+          modifier={InputForm.Circle}
           onClick={handleHTMLClick}
           className="rounded-full"
-          tooltip={t('dock.code')}
+          tooltip={{
+            content: t('dock.code'),
+            placement: TooltipPosition.Top,
+          }}
         >
           <IoCode className="size-4" />
         </Button>
         <Button
           variant={InputVariant.Primary}
-          form={InputForm.Circle}
+          modifier={InputForm.Circle}
           onClick={handlePreviewClick}
           className="rounded-full"
-          tooltip={t('dock.preview')}
+          tooltip={{
+            content: t('dock.preview'),
+            placement: TooltipPosition.Top,
+          }}
         >
           <IoMdPaper className="size-4" />
         </Button>
-        <Button 
+        <Button
           variant={InputVariant.Primary}
-          form={InputForm.Circle}
+          modifier={InputForm.Circle}
           onClick={handleOpenSaveClick}
           className="rounded-full"
-          tooltip={t('dock.save')}
-          >
+          tooltip={{
+            content: t('dock.save'),
+            placement: TooltipPosition.Top,
+          }}
+        >
           <IoSave className="size-4" />
         </Button>
       </Dock>
-      <Modal title={t('dock.copy.title')} ref={htmlRef}>
-        <div className="flex flex-row gap-2 sticky w-full items-center justify-start mb-4">
+      <Modal title={t('dock.copy.title')} ref={htmlRef} className="max-w-full md:max-w-3/4 lg:max-w-2/3">
+        <div className="mockup-code w-full mb-4">
+          <div className="p-4 flex flex-row items-center justify-between">
+            <code>
+              {html}
+            </code>
+          </div>
+        </div>
+        <ModalAction>
           <Button variant={InputVariant.Primary}
             title={t('copy')}
             onClick={handleCopyClick}
-            tooltip={t('copy')}
+            tooltip={{
+              content: t('copy'),
+              placement: TooltipPosition.Top,
+            }}
           >
             <IoClipboard />
           </Button>
@@ -65,30 +97,25 @@ export default function ActionDock() {
                 type: 'message/rfc822'
               });
               const url = URL.createObjectURL(emailBlob);
-              
+
               anchor.href = url;
               anchor.download = 'email.eml';
 
               document.body.appendChild(anchor);
-            
+
               anchor.click();
               anchor.remove();
             }}
-            tooltip={t('download')}
+            tooltip={{
+              content: t('download'),
+              placement: TooltipPosition.Top,
+            }}
           >
-            <IoDownload/>
+            <IoDownload />
           </Button>
-
-        </div>
-        <div className="mockup-code w-full mb-4">
-          <div className="p-4 flex flex-row items-center justify-between">
-            <code>
-              {html}
-            </code>
-          </div>
-        </div>
+        </ModalAction>
       </Modal>
-      <Modal title={t('dock.preview.title')} ref={previewRef}>
+      <Modal title={t('dock.preview.title')} ref={previewRef} className="max-w-full md:max-w-3/4 lg:max-w-2/3">
         <div className="sm:mockup-window bg-base-100 sm:border border-base-200">
           <div className="sm:p-4">
             <iframe srcDoc={html} className="w-full h-[80vh] border-0" title="E-Mail Vorschau"></iframe>
@@ -112,17 +139,17 @@ export default function ActionDock() {
   }
 
   function handlePreviewClick() {
-      const generatedHTML = renderHTML();
-      setHTML(generatedHTML);
+    const generatedHTML = renderHTML();
+    setHTML(generatedHTML);
 
-      if (previewRef.current) {
-        previewRef.current.showModal();
-      }
+    if (previewRef.current) {
+      previewRef.current.showModal();
+    }
 
   }
 
   function handleOpenSaveClick() {
-    if(saveRef.current) {
+    if (saveRef.current) {
       saveRef.current.showModal()
     }
   }

@@ -1,9 +1,8 @@
-import cx from "classnames";
-import { DockProps } from "./DockProps";
+import { cn } from "@/lib/utils";
 
-export default function Dock({ children }: DockProps) {
+export default function Dock({ children, className, ...props }: React.ComponentProps<'nav'>) {
   return (
-    <nav className={cx([
+    <nav {...props} className={cn(className, [
       "fixed",
       "bottom-4",
       "left-1/2",
