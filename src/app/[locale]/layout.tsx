@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter_Tight } from "next/font/google";
+import { Inter_Tight, Playfair_Display } from "next/font/google";
 import "@/app/globals.css";
 import { getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
@@ -7,6 +7,11 @@ import { getMessages } from "next-intl/server";
 import Link from "next/link";
 import Header from "@/components/Header";
 import ActionDock from "@/components/Dock";
+
+const playFairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+})
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -43,7 +48,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${interTight.variable} antialiased`}
+        className={`${playFairDisplay.className} ${interTight.className} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
           <Header />

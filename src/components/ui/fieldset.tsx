@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { H6 } from "./heading";
 
 export default function Fieldset({
   className,
@@ -17,7 +18,9 @@ export default function Fieldset({
       {...props}
     >
       {legend && (
-        <legend className="fieldset-legend bg-neutral text-neutral-content px-4 rounded-field hover:bg-neutral/30 backdrop-blur-2xl transition-all">{legend}</legend>
+        <legend className="fieldset-legend bg-neutral text-neutral-content px-4 rounded-field hover:bg-neutral/30 backdrop-blur-2xl transition-all">
+          <H6>{legend}</H6>
+        </legend>
       )}
       {children}
     </fieldset>

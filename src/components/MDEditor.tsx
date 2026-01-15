@@ -1,21 +1,22 @@
 "use client"
 import MarkdownEditor, { commands, MDEditorProps as MarkdownEditorProps } from "@uiw/react-md-editor"
 import { CSSProperties, HTMLAttributes, useEffect } from "react"
-import { ItalicButton } from "@/components/ItalicButton"
-import { BoldButton } from "@/components/BoldButton"
-import { HRButton } from "@/components/HRButton"
-import { HeadingButton } from "@/components/HeadingButton"
-import { LinkButton } from "@/components/LinkButton"
-import { StrikethroughButton } from "@/components/StrikethroughButton"
-import { QuoteButton } from "@/components/QuoteButton"
-import { CodeButton } from "@/components/CodeButton"
-import { ImageButton } from "@/components/ImageButton"
-import { TableButton } from "@/components/TableButton"
-import { ListButton } from "@/components/ListButton"
-import { HelpButton } from "@/components/HelpButton"
-import { FullscreenButton } from "@/components/FullscreenButton"
-import { editorCommands } from "@/components/editorCommands"
+import { ItalicButton } from "@/components/mdEditorButtons/ItalicButton"
+import { BoldButton } from "@/components/mdEditorButtons/BoldButton"
+import { HRButton } from "@/components/mdEditorButtons/HRButton"
+import { HeadingButton } from "@/components/mdEditorButtons/HeadingButton"
+import { LinkButton } from "@/components/mdEditorButtons/LinkButton"
+import { StrikethroughButton } from "@/components/mdEditorButtons/StrikethroughButton"
+import { QuoteButton } from "@/components/mdEditorButtons/QuoteButton"
+import { CodeButton } from "@/components/mdEditorButtons/CodeButton"
+import { ImageButton } from "@/components/mdEditorButtons/ImageButton"
+import { TableButton } from "@/components/mdEditorButtons/TableButton"
+import { ListButton } from "@/components/mdEditorButtons/ListButton"
+import { HelpButton } from "@/components/mdEditorButtons/HelpButton"
+import { FullscreenButton } from "@/components/mdEditorButtons/FullscreenButton"
+import { editorCommands } from "@/config/editorCommands"
 import { useState } from "react"
+import { cn } from "@/lib/utils"
 
 export type MDEditorProps = MarkdownEditorProps & Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'value'> & {
 
@@ -25,7 +26,6 @@ export default function MDEditor({
   components,
   className,
   commands: incomingCommands,
-
   ...props
 }: MDEditorProps) {
   if (incomingCommands) {
@@ -54,7 +54,7 @@ export default function MDEditor({
       extraCommands={[
         commands.fullscreen
       ]}
-      className={`
+      className={cn(`
         [&>.w-md-editor-bar]:pr-4
         [&_.w-md-editor-toolbar]:!border-none
         [&_.w-md-editor-toolbar]:!bg-base-200
@@ -66,8 +66,7 @@ export default function MDEditor({
         [&_.w-md-editor-toolbar>ul]:mt-6
         [&_.w-md-editor-text]:h-full
         [&_.w-md-editor-text]:text-base-content
-        ${className}
-      `}
+      `, className)}
 
       preview="edit"
       components={{

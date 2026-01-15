@@ -7,8 +7,6 @@
   themes: light --default --preferslight, dark --prefersdark, retro, cyberpunk;
 }
 
-
-
 @plugin "daisyui/theme" {
   name: "light";
   default: true;

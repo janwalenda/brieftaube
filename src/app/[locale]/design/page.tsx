@@ -1,6 +1,11 @@
 "use client"
 import { H1, H3 } from "@/components/ui/heading";
-import { useEffect, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState
+} from "react";
 import { useMailStore } from "@/store/useMailStore";
 import { InputVariant } from "@/types/inputVariant";
 import { ColorInput } from "@/components/ui/colorInput";
@@ -25,6 +30,19 @@ export default function DesignPage() {
 
   if (!isClient) return null;
 
+  const handleRangeChange:
+    ChangeEventHandler<HTMLInputElement> = (newRoundedCorners) =>
+      setRoundedCorners(parseFloat(newRoundedCorners.target.value));
+
+  const handleInputChange:
+    ChangeEventHandler<HTMLInputElement> = (newRoundedCorners) =>
+      setRoundedCorners(parseFloat(newRoundedCorners.target.value));
+
+  const handleColorInputChange:
+    ((newColor: string) => void) &
+    FormEventHandler<HTMLDivElement> = (newColor) =>
+      setPrimaryColor(newColor as string);
+
   return (
     <div className="container mx-auto max-w-3xl p-4">
       <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
@@ -43,23 +61,22 @@ export default function DesignPage() {
         </Link>
         <H1>Design</H1>
       </div>
-
       <Divider />
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="w-full">
           <CardBody>
             <H3>{t('primaryColor.label')}</H3>
-            <p className="text-sm opacity-70 mb-4">{t('primaryColor.description')}</p>
+            <p className="text-sm opacity-70 mb-4">
+              {t('primaryColor.description')}
+            </p>
             <ColorInput
               className="w-full"
               color={mail.primaryColor}
               variant={InputVariant.Secondary}
-              onChange={(newColor) => setPrimaryColor(newColor as string)}
+              onChange={handleColorInputChange}
             />
           </CardBody>
         </Card>
-
         <Card className="w-full">
           <CardBody>
             <H3>{t('roundedCorners.label')}</H3>
@@ -68,7 +85,7 @@ export default function DesignPage() {
               <Range
                 className="flex-1"
                 value={mail.roundedCorners}
-                onChange={(newRoundedCorners) => setRoundedCorners(parseFloat(newRoundedCorners.target.value))}
+                onChange={handleRangeChange}
                 rangeSize={"sm"}
                 min={0}
                 max={2}
@@ -82,7 +99,7 @@ export default function DesignPage() {
                 max={2}
                 step={0.25}
                 value={mail.roundedCorners}
-                onChange={(newRoundedCorners) => setRoundedCorners(parseFloat(newRoundedCorners.target.value))}
+                onChange={handleInputChange}
               />
             </div>
           </CardBody>

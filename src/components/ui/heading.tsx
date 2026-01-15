@@ -1,35 +1,44 @@
-export function H1({ ...props }: React.ComponentProps<'h1'>) {
+import { cn } from "@/lib/utils";
+import { Playfair_Display } from "next/font/google";
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair-display',
+  display: 'swap',
+});
+
+export function H1({ className, ...props }: React.ComponentProps<'h1'>) {
   return (
-    <h1 className="text-4xl font-bold" {...props} />
+    <h1 className={cn(playfairDisplay.className, "text-4xl font-bold", className)} {...props} />
   )
 }
 
-export function H2({ ...props }: React.ComponentProps<'h2'>) {
+export function H2({ className, ...props }: React.ComponentProps<'h2'>) {
   return (
-    <h2 className="text-3xl font-bold" {...props} />
+    <h2 className={cn(playfairDisplay.className, "text-3xl font-bold", className)} {...props} />
   )
 }
 
-export function H3({ ...props }: React.ComponentProps<'h3'>) {
+export function H3({ className, ...props }: React.ComponentProps<'h3'>) {
   return (
-    <h3 className="text-2xl font-bold" {...props} />
+    <h3 className={cn(playfairDisplay.className, "text-2xl font-bold", className)} {...props} />
   )
 }
 
-export function H4({ ...props }: React.ComponentProps<'h4'>) {
+export function H4({ className, ...props }: React.ComponentProps<'h4'>) {
   return (
-    <h4 className="text-xl font-bold" {...props} />
+    <h4 className={cn(playfairDisplay.className, "text-xl font-bold", className)} {...props} />
   )
 }
 
-export function H5({ ...props }: React.ComponentProps<'h5'>) {
+export function H5({ className, ...props }: React.ComponentProps<'h5'>) {
   return (
-    <h5 className="text-lg font-bold" {...props} />
+    <h5 className={cn(playfairDisplay.className, "text-lg font-bold", className)} {...props} />
   )
 }
 
-export function H6({ ...props }: React.ComponentProps<'h6'>) {
+export function H6({ className, ...props }: React.ComponentProps<'h6'>) {
   return (
-    <h6 className="text-base font-bold" {...props} />
+    <h6 className={cn(playfairDisplay.className, "text-base font-bold", className)} {...props} />
   )
 }
