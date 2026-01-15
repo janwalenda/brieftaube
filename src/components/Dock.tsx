@@ -19,7 +19,6 @@ export default function ActionDock() {
 
   const htmlRef = useRef<HTMLDialogElement>(null);
   const previewRef = useRef<HTMLDialogElement>(null);
-  const saveRef = useRef<HTMLDialogElement>(null);
 
   const [isClient, setIsClient] = useState(false);
 
@@ -57,18 +56,6 @@ export default function ActionDock() {
           }}
         >
           <IoMdPaper className="size-4" />
-        </Button>
-        <Button
-          variant={InputVariant.Primary}
-          modifier={InputForm.Circle}
-          onClick={handleOpenSaveClick}
-          className="rounded-full"
-          tooltip={{
-            content: t('dock.save.tooltip'),
-            placement: TooltipPosition.Top,
-          }}
-        >
-          <IoSave className="size-4" />
         </Button>
         <Link href="/design">
           <Button
@@ -160,11 +147,5 @@ export default function ActionDock() {
       previewRef.current.showModal();
     }
 
-  }
-
-  function handleOpenSaveClick() {
-    if (saveRef.current) {
-      saveRef.current.showModal()
-    }
   }
 }
