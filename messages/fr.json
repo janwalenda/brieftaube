@@ -8,8 +8,12 @@
       "title": "Aperçu de l'e-mail"
     },
     "save": {
-      "tooltip": "Enregistrez votre modèle sur votre ordinateur afin de ne pas tout réécrire à chaque fois.",
-      "title": "Enregistrer le modèle"
+      "tooltip": "Enregistrez votre modèle dans votre compte",
+      "title": "Enregistrer le modèle",
+      "nameLabel": "Nom du modèle",
+      "namePlaceholder": "Mon modèle d'e-mail",
+      "button": "Enregistrer",
+      "success": "Modèle enregistré avec succès !"
     },
     "copy": {
       "title": "HTML à copier"
@@ -88,5 +92,49 @@
       "label": "Rayon d'angle",
       "description": "Ajustez l'arrondi des boutons et des conteneurs."
     }
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "email": "E-mail",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "name": "Nom",
+    "namePlaceholder": "Entrez votre nom",
+    "loginButton": "Se connecter",
+    "registerButton": "S'inscrire",
+    "loading": "Chargement...",
+    "or": "ou",
+    "loginWithPasskey": "Se connecter avec Passkey",
+    "noAccount": "Pas de compte ? Inscrivez-vous",
+    "hasAccount": "Déjà un compte ? Connectez-vous",
+    "loginError": "Échec de la connexion. Veuillez vérifier vos identifiants.",
+    "registerError": "Échec de l'inscription. Veuillez réessayer.",
+    "passkeyError": "Échec de l'authentification Passkey."
+  },
+  "userMenu": {
+    "login": "Connexion",
+    "templates": "Mes modèles",
+    "account": "Compte",
+    "logout": "Déconnexion"
+  },
+  "templates": {
+    "title": "Mes modèles",
+    "noTemplates": "Vous n'avez pas encore enregistré de modèles.",
+    "createFirst": "Créez votre premier modèle",
+    "lastUpdated": "Dernière mise à jour",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce modèle ?"
+  },
+  "account": {
+    "title": "Compte",
+    "profile": "Profil",
+    "name": "Nom",
+    "email": "E-mail",
+    "security": "Sécurité",
+    "passkeyDescription": "Ajoutez un passkey pour une connexion plus rapide et plus sécurisée.",
+    "addPasskey": "Ajouter un Passkey",
+    "passkeySuccess": "Passkey ajouté avec succès !",
+    "passkeyError": "Échec de l'ajout du passkey."
   }
 }

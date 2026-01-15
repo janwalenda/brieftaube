@@ -2,6 +2,7 @@ import LangSwitch from "@/components/LangSwitch";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import TooltipToggle from "@/components/TooltipToggle";
 import { Logo } from "@/components/Logo";
+import UserMenu from "@/components/UserMenu";
 
 export default function Header() {
   return (
@@ -12,6 +13,8 @@ export default function Header() {
           <LangSwitch />
           <ThemeSwitch />
           <TooltipToggle />
+          <div className="divider divider-horizontal m-0" />
+          <UserMenu />
         </div>
       </div>
       <hr className="text-base-300 w-full" />

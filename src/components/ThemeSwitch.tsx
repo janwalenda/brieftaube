@@ -4,6 +4,7 @@ import { useThemeStore } from "@/store/useThemeStore";
 import { Theme } from "@/types/Theme";
 import { IoEye } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import { Dropdown, DropdownButton, DropdownContent } from "./ui/dropdown";
 
 export default function ThemeSwitch() {
   const t = useTranslations();
@@ -20,12 +21,12 @@ export default function ThemeSwitch() {
   }
 
   return (
-    <details className="dropdown dropdown-end">
-      <summary className="btn btn-accent">
+    <Dropdown>
+      <DropdownButton buttonStyle={"ghost"} size={"sm"}>
         <IoEye />
-      </summary>
+      </DropdownButton>
 
-      <div className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm gap-2">
+      <DropdownContent>
         <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input
             type="radio"
@@ -101,7 +102,7 @@ export default function ThemeSwitch() {
           />
           System
         </label>
-      </div>
-    </details>
+      </DropdownContent>
+    </Dropdown>
   );
 }

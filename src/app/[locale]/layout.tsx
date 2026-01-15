@@ -7,11 +7,7 @@ import { getMessages } from "next-intl/server";
 import Link from "next/link";
 import Header from "@/components/Header";
 import ActionDock from "@/components/Dock";
-
-const playFairDisplay = Playfair_Display({
-  variable: "--font-playfair-display",
-  subsets: ["latin"],
-})
+import { cn } from "@/lib/utils";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -31,7 +27,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     keywords: ["Email", "Nextjs", "Brieftaube", "Html"],
     generator: "Next.js",
-    manifest: "/site.webmanifest"
+    manifest: "/site.webmanifest",
+    icons: {
+      icon: "/favicon.png",
+    }
   }
 }
 
@@ -48,7 +47,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${playFairDisplay.className} ${interTight.className} antialiased`}
+        className={cn(interTight.className, "antialiased")}
       >
         <NextIntlClientProvider messages={messages}>
           <Header />

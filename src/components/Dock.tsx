@@ -6,21 +6,31 @@ import { useField } from "@/hooks/useField";
 import { useTranslations } from "next-intl";
 import Dock from "@/components/ui/dock";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { InputVariant } from "@/types/inputVariant";
 import { Modal, ModalAction } from "@/components/ui/modal";
 import { InputForm } from "@/types/inputForm";
 import { TooltipPosition } from "@/types/tooltipPosition";
 import { Link } from "@/i18n/navigation";
+import { useSession } from "@/lib/auth-client";
+import { saveTemplate } from "@/actions/templates";
+import LoggedIn from "./LoggedIn";
 
 export default function ActionDock() {
   const [html, setHTML] = useState<string>("");
-  const { renderHTML } = useField();
+  const { renderHTML, mail } = useField();
   const t = useTranslations();
+  const { data: session } = useSession();
 
   const htmlRef = useRef<HTMLDialogElement>(null);
   const previewRef = useRef<HTMLDialogElement>(null);
+  const saveRef = useRef<HTMLDialogElement>(null);
 
   const [isClient, setIsClient] = useState(false);
+  const [templateName, setTemplateName] = useState("");
+  const [saveLoading, setSaveLoading] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -28,6 +38,37 @@ export default function ActionDock() {
 
   if (!isClient) {
     return null;
+  }
+
+  async function handleSaveTemplate() {
+    if (!templateName.trim()) return;
+
+    setSaveLoading(true);
+    setSaveMessage(null);
+
+    const result = await saveTemplate(templateName, mail);
+
+    if (result.error) {
+      setSaveMessage({ type: "error", text: result.error });
+    } else {
+      setSaveMessage({ type: "success", text: t("dock.save.success") });
+      setTemplateName("");
+      setTimeout(() => {
+        saveRef.current?.close();
+        setSaveMessage(null);
+      }, 1500);
+    }
+
+    setSaveLoading(false);
+  }
+
+  function handleSaveClick() {
+    if (!session?.user) {
+      // Redirect to login if not authenticated
+      window.location.href = "/login";
+      return;
+    }
+    saveRef.current?.showModal();
   }
 
   return (
@@ -57,6 +98,20 @@ export default function ActionDock() {
         >
           <IoMdPaper className="size-4" />
         </Button>
+        <LoggedIn>
+          <Button
+            variant={InputVariant.Primary}
+            modifier={InputForm.Circle}
+            onClick={handleSaveClick}
+            className="rounded-full"
+            tooltip={{
+              content: t('dock.save.tooltip'),
+              placement: TooltipPosition.Top,
+            }}
+          >
+            <IoSave className="size-4" />
+          </Button>
+        </LoggedIn>
         <Link href="/design">
           <Button
             variant={InputVariant.Primary}
@@ -122,6 +177,43 @@ export default function ActionDock() {
             <iframe srcDoc={html} className="w-full h-[80vh] border-0" title="E-Mail Vorschau" />
           </div>
         </div>
+      </Modal>
+      <Modal title={t('dock.save.title')} ref={saveRef}>
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="template-name">{t('dock.save.nameLabel')}</Label>
+            <Input
+              id="template-name"
+              type="text"
+              value={templateName}
+              onChange={(e) => setTemplateName(e.target.value)}
+              placeholder={t('dock.save.namePlaceholder')}
+              disabled={saveLoading}
+              className="mt-1"
+            />
+          </div>
+          {saveMessage && (
+            <div className={`alert ${saveMessage.type === "success" ? "alert-success" : "alert-error"}`}>
+              <span>{saveMessage.text}</span>
+            </div>
+          )}
+        </div>
+        <ModalAction>
+          <Button
+            variant={InputVariant.Primary}
+            onClick={handleSaveTemplate}
+            disabled={saveLoading || !templateName.trim()}
+          >
+            {saveLoading ? (
+              <span className="loading loading-spinner loading-sm" />
+            ) : (
+              <>
+                <IoSave className="size-4 mr-1" />
+                {t('dock.save.button')}
+              </>
+            )}
+          </Button>
+        </ModalAction>
       </Modal>
     </>
   )

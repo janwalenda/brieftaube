@@ -2,6 +2,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { H2 } from "./heading"
 
 const cardVariants = cva(
   "card bg-base-100",
@@ -63,9 +64,9 @@ function CardBody({ children, className }: React.ComponentProps<"div">) {
 
 function CardTitle({ children, className }: React.ComponentProps<"h2">) {
   return (
-    <h2 className={cn("card-title", className)}>
+    <H2 className={cn("card-title", className)}>
       {children}
-    </h2>
+    </H2>
   )
 }
 

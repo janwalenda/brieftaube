@@ -4,6 +4,7 @@ import { IoLanguage } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
+import { Dropdown, DropdownButton, DropdownContent } from './ui/dropdown';
 
 export default function LangSwitch() {
   const locale = useLocale();
@@ -20,12 +21,12 @@ export default function LangSwitch() {
 
   const baseStyle = "btn btn-ghost btn-sm";
   return (
-    <details className="dropdown dropdown-end">
-      <summary className="btn btn-accent">
+    <Dropdown placement="bottom">
+      <DropdownButton variant="neutral" size={"sm"}>
         <IoLanguage />
-      </summary>
+      </DropdownButton>
 
-      <div className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+      <DropdownContent>
         <Link href={pathname} locale="de" className={cn(baseStyle, {
           "btn-active": locale === "de",
         })}>Deutsch</Link>
@@ -35,7 +36,7 @@ export default function LangSwitch() {
         <Link href={pathname} locale="fr" className={cn(baseStyle, {
           "btn-active": locale === "fr",
         })}>Français</Link>
-      </div>
-    </details>
+      </DropdownContent>
+    </Dropdown>
   );
 }
