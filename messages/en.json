@@ -1,92 +1,140 @@
 {
-    "hello": "Hello",
-    "description": "The simple E-Mail Editor",
-    "dock": {
-        "code": "View the HTML to copy and paste the code into your email editor",
-        "preview": {
-            "tooltip": "Here you can see what your final email will look like",
-            "title": "Email preview"
-        },
-        "save": {
-            "tooltip": "Save your template on your machine so you don't have to rewrite everything every time.",
-            "title": "Save template"
-        },
-        "copy": {
-            "title": "HTML to copy"
-        },
-        "activate-tooltips": {
-            "title": "Activate tips that explain the interface"
-        },
-        "deactivate-tooltips": {
-            "title": "Deactivate tips"
-        }
+  "hello": "Hello",
+  "description": "The simple E-Mail Editor",
+  "dock": {
+    "code": "View the HTML to copy and paste the code into your email editor",
+    "preview": {
+      "tooltip": "Here you can see what your final email will look like",
+      "title": "Email preview"
     },
-    "fab": {
-        "plus": "Add a text block or an image",
-        "textblock": "Add text block",
-        "image": "Add image",
-        "button": "Add button"
+    "save": {
+      "tooltip": "Save your template to your account",
+      "title": "Save template",
+      "nameLabel": "Template name",
+      "namePlaceholder": "My email template",
+      "button": "Save",
+      "success": "Template saved successfully!"
     },
-    "button-field": {
-        "tooltip": "Enter the text and the link for your button"
+    "copy": {
+      "title": "HTML to copy"
     },
-    "field": {
-        "delete": "Delete field"
+    "activate-tooltips": {
+      "title": "Activate tips that explain the interface"
     },
-    "fields": {
-        "info": "Here you can add more fields by clicking on the + button"
-    },
-    "theme-switch": {
-        "dark": "Dark",
-        "light": "Light"
-    },
-    "image-field": {
-        "button": {
-            "url": "Enter the link to your image",
-            "upload": "Upload your image (Note: Only small images are allowed here)"
-        },
-        "width": "Select a width for your image",
-        "legend": "Enter an image",
-        "small": "Small",
-        "medium": "Medium",
-        "large": "Large"
-    },
-    "text-block": {
-        "heading": "Enter the block title here",
-        "textarea": "Enter the block text here",
-        "style": {
-            "default": "Default",
-            "salutation": "Salutation",
-            "signatur": "Signature",
-            "title-only": "Title only",
-            "disclaimer": "Disclaimer",
-            "content-only": "Content only"
-        }
-    },
-    "email": {
-        "title": "The title of your email",
-        "salutation": "Who are you addressing?",
-        "main-content": "This is the main body of your email. You can format the text with Markdown.",
-        "greetings": "With kind regards or in solidarity? 🤔",
-        "sender-name": "Say your name!",
-        "role": "What role do you play? Speaker, organizer, or other?",
-        "disclaimer": "Show who or what you are writing for"
-    },
-    "modal": {
-        "close": "Close modal"
-    },
-    "download": "Download",
-    "copy": "Copy",
-    "design": {
-        "tooltip": "Customize the look of your email",
-        "back": "Back to editor",
-        "primaryColor": {
-            "label": "Primary Color",
-            "description": "Choose the main color for your email."
-        },
-        "roundedCorners": {
-            "label": "Corner Radius",
-            "description": "Adjust the roundness of buttons and containers."
-        }
+    "deactivate-tooltips": {
+      "title": "Deactivate tips"
     }
+  },
+  "fab": {
+    "plus": "Add a text block or an image",
+    "textblock": "Add text block",
+    "image": "Add image",
+    "button": "Add button"
+  },
+  "button-field": {
+    "tooltip": "Enter the text and the link for your button"
+  },
+  "field": {
+    "delete": "Delete field"
+  },
+  "fields": {
+    "info": "Here you can add more fields by clicking on the + button"
+  },
+  "theme-switch": {
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "image-field": {
+    "button": {
+      "url": "Enter the link to your image",
+      "upload": "Upload your image (Note: Only small images are allowed here)"
+    },
+    "width": "Select a width for your image",
+    "legend": "Enter an image",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large"
+  },
+  "text-block": {
+    "heading": "Enter the block title here",
+    "textarea": "Enter the block text here",
+    "style": {
+      "default": "Default",
+      "salutation": "Salutation",
+      "signatur": "Signature",
+      "title-only": "Title only",
+      "disclaimer": "Disclaimer",
+      "content-only": "Content only"
+    }
+  },
+  "email": {
+    "title": "The title of your email",
+    "salutation": "Who are you addressing?",
+    "main-content": "This is the main body of your email. You can format the text with Markdown.",
+    "greetings": "With kind regards or in solidarity? 🤔",
+    "sender-name": "Say your name!",
+    "role": "What role do you play? Speaker, organizer, or other?",
+    "disclaimer": "Show who or what you are writing for"
+  },
+  "modal": {
+    "close": "Close modal"
+  },
+  "download": "Download",
+  "copy": "Copy",
+  "design": {
+    "tooltip": "Customize the look of your email",
+    "back": "Back to editor",
+    "primaryColor": {
+      "label": "Primary Color",
+      "description": "Choose the main color for your email."
+    },
+    "roundedCorners": {
+      "label": "Corner Radius",
+      "description": "Adjust the roundness of buttons and containers."
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "loginButton": "Sign In",
+    "registerButton": "Sign Up",
+    "loading": "Loading...",
+    "or": "or",
+    "loginWithPasskey": "Sign in with Passkey",
+    "noAccount": "Don't have an account? Sign up",
+    "hasAccount": "Already have an account? Sign in",
+    "loginError": "Login failed. Please check your credentials.",
+    "registerError": "Registration failed. Please try again.",
+    "passkeyError": "Passkey authentication failed."
+  },
+  "userMenu": {
+    "login": "Login",
+    "templates": "My Templates",
+    "account": "Account",
+    "logout": "Logout"
+  },
+  "templates": {
+    "title": "My Templates",
+    "noTemplates": "You haven't saved any templates yet.",
+    "createFirst": "Create your first template",
+    "lastUpdated": "Last updated",
+    "confirmDelete": "Are you sure you want to delete this template?"
+  },
+  "account": {
+    "title": "Account",
+    "profile": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "security": "Security",
+    "passkeyDescription": "Add a passkey for faster and more secure login.",
+    "addPasskey": "Add Passkey",
+    "passkeySuccess": "Passkey added successfully!",
+    "passkeyError": "Failed to add passkey."
+  }
 }

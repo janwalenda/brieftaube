@@ -11,7 +11,7 @@ import { IoAdd } from "react-icons/io5";
 
 export default function FAB() {
   const { addField } = useField();
-  const t = useTranslations('fab');
+  const t = useTranslations("fab");
 
   const [isClient, setIsClient] = useState(false);
 
@@ -28,8 +28,8 @@ export default function FAB() {
   return (
     <div className="fab">
       {/* a focusable div with tabIndex is necessary to work on all browsers. role="button" is necessary for accessibility */}
-      <Tooltip variant={InputVariant.Secondary} placement={TooltipPosition.Left} content={t('plus')}>
-        <div tabIndex={0} role="button" className="btn btn-lg btn-circle btn-secondary" aria-label={t('plus')}>
+      <Tooltip variant={InputVariant.Secondary} placement={TooltipPosition.Left} content={t("plus")}>
+        <div tabIndex={0} role="button" className="btn btn-lg btn-circle btn-secondary" aria-label={t("plus")}>
           <IoAdd className="size-6" />
         </div>
       </Tooltip>
@@ -43,7 +43,7 @@ export default function FAB() {
             className="btn btn-lg btn-circle"
             onClick={() => addField(item.type)}
             tooltip={{
-              content: t('button'),
+              content: t("button"),
               placement: TooltipPosition.Left
             }}
           >

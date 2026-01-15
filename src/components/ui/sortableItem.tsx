@@ -1,7 +1,7 @@
 "use client"
 import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from '@dnd-kit/utilities';
-import { SortableItemProps } from "@/types/sortableItemProps";
+import { CSS } from "@dnd-kit/utilities";
+import { type SortableItemProps } from "@/types/sortableItemProps";
 
 export default function SortableItem({
   itemId: id,

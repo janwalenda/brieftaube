@@ -5,15 +5,15 @@ import { Button } from "./button";
 import { Modal, ModalAction } from "./modal";
 import { useEffect, useRef, useState } from "react";
 import { Pipette } from "lucide-react";
-import { inputVariants } from "./input";
-import { VariantProps } from "class-variance-authority";
+import { type inputVariants } from "./input";
+import { type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 export type ColorInputProps = {
   className?: string;
   color: string;
   onChange: (newColor: string) => void;
-} & VariantProps<typeof inputVariants> & React.ComponentProps<'div'>;
+} & VariantProps<typeof inputVariants> & React.ComponentProps<"div">;
 
 
 export function ColorInput({
@@ -45,12 +45,12 @@ export function ColorInput({
       )} endIcon={(
         <span className="size-6" style={{ backgroundColor: color }} />
       )}
-        onChange={(event) => onChange(event.target.value)}
-        value={color}
-        className="join-item"
-        variant={variant}
-        sizeVariant={sizeVariant}
-        inputStyle={inputStyle}
+      onChange={(event) => onChange(event.target.value)}
+      value={color}
+      className="join-item"
+      variant={variant}
+      sizeVariant={sizeVariant}
+      inputStyle={inputStyle}
       />
       <Button onClick={handleModalOpen}
         variant={variant}

@@ -1,8 +1,8 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import MDEditor, { MDEditorProps } from "@/components/MDEditor"
-import { Tooltip, TooltipProps } from "./tooltip"
+import MDEditor, { type MDEditorProps } from "@/components/MDEditor"
+import { Tooltip, type TooltipProps } from "./tooltip"
 
 
 const textareaVariants = cva(

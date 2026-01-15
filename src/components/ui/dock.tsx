@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function Dock({ children, className, ...props }: React.ComponentProps<'nav'>) {
+export default function Dock({ children, className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav {...props} className={cn(className, [
       "fixed",

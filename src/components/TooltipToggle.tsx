@@ -22,8 +22,8 @@ export default function TooltipToggle() {
   }
 
   const tooltipButtonTitle = mail.tooltip ?
-    t('dock.deactivate-tooltips.title') :
-    t('dock.activate-tooltips.title');
+    t("dock.deactivate-tooltips.title") :
+    t("dock.activate-tooltips.title");
 
   return (
     <Tooltip variant={InputVariant.Secondary}

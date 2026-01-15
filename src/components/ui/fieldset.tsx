@@ -6,7 +6,7 @@ export default function Fieldset({
   children,
   legend,
   ...props
-}: React.ComponentProps<'fieldset'> & {
+}: React.ComponentProps<"fieldset"> & {
   legend?: React.ReactNode;
 }) {
 
@@ -15,7 +15,7 @@ export default function Fieldset({
       "fieldset p-4 rounded-field bg-base-200 relative",
       className,
     ])}
-      {...props}
+    {...props}
     >
       {legend && (
         <legend className="fieldset-legend bg-neutral text-neutral-content px-4 rounded-field hover:bg-neutral/30 backdrop-blur-2xl transition-all">

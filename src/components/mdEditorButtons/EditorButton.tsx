@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { InputSize } from "@/types/inputSize";
 import { InputVariant } from "@/types/inputVariant";
 import { TooltipPosition } from "@/types/tooltipPosition";
-import { commands } from "@uiw/react-md-editor";
+import { type commands } from "@uiw/react-md-editor";
 
 export function EditorButton({
   disabled, executeCommand, command, children

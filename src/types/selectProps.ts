@@ -1,5 +1,5 @@
-import { InputVariant } from "@/types/inputVariant";
-import { TooltipPosition } from "@/types/tooltipPosition";
+import { type InputVariant } from "@/types/inputVariant";
+import { type TooltipPosition } from "@/types/tooltipPosition";
 
 export type SelectProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> & {
   variant?: InputVariant;

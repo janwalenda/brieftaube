@@ -1,15 +1,15 @@
 "use client";
 
-import { create } from 'zustand';
+import { create } from "zustand";
 import { FieldType } from "../types/FieldType";
 import type { FieldKeys } from "../types/Field";
 import { componentRegistry } from "@/config/componentRegistry";
 import type { Mail } from "../types/Mail";
 import Email from "@/helpers/Email";
-import { UniqueIdentifier } from "@dnd-kit/core";
+import { type UniqueIdentifier } from "@dnd-kit/core";
 import { ImageWidth } from "@/types/ImageWidth";
 import { TextBlockStyle } from "@/types/TextBlockStyle";
-import { persist } from 'zustand/middleware';
+import { persist } from "zustand/middleware";
 
 interface MailState {
   mail: Mail;
@@ -31,30 +31,30 @@ export const useMailStore = create<MailState>()(
         {
           id: 0,
           type: FieldType.Image,
-          url: 'https://placehold.co/600x150/000000/ffffff?text=LOGO',
+          url: "https://placehold.co/600x150/000000/ffffff?text=LOGO",
           width: ImageWidth.SM,
         },
         {
           id: 1,
           type: FieldType.TextBlock,
           style: TextBlockStyle.Default,
-          content: '# Willkommen zu meinem Newsletter\nDas ist ein Beispieltext. Du kannst ihn ganz einfach bearbeiten, indem du auf das Textfeld klickst und deinen eigenen Text eingibst.',
+          content: "# Willkommen zu meinem Newsletter\nDas ist ein Beispieltext. Du kannst ihn ganz einfach bearbeiten, indem du auf das Textfeld klickst und deinen eigenen Text eingibst.",
         },
         {
           id: 2,
           type: FieldType.TextBlock,
           style: TextBlockStyle.Signature,
-          content: `Max Mustermann\nCEO, Beispiel GmbH\n[01234 23643234](tel:0123423643234)\n[kontakt@maxmustermann.de](mailto:kontakt@maxmustermann.de)`,
+          content: "Max Mustermann\nCEO, Beispiel GmbH\n[01234 23643234](tel:0123423643234)\n[kontakt@maxmustermann.de](mailto:kontakt@maxmustermann.de)",
         },
         {
           id: 3,
           type: FieldType.TextBlock,
           style: TextBlockStyle.Disclaimer,
-          content: `\nDiese E-Mail wurde von [Organisation/Person] versandt.`,
+          content: "\nDiese E-Mail wurde von [Organisation/Person] versandt.",
         }
       ],
       tooltip: true,
-      primaryColor: '#123455',
+      primaryColor: "#123455",
       roundedCorners: 0.25,
     },
 
@@ -147,7 +147,6 @@ export const useMailStore = create<MailState>()(
     },
 
     setRoundedCorners: (roundedCorners) => {
-      console.log(roundedCorners);
       set((state) => ({
         mail: {
           ...state.mail,
@@ -156,8 +155,8 @@ export const useMailStore = create<MailState>()(
       }));
     },
   }),
-    {
-      name: 'mail-storage',
-    }
+  {
+    name: "mail-storage",
+  }
   )
 );

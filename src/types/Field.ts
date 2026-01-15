@@ -1,7 +1,7 @@
 import type { FieldType } from "./FieldType";
 import type { ImageWidth } from "./ImageWidth";
-import { UniqueIdentifier } from "@dnd-kit/core";
-import { TextBlockStyle } from "./TextBlockStyle";
+import { type UniqueIdentifier } from "@dnd-kit/core";
+import { type TextBlockStyle } from "./TextBlockStyle";
 
 interface BaseField {
   id: UniqueIdentifier;

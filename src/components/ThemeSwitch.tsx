@@ -39,7 +39,7 @@ export default function ThemeSwitch() {
               }
             }}
           />
-          {t('theme-switch.light')}
+          {t("theme-switch.light")}
         </label>
         <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input
@@ -54,7 +54,7 @@ export default function ThemeSwitch() {
               }
             }}
           />
-          {t('theme-switch.dark')}
+          {t("theme-switch.dark")}
         </label>
         <label className="flex gap-2 p-1 cursor-pointer items-center has-checked:bg-primary">
           <input

@@ -3,7 +3,7 @@ import { useField } from "@/hooks/useField";
 import { Button } from "@/components/ui/button";
 import { useSortable } from "@dnd-kit/sortable";
 import Fieldset from "@/components/ui/fieldset";
-import { FieldProps } from "@/types/fieldProps";
+import { type FieldProps } from "@/types/fieldProps";
 import { InputVariant } from "@/types/inputVariant";
 import { TooltipPosition } from "@/types/tooltipPosition";
 import { useTranslations } from "next-intl";
@@ -32,7 +32,7 @@ export default function Field({
             onClick={handleDelete}
             variant={InputVariant.Neutral}
             tooltip={{
-              content: t('field.delete'),
+              content: t("field.delete"),
               placement: TooltipPosition.Left
             }}
           >

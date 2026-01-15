@@ -1,8 +1,8 @@
 "use client"
 import { H1, H3 } from "@/components/ui/heading";
 import {
-  ChangeEventHandler,
-  FormEventHandler,
+  type ChangeEventHandler,
+  type FormEventHandler,
   useEffect,
   useState
 } from "react";
@@ -21,7 +21,7 @@ import { TooltipPosition } from "@/types/tooltipPosition";
 
 export default function DesignPage() {
   const { mail, setPrimaryColor, setRoundedCorners } = useMailStore();
-  const t = useTranslations('design');
+  const t = useTranslations("design");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function DesignPage() {
             buttonStyle="ghost"
             className="btn-circle"
             tooltip={{
-              content: t('back'),
+              content: t("back"),
               placement: TooltipPosition.Right
             }}
           >
@@ -65,9 +65,9 @@ export default function DesignPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="w-full">
           <CardBody>
-            <H3>{t('primaryColor.label')}</H3>
+            <H3>{t("primaryColor.label")}</H3>
             <p className="text-sm opacity-70 mb-4">
-              {t('primaryColor.description')}
+              {t("primaryColor.description")}
             </p>
             <ColorInput
               className="w-full"
@@ -79,8 +79,8 @@ export default function DesignPage() {
         </Card>
         <Card className="w-full">
           <CardBody>
-            <H3>{t('roundedCorners.label')}</H3>
-            <p className="text-sm opacity-70 mb-4">{t('roundedCorners.description')}</p>
+            <H3>{t("roundedCorners.label")}</H3>
+            <p className="text-sm opacity-70 mb-4">{t("roundedCorners.description")}</p>
             <div className="flex gap-4 items-center">
               <Range
                 className="flex-1"

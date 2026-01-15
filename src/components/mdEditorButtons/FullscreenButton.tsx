@@ -1,7 +1,7 @@
 "use client";
 import { FaExpand } from "react-icons/fa6";
 import { EditorButton } from "./EditorButton";
-import { commands } from "@uiw/react-md-editor";
+import { type commands } from "@uiw/react-md-editor";
 
 export function FullscreenButton({
   disabled, executeCommand, command

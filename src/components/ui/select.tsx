@@ -1,5 +1,5 @@
-import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
-import { cva, VariantProps } from "class-variance-authority";
+import { Tooltip, type TooltipProps } from "@/components/ui/tooltip";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 
@@ -26,7 +26,7 @@ export default function Select({
   tooltip,
   asChild,
   ...props
-}: React.ComponentProps<'select'> & VariantProps<typeof selectVariants> & {
+}: React.ComponentProps<"select"> & VariantProps<typeof selectVariants> & {
   asChild?: boolean,
   tooltip?: TooltipProps,
 }) {

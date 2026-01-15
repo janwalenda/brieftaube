@@ -21,38 +21,38 @@ export interface ComponentRegistryItem {
 export const componentRegistry: Record<FieldType, ComponentRegistryItem> = {
   [FieldType.TextBlock]: {
     type: FieldType.TextBlock,
-    labelKey: 'fab.textblock',
+    labelKey: "fab.textblock",
     icon: IoText,
     component: TextBlockField,
     create: (id: number) => ({
       id,
       type: FieldType.TextBlock,
       style: TextBlockStyle.Default,
-      content: 'Schreib was du willst',
+      content: "Schreib was du willst",
     } as TextBlockType),
   },
   [FieldType.Image]: {
     type: FieldType.Image,
-    labelKey: 'fab.image',
+    labelKey: "fab.image",
     icon: IoImage,
     component: ImageField,
     create: (id: number) => ({
       id,
       type: FieldType.Image,
-      url: 'https://placehold.co/600x150/000000/ffffff?text=Kein+Bild+angegeben',
+      url: "https://placehold.co/600x150/000000/ffffff?text=Kein+Bild+angegeben",
       width: ImageWidth.SM,
     } as ImageFieldType),
   },
   [FieldType.Button]: {
     type: FieldType.Button,
-    labelKey: 'fab.button', // Ensure this translation key exists or is added
+    labelKey: "fab.button", // Ensure this translation key exists or is added
     icon: IoAdd,
     component: ButtonField,
     create: (id: number) => ({
       id,
       type: FieldType.Button,
-      content: 'Button Text',
-      href: '#',
+      content: "Button Text",
+      href: "#",
     } as ButtonFieldType),
   },
 };

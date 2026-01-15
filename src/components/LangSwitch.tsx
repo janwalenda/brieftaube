@@ -1,5 +1,5 @@
 "use client"
-import { Link, usePathname } from '@/i18n/navigation';
+import { Link, usePathname } from "@/i18n/navigation";
 import { IoLanguage } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import { useLocale } from "next-intl";

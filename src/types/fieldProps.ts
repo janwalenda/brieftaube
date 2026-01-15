@@ -1,5 +1,5 @@
-import { UniqueIdentifier } from "@dnd-kit/core";
-import { DetailedHTMLProps, FieldsetHTMLAttributes } from "react";
+import { type UniqueIdentifier } from "@dnd-kit/core";
+import { type DetailedHTMLProps, type FieldsetHTMLAttributes } from "react";
 
 export type FieldProps = DetailedHTMLProps<FieldsetHTMLAttributes<HTMLFieldSetElement>, HTMLFieldSetElement> & {
   legend: React.ReactNode;

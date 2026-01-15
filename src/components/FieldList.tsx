@@ -5,8 +5,8 @@ import { IoInformationCircle } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import { TooltipPosition } from "@/types/tooltipPosition";
 import { InputVariant } from "@/types/inputVariant";
-import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { closestCenter, DndContext, type DragEndEvent, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -52,7 +52,7 @@ export default function FieldList() {
               className="btn-circle btn-info btn-sm"
               tooltip={{
                 placement: TooltipPosition.Left,
-                content: t('fields.info'),
+                content: t("fields.info"),
               }}
               buttonStyle={InputVariant.Ghost}
             >

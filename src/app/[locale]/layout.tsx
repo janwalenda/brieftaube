@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: "Brieftaube",
-    description: t('description'),
+    description: t("description"),
     authors: {
       name: "Jan Walenda",
       url: "https://www.janwalenda.de"

@@ -1,5 +1,5 @@
 "use client";
-import { commands } from "@uiw/react-md-editor";
+import { type commands } from "@uiw/react-md-editor";
 import { FaList } from "react-icons/fa6";
 import { EditorButton } from "./EditorButton";
 

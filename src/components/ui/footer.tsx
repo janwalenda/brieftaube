@@ -17,7 +17,7 @@ export function Footer({ asChild, children, className, ...props }: FooterProps) 
   )
 }
 
-type FooterColumnProps = React.ComponentProps<'nav'> & {
+type FooterColumnProps = React.ComponentProps<"nav"> & {
   title: string
 }
 

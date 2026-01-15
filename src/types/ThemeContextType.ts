@@ -1,5 +1,5 @@
 "use client";
-import { Theme } from "@/types/Theme";
+import { type Theme } from "@/types/Theme";
 
 export type ThemeContextType = {
     theme: Theme;

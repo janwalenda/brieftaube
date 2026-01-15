@@ -1,5 +1,5 @@
 import { marked } from "marked";
-import { Field } from "../types/Field";
+import { type Field } from "../types/Field";
 import { FieldType } from "../types/FieldType";
 import { TextBlockStyle } from "@/types/TextBlockStyle";
 
@@ -51,20 +51,20 @@ export default class Email {
   appendFields(fields: Field[]) {
     fields.forEach(field => {
       switch (field.type) {
-        case FieldType.Image:
-          this.appendImage(field.url, field.width);
-          break;
-        case FieldType.TextBlock:
-          this.appendTextBlock(field.content, field.style);
-          break;
-        case FieldType.Button:
-          this.appendButton(field.content, field.href);
-          break;
+      case FieldType.Image:
+        this.appendImage(field.url, field.width);
+        break;
+      case FieldType.TextBlock:
+        this.appendTextBlock(field.content, field.style);
+        break;
+      case FieldType.Button:
+        this.appendButton(field.content, field.href);
+        break;
       }
     });
   }
 
-  appendImage(url: string = '', width: string = "6rem") {
+  appendImage(url: string = "", width: string = "6rem") {
     const image = new Image();
 
     image.src = url;
@@ -103,7 +103,6 @@ export default class Email {
   }
 
   appendTextBlock(content: string = "", style: TextBlockStyle = TextBlockStyle.Default) {
-    console.log("Appending TextBlock with style:", style);
     const article = this.document.createElement("article");
 
     article.innerHTML = marked.parse(content, {
@@ -111,36 +110,36 @@ export default class Email {
     }) as string;
 
     switch (style) {
-      case TextBlockStyle.Signature: {
-        article.style.marginTop = "20px";
-        article.style.fontSize = "0.9em";
-        article.style.color = "#777";
-        article.style.borderTop = "1px solid #eee";
-        article.style.paddingTop = "10px";
+    case TextBlockStyle.Signature: {
+      article.style.marginTop = "20px";
+      article.style.fontSize = "0.9em";
+      article.style.color = "#777";
+      article.style.borderTop = "1px solid #eee";
+      article.style.paddingTop = "10px";
 
-        break;
-      }
-
-      case TextBlockStyle.Disclaimer: {
-        article.style.marginTop = "20px";
-        article.style.fontSize = "0.9em";
-        article.style.color = "#777";
-        article.style.textAlign = "center";
-        article.style.borderTop = "1px solid #eee";
-        article.style.paddingTop = "10px";
-
-        break
-      }
-
-      case TextBlockStyle.Default:
-      default: {
-        article.style.marginBottom = "15px";
-
-        break;
-      }
+      break;
     }
 
-    article.querySelectorAll('strong,h1,h2,h3,h4,h5,h6,a').forEach((strong) => {
+    case TextBlockStyle.Disclaimer: {
+      article.style.marginTop = "20px";
+      article.style.fontSize = "0.9em";
+      article.style.color = "#777";
+      article.style.textAlign = "center";
+      article.style.borderTop = "1px solid #eee";
+      article.style.paddingTop = "10px";
+
+      break
+    }
+
+    case TextBlockStyle.Default:
+    default: {
+      article.style.marginBottom = "15px";
+
+      break;
+    }
+    }
+
+    article.querySelectorAll("strong,h1,h2,h3,h4,h5,h6,a").forEach((strong) => {
       if (!(strong instanceof HTMLElement)) {
         return;
       }

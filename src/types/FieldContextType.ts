@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
+import { type Dispatch, type SetStateAction } from "react";
 import type { Mail } from "./Mail";
-import { UniqueIdentifier } from "@dnd-kit/core";
-import { FieldType } from "./FieldType";
-import { FieldKeys } from "./Field";
+import { type UniqueIdentifier } from "@dnd-kit/core";
+import { type FieldType } from "./FieldType";
+import { type FieldKeys } from "./Field";
 
 export type MailContextType = {
     addField: (type: FieldType.Image | FieldType.TextBlock) => number;

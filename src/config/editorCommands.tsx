@@ -14,9 +14,9 @@ export const editorCommands = [
     commands.heading5,
     commands.heading6
   ], {
-    name: 'title',
-    groupName: 'title',
-    buttonProps: { 'aria-label': 'Insert title' }
+    name: "title",
+    groupName: "title",
+    buttonProps: { "aria-label": "Insert title" }
   }),
   commands.divider,
   commands.link,
@@ -30,9 +30,9 @@ export const editorCommands = [
     commands.orderedListCommand,
     commands.checkedListCommand,
   ], {
-    name: 'list',
-    groupName: 'list',
-    buttonProps: { 'aria-label': 'Insert list' }
+    name: "list",
+    groupName: "list",
+    buttonProps: { "aria-label": "Insert list" }
   }),
   commands.divider,
   commands.help,
