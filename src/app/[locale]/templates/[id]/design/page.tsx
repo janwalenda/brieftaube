@@ -12,8 +12,8 @@ import { use } from "react";
 
 export default function TemplateDesignPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const t = useTranslations('design');
-  const gt = useTranslations('global');
+  const t = useTranslations("design");
+  const gt = useTranslations("global");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function TemplateDesignPage({ params }: { params: Promise<{ id: s
             <IoArrowBack className="size-6" />
           </Link>
         </Button>
-        <H1>{t('title')}</H1>
+        <H1>{t("title")}</H1>
       </div>
       <DesignEditor />
     </div>

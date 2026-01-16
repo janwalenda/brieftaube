@@ -111,7 +111,7 @@ export default function ActionDock({ mode }: ActionDockProps) {
             onClick={handleReset}
             className="rounded-full"
             tooltip={{
-              content: t('dock.resetTooltip'),
+              content: t("dock.resetTooltip"),
               placement: TooltipPosition.Top,
             }}
           >
@@ -149,7 +149,7 @@ export default function ActionDock({ mode }: ActionDockProps) {
             onClick={handleSaveClick}
             className="rounded-full"
             tooltip={{
-              content: t('dock.save.tooltip'),
+              content: t("dock.save.tooltip"),
               placement: TooltipPosition.Top,
             }}
           >
@@ -222,16 +222,16 @@ export default function ActionDock({ mode }: ActionDockProps) {
           </div>
         </div>
       </Modal>
-      <Modal title={t('dock.save.title')} ref={saveRef}>
+      <Modal title={t("dock.save.title")} ref={saveRef}>
         <div className="space-y-4">
           <div>
-            <Label htmlFor="template-name">{t('dock.save.nameLabel')}</Label>
+            <Label htmlFor="template-name">{t("dock.save.nameLabel")}</Label>
             <Input
               id="template-name"
               type="text"
               value={templateName}
               onChange={(e) => setTemplateName(e.target.value)}
-              placeholder={t('dock.save.namePlaceholder')}
+              placeholder={t("dock.save.namePlaceholder")}
               disabled={saveLoading}
               className="mt-1"
             />
@@ -253,7 +253,7 @@ export default function ActionDock({ mode }: ActionDockProps) {
             ) : (
               <>
                 <IoSave className="size-4 mr-1" />
-                {t('dock.save.button')}
+                {t("dock.save.button")}
               </>
             )}
           </Button>

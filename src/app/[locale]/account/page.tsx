@@ -68,7 +68,7 @@ export default function AccountPage() {
                 buttonStyle="ghost"
                 className="btn-circle"
                 tooltip={{
-                  content: gt('back'),
+                  content: gt("back"),
                   placement: TooltipPosition.Right
                 }}
               >

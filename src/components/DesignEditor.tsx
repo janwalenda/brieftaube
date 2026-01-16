@@ -1,8 +1,8 @@
 "use client"
 import { H3 } from "@/components/ui/heading";
 import {
-  ChangeEventHandler,
-  FormEventHandler,
+  type ChangeEventHandler,
+  type FormEventHandler,
 } from "react";
 import { useMailStore } from "@/store/useMailStore";
 import { InputVariant } from "@/types/inputVariant";
@@ -14,7 +14,7 @@ import { Card, CardBody } from "@/components/ui/card";
 
 export default function DesignEditor() {
   const { mail, setPrimaryColor, setRoundedCorners } = useMailStore();
-  const t = useTranslations('design');
+  const t = useTranslations("design");
 
   const handleRangeChange:
     ChangeEventHandler<HTMLInputElement> = (newRoundedCorners) =>
@@ -33,9 +33,9 @@ export default function DesignEditor() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <Card className="w-full">
         <CardBody>
-          <H3>{t('primaryColor.label')}</H3>
+          <H3>{t("primaryColor.label")}</H3>
           <p className="text-sm opacity-70 mb-4">
-            {t('primaryColor.description')}
+            {t("primaryColor.description")}
           </p>
           <ColorInput
             className="w-full"
@@ -47,8 +47,8 @@ export default function DesignEditor() {
       </Card>
       <Card className="w-full">
         <CardBody>
-          <H3>{t('roundedCorners.label')}</H3>
-          <p className="text-sm opacity-70 mb-4">{t('roundedCorners.description')}</p>
+          <H3>{t("roundedCorners.label")}</H3>
+          <p className="text-sm opacity-70 mb-4">{t("roundedCorners.description")}</p>
           <div className="flex gap-4 items-center">
             <Range
               className="flex-1"

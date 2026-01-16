@@ -1,28 +1,20 @@
 "use client"
-import { H1, H3 } from "@/components/ui/heading";
+import { H1 } from "@/components/ui/heading";
 import {
-  type ChangeEventHandler,
-  type FormEventHandler,
   useEffect,
   useState
 } from "react";
-import { useMailStore } from "@/store/useMailStore";
-import { InputVariant } from "@/types/inputVariant";
-import { ColorInput } from "@/components/ui/colorInput";
-import { Divider } from "@/components/ui/divider";
-import { Range } from "@/components/ui/range";
-import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { IoArrowBack } from "react-icons/io5";
 import { useTranslations } from "next-intl";
-import { InputVariant } from "@/types/inputVariant";
 import { TooltipPosition } from "@/types/tooltipPosition";
 import DesignEditor from "@/components/DesignEditor";
+import { InputVariant } from "@/types/inputVariant";
 
 export default function DesignPage() {
   const t = useTranslations("design");
-  const gt = useTranslations('global');
+  const gt = useTranslations("global");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -48,7 +40,7 @@ export default function DesignPage() {
             <IoArrowBack className="size-6" />
           </Link>
         </Button>
-        <H1>{t('title')}</H1>
+        <H1>{t("title")}</H1>
       </div>
       <DesignEditor />
     </div>

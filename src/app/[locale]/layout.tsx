@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Playfair_Display } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "@/app/globals.css";
 import { getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";

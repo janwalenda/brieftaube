@@ -1,4 +1,4 @@
-import { Mail } from "@/types/Mail";
+import { type Mail } from "@/types/Mail";
 import { neon } from "@neondatabase/serverless";
 import { Kysely } from "kysely";
 import { NeonDialect } from "kysely-neon";

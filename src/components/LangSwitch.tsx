@@ -4,7 +4,7 @@ import { IoLanguage } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
-import { Dropdown, DropdownButton, DropdownContent } from './ui/dropdown';
+import { Dropdown, DropdownButton, DropdownContent } from "./ui/dropdown";
 
 export default function LangSwitch() {
   const locale = useLocale();

@@ -2,8 +2,8 @@
 
 import { cn } from "@/lib/utils"
 import { Slot } from "@radix-ui/react-slot"
-import { Button, ButtonProps } from "./button"
-import { cva, VariantProps } from "class-variance-authority"
+import { Button, type ButtonProps } from "./button"
+import { cva, type VariantProps } from "class-variance-authority"
 import { useRef, useEffect } from "react"
 
 const dropdownVariants = cva("dropdown", {

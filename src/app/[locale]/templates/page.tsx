@@ -71,7 +71,6 @@ export default function TemplatesPage() {
       return;
     }
     if (result.template) {
-      console.log(result.template);
       setMailDirect(result.template.content, null); // null = new mail, not editing template
       router.push("/");
     }
@@ -95,7 +94,7 @@ export default function TemplatesPage() {
               buttonStyle="ghost"
               className="btn-circle"
               tooltip={{
-                content: gt('back'),
+                content: gt("back"),
                 placement: TooltipPosition.Right
               }}
             >

@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Fieldset from "@/components/ui/fieldset";
-import { H2 } from "@/components/ui/heading";
 
 export default function RegisterPage() {
   const t = useTranslations("auth");

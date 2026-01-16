@@ -100,8 +100,6 @@ export async function loadTemplate(templateId: string) {
       return { error: "Template not found" };
     }
 
-    console.log(template);
-
     return {
       template: {
         ...template,
