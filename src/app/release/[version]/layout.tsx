@@ -6,8 +6,7 @@ import { getMessages } from "next-intl/server";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import Header from "@/components/Header";
-import { H1 } from "@/components/ui/heading";
+import { H2 } from "@/components/ui/heading";
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
@@ -15,12 +14,12 @@ const robotoMono = Roboto_Mono({
 });
 
 export async function generateMetadata({ params }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ version: string }>
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const { version } = await params;
 
   return {
-    title: "Brieftaube - Releases",
+    title: `Brieftaube - Releases ${version}`,
     description: "Releases of Brieftaube",
     authors: {
       name: "Jan Walenda",
@@ -53,7 +52,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <header className="w-full flex items-center justify-center px-4 py-8">
             <div className="max-w-3xl w-full">
-              <H1>Release {version}</H1>
+              <H2>Release {version}</H2>
             </div>
           </header>
           <main className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
