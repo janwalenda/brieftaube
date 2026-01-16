@@ -1,17 +1,6 @@
 "use client"
-import { H1, H3 } from "@/components/ui/heading";
-import {
-  type ChangeEventHandler,
-  type FormEventHandler,
-  useEffect,
-  useState
-} from "react";
-import { useMailStore } from "@/store/useMailStore";
-import { InputVariant } from "@/types/inputVariant";
-import { ColorInput } from "@/components/ui/colorInput";
-import { Divider } from "@/components/ui/divider";
-import { Range } from "@/components/ui/range";
-import { Input } from "@/components/ui/input";
+import { H1 } from "@/components/ui/heading";
+import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { IoArrowBack } from "react-icons/io5";
@@ -19,9 +8,11 @@ import { useTranslations } from "next-intl";
 import { InputVariant } from "@/types/inputVariant";
 import { TooltipPosition } from "@/types/tooltipPosition";
 import DesignEditor from "@/components/DesignEditor";
+import { use } from "react";
 
-export default function DesignPage() {
-  const t = useTranslations("design");
+export default function TemplateDesignPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const t = useTranslations('design');
   const gt = useTranslations('global');
   const [isClient, setIsClient] = useState(false);
 
@@ -44,7 +35,7 @@ export default function DesignPage() {
           }}
           asChild
         >
-          <Link href="/">
+          <Link href={`/templates/${id}`}>
             <IoArrowBack className="size-6" />
           </Link>
         </Button>

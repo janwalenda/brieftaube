@@ -1,5 +1,5 @@
 "use client"
-import { IoClipboard, IoCode, IoDownload, IoColorPalette } from "react-icons/io5";
+import { IoClipboard, IoCode, IoDownload, IoSave, IoColorPalette, IoRefresh } from "react-icons/io5";
 import { IoMdPaper } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import { useField } from "@/hooks/useField";
@@ -16,10 +16,15 @@ import { Link } from "@/i18n/navigation";
 import { useSession } from "@/lib/auth-client";
 import { saveTemplate } from "@/actions/templates";
 import LoggedIn from "./LoggedIn";
+import { Spinner } from "./ui/spinner";
 
-export default function ActionDock() {
+export interface ActionDockProps {
+  mode: "create" | "edit";
+}
+
+export default function ActionDock({ mode }: ActionDockProps) {
   const [html, setHTML] = useState<string>("");
-  const { renderHTML, mail } = useField();
+  const { renderHTML, mail, templateId, resetMail } = useField();
   const t = useTranslations();
   const { data: session } = useSession();
 
@@ -40,40 +45,79 @@ export default function ActionDock() {
     return null;
   }
 
-  async function handleSaveTemplate() {
-    if (!templateName.trim()) return;
+  async function handleSaveTemplate(name?: string) {
+    const templateNameToUse = name || templateName;
+
+    // In create mode, we need a name. In edit mode, we don't.
+    if (mode === "create" && !templateNameToUse.trim()) return;
 
     setSaveLoading(true);
     setSaveMessage(null);
 
-    const result = await saveTemplate(templateName, mail);
+    // If mode is edit, we update the existing template (templateId must be present)
+    // If mode is create, we create a new one (pass undefined as id)
+    const idToUpdate = mode === "edit" ? templateId : undefined;
+
+    const result = await saveTemplate(templateNameToUse, mail, idToUpdate ?? undefined);
 
     if (result.error) {
       setSaveMessage({ type: "error", text: result.error });
-    } else {
-      setSaveMessage({ type: "success", text: t("dock.save.success") });
-      setTemplateName("");
-      setTimeout(() => {
-        saveRef.current?.close();
-        setSaveMessage(null);
-      }, 1500);
+      setSaveLoading(false);
+      return;
     }
+
+    setSaveMessage({ type: "success", text: t("dock.save.success") });
+    if (mode === "create") {
+      setTemplateName("");
+    }
+    setTimeout(() => {
+      saveRef.current?.close();
+      setSaveMessage(null);
+    }, 1500);
 
     setSaveLoading(false);
   }
 
-  function handleSaveClick() {
+  async function handleSaveClick() {
     if (!session?.user) {
       // Redirect to login if not authenticated
       window.location.href = "/login";
       return;
     }
+
+    // Edit mode: save directly
+    if (mode === "edit" && templateId) {
+      await handleSaveTemplate();
+      return;
+    }
+
+    // Create mode: always show modal
     saveRef.current?.showModal();
+  }
+
+  function handleReset() {
+    if (confirm(t("dock.resetConfirm"))) {
+      resetMail();
+    }
   }
 
   return (
     <>
       <Dock>
+        {mode === "create" && (
+          <Button
+            variant={InputVariant.Neutral}
+            modifier={InputForm.Circle}
+            onClick={handleReset}
+            className="rounded-full"
+            tooltip={{
+              content: t('dock.resetTooltip'),
+              placement: TooltipPosition.Top,
+            }}
+          >
+            <IoRefresh className="size-4" />
+          </Button>
+        )}
         <Button
           variant={InputVariant.Primary}
           modifier={InputForm.Circle}
@@ -109,10 +153,10 @@ export default function ActionDock() {
               placement: TooltipPosition.Top,
             }}
           >
-            <IoSave className="size-4" />
+            {saveLoading ? <Spinner /> : <IoSave className="size-4" />}
           </Button>
         </LoggedIn>
-        <Link href="/design">
+        <Link href={mode === "edit" ? `/templates/${templateId}/design` : "/design"}>
           <Button
             variant={InputVariant.Primary}
             modifier={InputForm.Circle}
@@ -201,11 +245,11 @@ export default function ActionDock() {
         <ModalAction>
           <Button
             variant={InputVariant.Primary}
-            onClick={handleSaveTemplate}
+            onClick={() => handleSaveTemplate()}
             disabled={saveLoading || !templateName.trim()}
           >
             {saveLoading ? (
-              <span className="loading loading-spinner loading-sm" />
+              <Spinner />
             ) : (
               <>
                 <IoSave className="size-4 mr-1" />

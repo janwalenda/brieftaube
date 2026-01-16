@@ -1,6 +1,9 @@
 {
   "hello": "Hallo",
   "description": "Der einfache E-Mail Editor",
+  "global": {
+    "back": "Zurück"
+  },
   "dock": {
     "code": "Lass dir den HTML anzeigen um den Code zu kopieren und in deinem E-Mail editor einzufügen",
     "preview": {
@@ -23,7 +26,9 @@
     },
     "deactivate-tooltips": {
       "title": "Deaktiviere Tips"
-    }
+    },
+    "resetTooltip": "Standard-E-Mail laden",
+    "resetConfirm": "Bist du sicher? Ungespeicherte Änderungen gehen verloren."
   },
   "fab": {
     "plus": "Füge einen Textblock oder ein Bild hinzu",
@@ -82,6 +87,7 @@
   "download": "Runterladen",
   "copy": "Kopieren",
   "design": {
+    "title": "Design",
     "tooltip": "Passe das Aussehen deiner E-Mail an",
     "back": "Zurück zum Editor",
     "primaryColor": {

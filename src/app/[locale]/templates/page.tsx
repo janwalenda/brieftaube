@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useSession } from "@/lib/auth-client";
 import { listTemplates, deleteTemplate, loadTemplate } from "@/actions/templates";
-import { useField } from "@/hooks/useField";
 import { Card, CardBody, CardTitle, CardAction } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { H2 } from "@/components/ui/heading";
-import { IoTrash, IoOpen, IoDocument } from "react-icons/io5";
+import { IoTrash, IoOpen, IoDocument, IoArrowBack, IoPencil } from "react-icons/io5";
+import { Link, useRouter } from "@/i18n/navigation";
+import { InputVariant } from "@/types/inputVariant";
+import { TooltipPosition } from "@/types/tooltipPosition";
+import { useField } from "@/hooks/useField";
 
 interface Template {
   id: string;
@@ -22,11 +24,12 @@ export default function TemplatesPage() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
   const t = useTranslations("templates");
-  const { setMail } = useField();
+  const gt = useTranslations("global");
 
   const [templates, setTemplates] = useState<Template[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { setMailDirect } = useField();
 
   useEffect(() => {
     if (!isPending && !session?.user) {
@@ -50,19 +53,6 @@ export default function TemplatesPage() {
     setLoading(false);
   }
 
-  async function handleLoad(templateId: string) {
-    const result = await loadTemplate(templateId);
-    if (result.error) {
-      setError(result.error);
-      return;
-    }
-    if (result.template) {
-      console.log(result.template);
-      setMail(() => result.template!.content);
-      router.push("/");
-    }
-  }
-
   async function handleDelete(templateId: string) {
     if (!confirm(t("confirmDelete"))) return;
 
@@ -71,6 +61,19 @@ export default function TemplatesPage() {
       setError(result.error);
     } else {
       setTemplates(templates.filter((t) => t.id !== templateId));
+    }
+  }
+
+  async function handleLoad(templateId: string) {
+    const result = await loadTemplate(templateId);
+    if (result.error) {
+      setError(result.error);
+      return;
+    }
+    if (result.template) {
+      console.log(result.template);
+      setMailDirect(result.template.content, null); // null = new mail, not editing template
+      router.push("/");
     }
   }
 
@@ -83,9 +86,24 @@ export default function TemplatesPage() {
   }
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <div className="w-full max-w-2xl">
-        <H2 className="mb-6">{t("title")}</H2>
+    <div className="flex flex-col items-center p-4 w-full max-w-3xl">
+      <div className="w-full max-w-4xl">
+        <div className="flex flex-row items-center gap-2 mb-6">
+          <Link href="/">
+            <Button
+              variant={InputVariant.Neutral}
+              buttonStyle="ghost"
+              className="btn-circle"
+              tooltip={{
+                content: gt('back'),
+                placement: TooltipPosition.Right
+              }}
+            >
+              <IoArrowBack className="size-6" />
+            </Button>
+          </Link>
+          <H2>{t("title")}</H2>
+        </div>
 
         {error && (
           <div className="alert alert-error mb-4">
@@ -108,7 +126,7 @@ export default function TemplatesPage() {
         ) : (
           <div className="space-y-4">
             {templates.map((template) => (
-              <Card key={template.id} cardStyle="border">
+              <Card key={template.id} cardStyle="border" className="w-full max-w-4xl">
                 <CardBody className="flex flex-row items-center justify-between">
                   <div>
                     <CardTitle>{template.name}</CardTitle>
@@ -123,6 +141,15 @@ export default function TemplatesPage() {
                       onClick={() => handleLoad(template.id)}
                     >
                       <IoOpen className="size-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="primary"
+                      asChild
+                    >
+                      <Link href={`/templates/${template.id}`}>
+                        <IoPencil className="size-4" />
+                      </Link>
                     </Button>
                     <Button
                       size="sm"

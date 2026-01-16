@@ -23,11 +23,10 @@ export async function saveTemplate(name: string, content: Mail, templateId?: str
 
   try {
     if (templateId) {
-      // Update existing template
+      // Update existing template - only update content, not name
       await db
         .updateTable("template")
         .set({
-          name,
           content: JSON.stringify(content),
           updated_at: new Date(),
         })
@@ -50,6 +49,9 @@ export async function saveTemplate(name: string, content: Mail, templateId?: str
     }
 
     revalidatePath("/templates");
+    if (templateId) {
+      revalidatePath(`/templates/${templateId}`);
+    }
     return { success: true };
   } catch (error) {
     console.error("Failed to save template:", error);

@@ -1,6 +1,9 @@
 {
   "hello": "Bonjour",
   "description": "L'éditeur d'e-mails simple",
+  "global": {
+    "back": "Retour"
+  },
   "dock": {
     "code": "Voir le HTML pour copier et coller le code dans votre éditeur d'e-mails",
     "preview": {

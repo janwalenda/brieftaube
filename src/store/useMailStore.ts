@@ -11,14 +11,50 @@ import { ImageWidth } from "@/types/ImageWidth";
 import { TextBlockStyle } from "@/types/TextBlockStyle";
 import { persist } from "zustand/middleware";
 
+// Default mail state for new emails
+const defaultMail: Mail = {
+  fields: [
+    {
+      id: 0,
+      type: FieldType.Image,
+      url: 'https://placehold.co/600x150/000000/ffffff?text=LOGO',
+      width: ImageWidth.SM,
+    },
+    {
+      id: 1,
+      type: FieldType.TextBlock,
+      style: TextBlockStyle.Default,
+      content: '# Willkommen zu meinem Newsletter\nDas ist ein Beispieltext. Du kannst ihn ganz einfach bearbeiten, indem du auf das Textfeld klickst und deinen eigenen Text eingibst.',
+    },
+    {
+      id: 2,
+      type: FieldType.TextBlock,
+      style: TextBlockStyle.Signature,
+      content: `Max Mustermann\nCEO, Beispiel GmbH\n[01234 23643234](tel:0123423643234)\n[kontakt@maxmustermann.de](mailto:kontakt@maxmustermann.de)`,
+    },
+    {
+      id: 3,
+      type: FieldType.TextBlock,
+      style: TextBlockStyle.Disclaimer,
+      content: `\nDiese E-Mail wurde von [Organisation/Person] versandt.`,
+    }
+  ],
+  tooltip: true,
+  primaryColor: '#123455',
+  roundedCorners: 0.25,
+};
+
 interface MailState {
   mail: Mail;
+  templateId: string | null;
   addField: (type: FieldType.Image | FieldType.TextBlock | FieldType.Button) => number;
   removeField: (id: UniqueIdentifier) => void;
   setFieldProperty: (id: UniqueIdentifier, property: FieldKeys, value: string) => void;
   getFieldProperty: (id: UniqueIdentifier, property: FieldKeys) => string | undefined;
   renderHTML: () => string;
   setMail: (updater: (mail: Mail) => Mail) => void;
+  setMailDirect: (mail: Mail, templateId?: string | null) => void;
+  resetMail: () => void;
   toggleTooltip: () => void;
   setPrimaryColor: (primaryColor: string) => void;
   setRoundedCorners: (roundedCorners: number) => void;
@@ -26,37 +62,8 @@ interface MailState {
 
 export const useMailStore = create<MailState>()(
   persist((set, get) => ({
-    mail: {
-      fields: [
-        {
-          id: 0,
-          type: FieldType.Image,
-          url: "https://placehold.co/600x150/000000/ffffff?text=LOGO",
-          width: ImageWidth.SM,
-        },
-        {
-          id: 1,
-          type: FieldType.TextBlock,
-          style: TextBlockStyle.Default,
-          content: "# Willkommen zu meinem Newsletter\nDas ist ein Beispieltext. Du kannst ihn ganz einfach bearbeiten, indem du auf das Textfeld klickst und deinen eigenen Text eingibst.",
-        },
-        {
-          id: 2,
-          type: FieldType.TextBlock,
-          style: TextBlockStyle.Signature,
-          content: "Max Mustermann\nCEO, Beispiel GmbH\n[01234 23643234](tel:0123423643234)\n[kontakt@maxmustermann.de](mailto:kontakt@maxmustermann.de)",
-        },
-        {
-          id: 3,
-          type: FieldType.TextBlock,
-          style: TextBlockStyle.Disclaimer,
-          content: "\nDiese E-Mail wurde von [Organisation/Person] versandt.",
-        }
-      ],
-      tooltip: true,
-      primaryColor: "#123455",
-      roundedCorners: 0.25,
-    },
+    mail: { ...defaultMail },
+    templateId: null,
 
     addField: (type) => {
       const { mail } = get();
@@ -128,6 +135,14 @@ export const useMailStore = create<MailState>()(
       }));
     },
 
+    setMailDirect: (mail, templateId = null) => {
+      set({ mail, templateId });
+    },
+
+    resetMail: () => {
+      set({ mail: { ...defaultMail }, templateId: null });
+    },
+
     toggleTooltip: () => {
       set((state) => ({
         mail: {
@@ -155,8 +170,8 @@ export const useMailStore = create<MailState>()(
       }));
     },
   }),
-  {
-    name: "mail-storage",
-  }
+    {
+      name: "mail-storage",
+    }
   )
 );

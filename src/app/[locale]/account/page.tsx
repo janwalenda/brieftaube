@@ -9,12 +9,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Fieldset from "@/components/ui/fieldset";
 import { useState, useEffect } from "react";
-import { IoFingerPrint } from "react-icons/io5";
+import { IoArrowBack, IoFingerPrint } from "react-icons/io5";
+import { Link } from "@/i18n/navigation";
+import { InputVariant } from "@/types/inputVariant";
+import { TooltipPosition } from "@/types/tooltipPosition";
 
 export default function AccountPage() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
   const t = useTranslations("account");
+  const gt = useTranslations("global");
   const [passkeyLoading, setPasskeyLoading] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -57,7 +61,22 @@ export default function AccountPage() {
     <div className="flex flex-col items-center justify-center p-4 gap-6">
       <Card className="w-full max-w-md shadow-xl">
         <CardBody>
-          <CardTitle>{t("title")}</CardTitle>
+          <CardTitle>
+            <Link href="/">
+              <Button
+                variant={InputVariant.Neutral}
+                buttonStyle="ghost"
+                className="btn-circle"
+                tooltip={{
+                  content: gt('back'),
+                  placement: TooltipPosition.Right
+                }}
+              >
+                <IoArrowBack className="size-6" />
+              </Button>
+            </Link>
+            {t("title")}
+          </CardTitle>
 
           <div className="space-y-4 mt-4">
             <Fieldset legend={t("profile")}>
