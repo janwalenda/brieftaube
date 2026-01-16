@@ -1,0 +1,65 @@
+## Highlights
+
+This release brings **user accounts with authentication**, a completely redesigned **component system**, and **multilingual support** (German, English, French).
+
+---
+
+## New Features
+
+### 🔐 User Accounts & Authentication
+- **Login & Registration** with email/password
+- **Passkey support** for more secure sign-in
+- New **user menu** in header with profile access
+- Protected routes with session management
+
+### 💾 Template Storage
+- **Save email templates** to the cloud
+- **Template overview** at `/templates`
+- **Load, edit, and delete** templates
+- Dedicated page for **editing saved templates**
+
+### 🌍 Internationalization (i18n)
+- Full translation in **German, English, and French**
+- New **language switcher** in header
+- Integration of `next-intl` for server-side rendering
+
+### 🎨 Design Editor
+- New **design page** for customizing email styles
+- Configure **primary color** and **corner radius**
+
+---
+
+## UI Improvements
+
+### New Components
+- `Avatar` - User avatars with fallback
+- `Dropdown` - Menus with click-outside-to-close
+- `Card`, `Badge`, `Divider`, `Modal`
+- `Input`, `Textarea`, `Select`, `Range`
+- `Button` with variants and tooltips
+- `Heading` components (H1-H6)
+- `Loader` and `Spinner` for loading states
+
+### Refactoring
+- Completely redesigned **component structure**
+- Migration to **Zustand** for state management
+- Consistent **type imports** across codebase
+- Improved **ESLint configuration**
+
+---
+
+## Technical Changes
+
+- **better-auth** for authentication
+- **Neon PostgreSQL** database integration
+- **Kysely** as type-safe query builder
+- **next-intl** for internationalization
+- **MDX support** with Turbopack
+
+---
+
+## Breaking Changes
+
+- Routes changed from `/[lang]/` to `/[locale]/`
+- Old components from `src/components/UI/` removed
+- New component imports from `@/components/ui/`

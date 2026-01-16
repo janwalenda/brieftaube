@@ -1,0 +1,143 @@
+{
+  "hello": "Bonjour",
+  "description": "L'éditeur d'e-mails simple",
+  "global": {
+    "back": "Retour"
+  },
+  "dock": {
+    "code": "Voir le HTML pour copier et coller le code dans votre éditeur d'e-mails",
+    "preview": {
+      "tooltip": "Ici, vous pouvez voir à quoi ressemblera votre e-mail final",
+      "title": "Aperçu de l'e-mail"
+    },
+    "save": {
+      "tooltip": "Enregistrez votre modèle dans votre compte",
+      "title": "Enregistrer le modèle",
+      "nameLabel": "Nom du modèle",
+      "namePlaceholder": "Mon modèle d'e-mail",
+      "button": "Enregistrer",
+      "success": "Modèle enregistré avec succès !"
+    },
+    "copy": {
+      "title": "HTML à copier"
+    },
+    "activate-tooltips": {
+      "title": "Activer les info-bulles expliquant l'interface"
+    },
+    "deactivate-tooltips": {
+      "title": "Désactiver les info-bulles"
+    }
+  },
+  "fab": {
+    "plus": "Ajouter un bloc de texte ou une image",
+    "textblock": "Ajouter un bloc de texte",
+    "image": "Ajouter une image",
+    "button": "Ajouter un bouton"
+  },
+  "button-field": {
+    "tooltip": "Entrez le texte et le lien de votre bouton"
+  },
+  "field": {
+    "delete": "Supprimer le champ"
+  },
+  "fields": {
+    "info": "Ici, vous pouvez ajouter davantage de champs en cliquant sur le bouton +"
+  },
+  "theme-switch": {
+    "dark": "Sombre",
+    "light": "Clair"
+  },
+  "image-field": {
+    "button": {
+      "url": "Saisissez le lien de votre image",
+      "upload": "Téléversez votre image (Remarque : seules les petites images sont autorisées ici)"
+    },
+    "width": "Sélectionnez une largeur pour votre image",
+    "legend": "Saisissez une image",
+    "small": "Petit",
+    "medium": "Moyen",
+    "large": "Grand"
+  },
+  "text-block": {
+    "heading": "Saisissez le titre du bloc ici",
+    "textarea": "Saisissez le texte du bloc ici",
+    "style": {
+      "default": "Défaut",
+      "salutation": "Salutation",
+      "signatur": "Signature",
+      "title-only": "Titre uniquement",
+      "disclaimer": "Avertissement",
+      "content-only": "Contenu uniquement"
+    }
+  },
+  "email": {
+    "title": "Le titre de votre e-mail",
+    "salutation": "À qui vous adressez-vous ?",
+    "main-content": "Voici le corps principal de votre e-mail. Vous pouvez formater le texte avec Markdown.",
+    "greetings": "Bien cordialement ou en solidarité ? 𝄢",
+    "sender-name": "Dites votre nom !",
+    "role": "Quel rôle jouez-vous ? Orateur, organisateur ou autre ?",
+    "disclaimer": "Indiquez pour qui ou pour quoi vous écrivez"
+  },
+  "modal": {
+    "close": "Fermer la fenêtre modale"
+  },
+  "download": "Télécharger",
+  "copy": "Copier",
+  "design": {
+    "tooltip": "Personnalisez l'apparence de votre e-mail",
+    "back": "Retour à l'éditeur",
+    "primaryColor": {
+      "label": "Couleur primaire",
+      "description": "Choisissez la couleur principale de votre e-mail."
+    },
+    "roundedCorners": {
+      "label": "Rayon d'angle",
+      "description": "Ajustez l'arrondi des boutons et des conteneurs."
+    }
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "email": "E-mail",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "name": "Nom",
+    "namePlaceholder": "Entrez votre nom",
+    "loginButton": "Se connecter",
+    "registerButton": "S'inscrire",
+    "loading": "Chargement...",
+    "or": "ou",
+    "loginWithPasskey": "Se connecter avec Passkey",
+    "noAccount": "Pas de compte ? Inscrivez-vous",
+    "hasAccount": "Déjà un compte ? Connectez-vous",
+    "loginError": "Échec de la connexion. Veuillez vérifier vos identifiants.",
+    "registerError": "Échec de l'inscription. Veuillez réessayer.",
+    "passkeyError": "Échec de l'authentification Passkey."
+  },
+  "userMenu": {
+    "login": "Connexion",
+    "templates": "Mes modèles",
+    "account": "Compte",
+    "logout": "Déconnexion"
+  },
+  "templates": {
+    "title": "Mes modèles",
+    "noTemplates": "Vous n'avez pas encore enregistré de modèles.",
+    "createFirst": "Créez votre premier modèle",
+    "lastUpdated": "Dernière mise à jour",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce modèle ?"
+  },
+  "account": {
+    "title": "Compte",
+    "profile": "Profil",
+    "name": "Nom",
+    "email": "E-mail",
+    "security": "Sécurité",
+    "passkeyDescription": "Ajoutez un passkey pour une connexion plus rapide et plus sécurisée.",
+    "addPasskey": "Ajouter un Passkey",
+    "passkeySuccess": "Passkey ajouté avec succès !",
+    "passkeyError": "Échec de l'ajout du passkey."
+  }
+}

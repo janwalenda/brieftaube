@@ -1,5 +1,5 @@
-import { Mail } from "./Mail";
-import { Preset } from "./Preset";
+import { type Mail } from "./Mail";
+import { type Preset } from "./Preset";
 
 export type PresetContextType = {
   addPreset: (name: string) => void;

@@ -1,7 +1,7 @@
 import type { FieldType } from "./FieldType";
 import type { ImageWidth } from "./ImageWidth";
-import { UniqueIdentifier } from "@dnd-kit/core";
-import { TextBlockStyle } from "./TextBlockStyle";
+import { type UniqueIdentifier } from "@dnd-kit/core";
+import { type TextBlockStyle } from "./TextBlockStyle";
 
 interface BaseField {
   id: UniqueIdentifier;
@@ -22,6 +22,13 @@ export interface ImageField extends BaseField {
   width?: ImageWidth;
 }
 
-export type FieldKeys = keyof ImageField | keyof TextBlock;
+export interface ButtonField extends BaseField {
+  id: UniqueIdentifier;
+  type: FieldType.Button;
+  content?: string;
+  href?: string;
+}
 
-export type Field = TextBlock | ImageField;
+export type FieldKeys = keyof ImageField | keyof TextBlock | keyof ButtonField;
+
+export type Field = TextBlock | ImageField | ButtonField;

@@ -1,4 +1,4 @@
-import { Mail } from "./Mail";
+import { type Mail } from "./Mail";
 
 export type Preset = {
   id: string;
