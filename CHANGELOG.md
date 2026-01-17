@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.8
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.0.7...v0.0.8)
+
+### 🩹 Fixes
+
+- User initials handling in Avatar and add release notes for 0.0.7/0.0.8 ([5da8421](https://github.com/janwalenda/brieftaube/commit/5da8421))
+
+### 🏡 Chore
+
+- Bump version to 0.0.8 ([333d1f4](https://github.com/janwalenda/brieftaube/commit/333d1f4))
+
+### ❤️ Contributors
+
+- Jan <log@janwalenda.de>
+
 ## v0.0.6
 
 [compare changes](https://github.com/janwalenda/brieftaube/compare/next-version...v0.0.6)
