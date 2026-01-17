@@ -61,7 +61,7 @@ export default async function RootLayout({
               </p>
               <p>
                 <small>
-                  <Link href="/release/0.0.6" className="link">Version 0.0.6</Link>
+                  <Link href="/release/0.0.8" className="link">Version 0.0.8</Link>
                 </small>
               </p>
             </div>

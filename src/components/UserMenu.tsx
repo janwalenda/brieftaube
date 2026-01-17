@@ -40,8 +40,8 @@ export default function UserMenu() {
       <DropdownButton modifier={"square"} buttonStyle={"ghost"}>
         <Avatar size={"xs"} placeholder>
           <AvatarFallback size={"xs"} rounded={"full"}>
-            {firstName.charAt(0).toUpperCase()}
-            {lastName.charAt(0).toUpperCase()}
+            {firstName && firstName.charAt(0).toUpperCase()}
+            {lastName && lastName.charAt(0).toUpperCase()}
           </AvatarFallback>
         </Avatar>
       </DropdownButton>
