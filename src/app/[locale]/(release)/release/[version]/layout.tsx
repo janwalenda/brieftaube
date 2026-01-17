@@ -3,10 +3,12 @@ import { Roboto_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 import { cn } from "@/lib/utils";
 import { H2 } from "@/components/ui/heading";
+import { Button } from "@/components/ui/button";
+import { IoArrowBack } from "react-icons/io5";
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
@@ -50,13 +52,20 @@ export default async function RootLayout({
         className={cn(robotoMono.className, "antialiased")}
       >
         <NextIntlClientProvider messages={messages}>
-          <header className="w-full flex items-center justify-center px-4 py-8">
-            <div className="max-w-3xl w-full">
-              <H2>Release {version}</H2>
-            </div>
+          <header className="w-full flex items-center justify-center py-8">
+            <nav className="navbar gap-2 w-full max-w-3xl">
+              <Button buttonStyle="ghost" modifier="circle" asChild>
+                <Link href="/" className="link">
+                  <IoArrowBack />
+                </Link>
+              </Button>
+              <div className="flex-1">
+                <H2>Release {version}</H2>
+              </div>
+            </nav>
           </header>
           <main className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
-            <article className="prose prose-xl max-w-3xl w-full">
+            <article className="prose prose-md max-w-3xl w-full">
               {children}
             </article>
           </main>

@@ -4,7 +4,7 @@ import "@/app/globals.css";
 import { getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Header from "@/components/Header";
 
 import { cn } from "@/lib/utils";
@@ -56,10 +56,14 @@ export default async function RootLayout({
           </main>
           <footer className="w-full flex items-center justify-center px-4 py-8">
             <div className="max-w-3xl w-full">
-              <small>An app developed by <b><Link href="https://www.janwalenda.de" className="link">Jan Walenda</Link></b></small>
-              <small>
-                <Link href="/releases/0.0.6" className="link">Version 0.0.6</Link>
-              </small>
+              <p>
+                <small>An app developed by <b><Link href="https://www.janwalenda.de" className="link">Jan Walenda</Link></b></small>
+              </p>
+              <p>
+                <small>
+                  <Link href="/release/0.0.6" className="link">Version 0.0.6</Link>
+                </small>
+              </p>
             </div>
           </footer>
         </NextIntlClientProvider>
