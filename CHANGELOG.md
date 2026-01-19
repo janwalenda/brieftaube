@@ -1,6 +1,14 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.1.0...v0.1.1)
+
+### 🩹 Fixes
+
+- Add missing French translations for dock reset.
+
 ## v0.1.0
 
 [compare changes](https://github.com/janwalenda/brieftaube/compare/v0.0.9...v0.1.0)
