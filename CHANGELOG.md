@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.1.1...v0.1.2)
+
+### 🩹 Fixes
+
+- Resolve 'persist' implicitly having type 'any' in `useMailStore` by aliasing the import.
+- Update version in footer to 0.1.2.
+
 ## v0.1.1
 
 [compare changes](https://github.com/janwalenda/brieftaube/compare/v0.1.0...v0.1.1)
