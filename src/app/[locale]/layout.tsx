@@ -61,7 +61,7 @@ export default async function RootLayout({
               </p>
               <p>
                 <small>
-                  <Link href="https://github.com/janwalenda/brieftaube/releases" className="link">Version 0.0.8</Link>
+                  <Link href="https://github.com/janwalenda/brieftaube/releases" className="link">Version 0.1.2</Link>
                 </small>
               </p>
             </div>

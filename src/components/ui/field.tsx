@@ -16,7 +16,7 @@ export default function Field({
   const { removeField, moveField, getFieldIndex, getFieldCount } = useField();
   const t = useTranslations();
 
-  const index = typeof fieldId !== 'undefined' ? getFieldIndex(fieldId) : -1;
+  const index = typeof fieldId !== "undefined" ? getFieldIndex(fieldId) : -1;
   const count = getFieldCount();
 
   const { listeners } = useSortable({

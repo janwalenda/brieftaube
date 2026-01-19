@@ -63,151 +63,149 @@ interface MailState {
   getFieldCount: () => number;
 }
 
-export const useMailStore = create<MailState>()(
-  persist((set, get) => ({
-    mail: { ...defaultMail },
-    templateId: null,
+const persistStore = persist<MailState>((set, get) => ({
+  mail: { ...defaultMail },
+  templateId: null,
 
-    addField: (type) => {
-      const { mail } = get();
-      const id = mail.fields.length + 1;
-      const factory = componentRegistry[type].create;
-      const newField = factory(id);
+  addField: (type) => {
+    const { mail } = get();
+    const id = mail.fields.length + 1;
+    const factory = componentRegistry[type].create;
+    const newField = factory(id);
 
-      set((state) => ({
-        mail: {
-          ...state.mail,
-          fields: [...state.mail.fields, newField],
-        },
-      }));
+    set((state) => ({
+      mail: {
+        ...state.mail,
+        fields: [...state.mail.fields, newField],
+      },
+    }));
 
-      return id;
-    },
+    return id;
+  },
 
-    removeField: (id) => {
-      set((state) => ({
-        mail: {
-          ...state.mail,
-          fields: state.mail.fields.filter(field => field.id !== id),
-        },
-      }));
-    },
+  removeField: (id) => {
+    set((state) => ({
+      mail: {
+        ...state.mail,
+        fields: state.mail.fields.filter(field => field.id !== id),
+      },
+    }));
+  },
 
-    setFieldProperty: (id, property, value) => {
-      set((state) => ({
-        mail: {
-          ...state.mail,
-          fields: state.mail.fields.map(field => {
-            if (field.id === id) {
-              return {
-                ...field,
-                [property]: value,
-              };
-            }
-            return field;
-          }),
-        },
-      }));
-    },
+  setFieldProperty: (id, property, value) => {
+    set((state) => ({
+      mail: {
+        ...state.mail,
+        fields: state.mail.fields.map(field => {
+          if (field.id === id) {
+            return {
+              ...field,
+              [property]: value,
+            };
+          }
+          return field;
+        }),
+      },
+    }));
+  },
 
-    getFieldProperty: (id, property) => {
-      const { mail } = get();
-      const field = mail.fields.find(field => field.id === id);
-      if (!field) return undefined;
+  getFieldProperty: (id, property) => {
+    const { mail } = get();
+    const field = mail.fields.find(field => field.id === id);
+    if (!field) return undefined;
 
-      if (field && property in field) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return (field as any)[property] as string;
-      }
-      return undefined;
-    },
-
-    renderHTML: () => {
-      const { mail } = get();
-      const email = new Email(
-        mail.primaryColor,
-        mail.roundedCorners
-      );
-      email.appendFields(mail.fields);
-      return email.render();
-    },
-
-    setMail: (updater) => {
-      set((state) => ({
-        mail: updater(state.mail),
-      }));
-    },
-
-    setMailDirect: (mail, templateId = null) => {
-      set({ mail, templateId });
-    },
-
-    resetMail: () => {
-      set({ mail: { ...defaultMail }, templateId: null });
-    },
-
-    toggleTooltip: () => {
-      set((state) => ({
-        mail: {
-          ...state.mail,
-          tooltip: !state.mail.tooltip,
-        },
-      }));
-    },
-
-    setPrimaryColor: (primaryColor) => {
-      set((state) => ({
-        mail: {
-          ...state.mail,
-          primaryColor,
-        },
-      }));
-    },
-
-    setRoundedCorners: (roundedCorners) => {
-      set((state) => ({
-        mail: {
-          ...state.mail,
-          roundedCorners,
-        },
-      }));
-    },
-
-    moveField: (id, direction) => {
-      const { mail } = get();
-      const oldIndex = mail.fields.findIndex((field) => field.id === id);
-      if (oldIndex === -1) return;
-
-      const newIndex = direction === "up" ? oldIndex - 1 : oldIndex + 1;
-
-      // Bounds check
-      if (newIndex < 0 || newIndex >= mail.fields.length) return;
-
-      // Use arrayMove from dnd-kit for consistency
-      const newFields = [...mail.fields];
-      const [removed] = newFields.splice(oldIndex, 1);
-      newFields.splice(newIndex, 0, removed);
-
-      set({
-        mail: {
-          ...mail,
-          fields: newFields,
-        },
-      });
-    },
-
-    getFieldIndex: (id) => {
-      const { mail } = get();
-      return mail.fields.findIndex((field) => field.id === id);
-    },
-
-    getFieldCount: () => {
-      const { mail } = get();
-      return mail.fields.length;
-    },
-  }),
-    {
-      name: "mail-storage",
+    if (field && property in field) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return (field as any)[property] as string;
     }
-  )
-);
+    return undefined;
+  },
+
+  renderHTML: () => {
+    const { mail } = get();
+    const email = new Email(
+      mail.primaryColor,
+      mail.roundedCorners
+    );
+    email.appendFields(mail.fields);
+    return email.render();
+  },
+
+  setMail: (updater) => {
+    set((state) => ({
+      mail: updater(state.mail),
+    }));
+  },
+
+  setMailDirect: (mail, templateId = null) => {
+    set({ mail, templateId });
+  },
+
+  resetMail: () => {
+    set({ mail: { ...defaultMail }, templateId: null });
+  },
+
+  toggleTooltip: () => {
+    set((state) => ({
+      mail: {
+        ...state.mail,
+        tooltip: !state.mail.tooltip,
+      },
+    }));
+  },
+
+  setPrimaryColor: (primaryColor) => {
+    set((state) => ({
+      mail: {
+        ...state.mail,
+        primaryColor,
+      },
+    }));
+  },
+
+  setRoundedCorners: (roundedCorners) => {
+    set((state) => ({
+      mail: {
+        ...state.mail,
+        roundedCorners,
+      },
+    }));
+  },
+
+  moveField: (id, direction) => {
+    const { mail } = get();
+    const oldIndex = mail.fields.findIndex((field) => field.id === id);
+    if (oldIndex === -1) return;
+
+    const newIndex = direction === "up" ? oldIndex - 1 : oldIndex + 1;
+
+    // Bounds check
+    if (newIndex < 0 || newIndex >= mail.fields.length) return;
+
+    // Use arrayMove from dnd-kit for consistency
+    const newFields = [...mail.fields];
+    const [removed] = newFields.splice(oldIndex, 1);
+    newFields.splice(newIndex, 0, removed);
+
+    set({
+      mail: {
+        ...mail,
+        fields: newFields,
+      },
+    });
+  },
+
+  getFieldIndex: (id) => {
+    const { mail } = get();
+    return mail.fields.findIndex((field) => field.id === id);
+  },
+
+  getFieldCount: () => {
+    const { mail } = get();
+    return mail.fields.length;
+  },
+}), {
+  name: "mail-storage",
+});
+
+export const useMailStore = create<MailState>()(persistStore);
