@@ -1,6 +1,14 @@
 # Changelog
 
 
+## v0.1.0
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.0.9...v0.1.0)
+
+### 🚀 Enhancements
+
+- Add arrow buttons for sorting fields (up/down) in addition to drag-and-drop.
+
 ## v0.0.9
 
 [compare changes](https://github.com/janwalenda/brieftaube/compare/v0.0.8...v0.0.9)

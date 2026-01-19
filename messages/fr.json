@@ -38,7 +38,9 @@
     "tooltip": "Entrez le texte et le lien de votre bouton"
   },
   "field": {
-    "delete": "Supprimer le champ"
+    "delete": "Supprimer le champ",
+    "move_up": "Déplacer vers le haut",
+    "move_down": "Déplacer vers le bas"
   },
   "fields": {
     "info": "Ici, vous pouvez ajouter davantage de champs en cliquant sur le bouton +"
