@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.0.9
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.0.8...v0.0.9)
+
+### ♻️ Refactors
+
+- Simplify routing structure by removing `(app)` route group.
+- Remove release notes pages and MDX components.
+
+### ⚙️ Chore
+
+- Update next.config.ts.
+
 ## v0.0.8
 
 [compare changes](https://github.com/janwalenda/brieftaube/compare/0.0.7...v0.0.8)
