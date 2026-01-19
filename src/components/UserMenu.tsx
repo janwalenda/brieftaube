@@ -36,7 +36,7 @@ export default function UserMenu() {
   };
 
   return (
-    <Dropdown>
+    <Dropdown placement={"end"}>
       <DropdownButton modifier={"square"} buttonStyle={"ghost"}>
         <Avatar size={"xs"} placeholder>
           <AvatarFallback size={"xs"} rounded={"full"}>

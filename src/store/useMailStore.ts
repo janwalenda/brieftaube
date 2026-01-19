@@ -58,6 +58,9 @@ interface MailState {
   toggleTooltip: () => void;
   setPrimaryColor: (primaryColor: string) => void;
   setRoundedCorners: (roundedCorners: number) => void;
+  moveField: (id: UniqueIdentifier, direction: "up" | "down") => void;
+  getFieldIndex: (id: UniqueIdentifier) => number;
+  getFieldCount: () => number;
 }
 
 export const useMailStore = create<MailState>()(
@@ -169,9 +172,42 @@ export const useMailStore = create<MailState>()(
         },
       }));
     },
+
+    moveField: (id, direction) => {
+      const { mail } = get();
+      const oldIndex = mail.fields.findIndex((field) => field.id === id);
+      if (oldIndex === -1) return;
+
+      const newIndex = direction === "up" ? oldIndex - 1 : oldIndex + 1;
+
+      // Bounds check
+      if (newIndex < 0 || newIndex >= mail.fields.length) return;
+
+      // Use arrayMove from dnd-kit for consistency
+      const newFields = [...mail.fields];
+      const [removed] = newFields.splice(oldIndex, 1);
+      newFields.splice(newIndex, 0, removed);
+
+      set({
+        mail: {
+          ...mail,
+          fields: newFields,
+        },
+      });
+    },
+
+    getFieldIndex: (id) => {
+      const { mail } = get();
+      return mail.fields.findIndex((field) => field.id === id);
+    },
+
+    getFieldCount: () => {
+      const { mail } = get();
+      return mail.fields.length;
+    },
   }),
-  {
-    name: "mail-storage",
-  }
+    {
+      name: "mail-storage",
+    }
   )
 );

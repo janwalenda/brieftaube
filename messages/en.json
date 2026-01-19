@@ -40,7 +40,9 @@
     "tooltip": "Enter the text and the link for your button"
   },
   "field": {
-    "delete": "Delete field"
+    "delete": "Delete field",
+    "move_up": "Move up",
+    "move_down": "Move down"
   },
   "fields": {
     "info": "Here you can add more fields by clicking on the + button"
