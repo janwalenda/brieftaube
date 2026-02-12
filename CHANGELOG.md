@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.3
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.1.2...v0.1.3)
+
+### ♻️ Refactors
+
+- Extract modals from Dock.tsx into separate components ([b229ccf](https://github.com/janwalenda/brieftaube/commit/b229ccf))
 
 ## v0.1.2
 
@@ -85,4 +92,3 @@
 ### ❤️ Contributors
 
 - Jan <log@janwalenda.de>
-
