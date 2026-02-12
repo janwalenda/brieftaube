@@ -2,7 +2,7 @@
 
 ## v0.1.3
 
-[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.1.2...v0.1.3)
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.1.2...0.1.3)
 
 ### ♻️ Refactors
 
@@ -10,7 +10,7 @@
 
 ## v0.1.2
 
-[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.1.1...v0.1.2)
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.1.1...0.1.2)
 
 ### 🩹 Fixes
 
@@ -19,7 +19,7 @@
 
 ## v0.1.1
 
-[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.1.0...v0.1.1)
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.1.0...0.1.1)
 
 ### 🩹 Fixes
 
@@ -27,7 +27,7 @@
 
 ## v0.1.0
 
-[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.0.9...v0.1.0)
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.0.9...0.1.0)
 
 ### 🚀 Enhancements
 
@@ -35,7 +35,7 @@
 
 ## v0.0.9
 
-[compare changes](https://github.com/janwalenda/brieftaube/compare/v0.0.8...v0.0.9)
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.0.8...0.0.9)
 
 ### ♻️ Refactors
 
@@ -48,7 +48,7 @@
 
 ## v0.0.8
 
-[compare changes](https://github.com/janwalenda/brieftaube/compare/0.0.7...v0.0.8)
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.0.7...0.0.8)
 
 ### 🩹 Fixes
 
