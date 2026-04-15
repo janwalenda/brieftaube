@@ -14,6 +14,7 @@ export interface ComponentRegistryItem {
   type: FieldType;
   labelKey: string;
   icon: IconType;
+  translationKey: string;
   component: ComponentType<{ fieldId: UniqueIdentifier, legend?: React.ReactNode }>;
   create: (id: number) => Field;
 }
@@ -23,6 +24,7 @@ export const componentRegistry: Record<FieldType, ComponentRegistryItem> = {
     type: FieldType.TextBlock,
     labelKey: "fab.textblock",
     icon: IoText,
+    translationKey: "add.textblock",
     component: TextBlockField,
     create: (id: number) => ({
       id,
@@ -35,6 +37,7 @@ export const componentRegistry: Record<FieldType, ComponentRegistryItem> = {
     type: FieldType.Image,
     labelKey: "fab.image",
     icon: IoImage,
+    translationKey: "add.image",
     component: ImageField,
     create: (id: number) => ({
       id,
@@ -47,6 +50,7 @@ export const componentRegistry: Record<FieldType, ComponentRegistryItem> = {
     type: FieldType.Button,
     labelKey: "fab.button", // Ensure this translation key exists or is added
     icon: IoAdd,
+    translationKey: "add.button",
     component: ButtonField,
     create: (id: number) => ({
       id,

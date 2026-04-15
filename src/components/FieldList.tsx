@@ -9,6 +9,7 @@ import { closestCenter, DndContext, type DragEndEvent, KeyboardSensor, PointerSe
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import AddButton from "./AddButton";
 
 export default function FieldList() {
   const { mail, setMail } = useField();
@@ -33,9 +34,7 @@ export default function FieldList() {
   }
 
   return (
-    <>
-      {mail.fields.length > 0 && (
-        <div className="
+    <div className="
           bg-base-100 
           mt-4 
           relative 
@@ -47,33 +46,35 @@ export default function FieldList() {
           md:w-1/2 
           lg:w-3xl
         ">
-          <div className="absolute right-2 top-2">
-            <Button
-              className="btn-circle btn-info btn-sm"
-              tooltip={{
-                placement: TooltipPosition.Left,
-                content: t("fields.info"),
-              }}
-              buttonStyle={InputVariant.Ghost}
-            >
-              <IoInformationCircle />
-            </Button>
-          </div>
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext
-              items={mail.fields.map(f => f.id)}
-              strategy={verticalListSortingStrategy}
-            >
-              {mail.fields.map((field, index) => <FieldSwitch {...field} index={index} key={`field-${field.id}`} />)}
-            </SortableContext>
-          </DndContext>
-        </div>
-      )}
-    </>
+      <div className="absolute right-2 top-2">
+        <Button
+          className="btn-circle btn-info btn-sm"
+          tooltip={{
+            placement: TooltipPosition.Left,
+            content: t("fields.info"),
+          }}
+          buttonStyle={InputVariant.Ghost}
+        >
+          <IoInformationCircle />
+        </Button>
+      </div>
+      <AddButton index={0} />
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={mail.fields.map(f => f.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          {mail.fields.map((field, index) => (
+            <FieldSwitch {...field} index={index} key={`field-${field.id}`} />
+          ))}
+
+        </SortableContext>
+      </DndContext>
+    </div>
   );
 
   function handleDragEnd(event: DragEndEvent) {

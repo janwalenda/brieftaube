@@ -5,7 +5,7 @@
     "back": "Retour"
   },
   "dock": {
-    "code": "Voir le HTML pour copier et coller le code dans votre éditeur d'e-mails",
+    "code": "Copiez le code HTML pour le coller dans votre éditeur d'e-mails",
     "preview": {
       "tooltip": "Ici, vous pouvez voir à quoi ressemblera votre e-mail final",
       "title": "Aperçu de l'e-mail"
@@ -19,7 +19,9 @@
       "success": "Modèle enregistré avec succès !"
     },
     "copy": {
-      "title": "HTML à copier"
+      "title": "HTML à copier",
+      "success": "HTML copié avec succès !",
+      "error": "Échec de la copie du HTML."
     },
     "activate-tooltips": {
       "title": "Activer les info-bulles expliquant l'interface"
@@ -35,6 +37,11 @@
     "textblock": "Ajouter un bloc de texte",
     "image": "Ajouter une image",
     "button": "Ajouter un bouton"
+  },
+  "add": {
+    "textblock": "Bloc de texte",
+    "image": "Image",
+    "button": "Bouton"
   },
   "button-field": {
     "tooltip": "Entrez le texte et le lien de votre bouton"

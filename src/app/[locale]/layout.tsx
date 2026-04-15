@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import Header from "@/components/Header";
 
 import { cn } from "@/lib/utils";
+import ToastBox from "@/components/ToastBox";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -52,6 +53,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
+            <ToastBox />
             {children}
           </main>
           <footer className="w-full flex items-center justify-center px-4 py-8">

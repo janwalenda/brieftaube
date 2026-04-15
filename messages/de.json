@@ -5,7 +5,7 @@
     "back": "Zurück"
   },
   "dock": {
-    "code": "Lass dir den HTML anzeigen um den Code zu kopieren und in deinem E-Mail editor einzufügen",
+    "code": "Kopiere den HTML Code um ihn in deinem E-Mail Editor einzufügen",
     "preview": {
       "tooltip": "Hier siehst du, wie deine Email final aussehen wird",
       "title": "Email Vorschau"
@@ -19,7 +19,9 @@
       "success": "Vorlage erfolgreich gespeichert!"
     },
     "copy": {
-      "title": "HTML zum kopieren"
+      "title": "HTML zum kopieren",
+      "success": "HTML erfolgreich kopiert!",
+      "error": "HTML konnte nicht kopiert werden."
     },
     "activate-tooltips": {
       "title": "Aktiviere Tips, die dir das Interface erklären"
@@ -35,6 +37,11 @@
     "textblock": "Füge Textblock hinzu",
     "image": "Füge Bild hinzu",
     "button": "Füge Button hinzu"
+  },
+  "add": {
+    "textblock": "Textblock",
+    "image": "Bild",
+    "button": "Button"
   },
   "button-field": {
     "tooltip": "Gib den Text und den Link für deinen Button ein"

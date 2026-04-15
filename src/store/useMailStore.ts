@@ -47,7 +47,7 @@ const defaultMail: Mail = {
 interface MailState {
   mail: Mail;
   templateId: string | null;
-  addField: (type: FieldType.Image | FieldType.TextBlock | FieldType.Button) => number;
+  addField: (type: FieldType.Image | FieldType.TextBlock | FieldType.Button, index?: number) => number;
   removeField: (id: UniqueIdentifier) => void;
   setFieldProperty: (id: UniqueIdentifier, property: FieldKeys, value: string) => void;
   getFieldProperty: (id: UniqueIdentifier, property: FieldKeys) => string | undefined;
@@ -67,18 +67,24 @@ const persistStore = persist<MailState>((set, get) => ({
   mail: { ...defaultMail },
   templateId: null,
 
-  addField: (type) => {
+  addField: (type, index) => {
     const { mail } = get();
     const id = mail.fields.length + 1;
     const factory = componentRegistry[type].create;
     const newField = factory(id);
+    
+    index = index ?? mail.fields.length + 1;
 
-    set((state) => ({
-      mail: {
-        ...state.mail,
-        fields: [...state.mail.fields, newField],
-      },
-    }));
+    set((state) => {
+      const newFields = [...state.mail.fields];
+      newFields.splice(index, 0, newField);
+      return {
+        mail: {
+          ...state.mail,
+          fields: newFields,
+        },
+      };
+    });
 
     return id;
   },

@@ -15,11 +15,10 @@ interface SaveModalProps {
   setTemplateName: (name: string) => void;
   onSave: () => void;
   loading: boolean;
-  message: { type: "success" | "error"; text: string } | null;
 }
 
 export const SaveModal = forwardRef<HTMLDialogElement, SaveModalProps>(
-  ({ templateName, setTemplateName, onSave, loading, message }, ref) => {
+  ({ templateName, setTemplateName, onSave, loading }, ref) => {
     const t = useTranslations();
 
     return (
@@ -37,11 +36,6 @@ export const SaveModal = forwardRef<HTMLDialogElement, SaveModalProps>(
               className="mt-1"
             />
           </div>
-          {message && (
-            <div className={`alert ${message.type === "success" ? "alert-success" : "alert-error"}`}>
-              <span>{message.text}</span>
-            </div>
-          )}
         </div>
         <ModalAction>
           <Button

@@ -1,5 +1,5 @@
 "use client"
-import { IoCode, IoSave, IoColorPalette, IoRefresh } from "react-icons/io5";
+import { IoSave, IoColorPalette, IoRefresh, IoCopy } from "react-icons/io5";
 import { IoMdPaper } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import { useField } from "@/hooks/useField";
@@ -14,9 +14,9 @@ import { useSession } from "@/lib/auth-client";
 import { saveTemplate } from "@/actions/templates";
 import LoggedIn from "./LoggedIn";
 import { Spinner } from "./ui/spinner";
-import { HtmlModal } from "./HtmlModal";
 import { PreviewModal } from "./PreviewModal";
 import { SaveModal } from "./SaveModal";
+import { useToast } from "@/store/useToastStore";
 
 export interface ActionDockProps {
   mode: "create" | "edit";
@@ -27,15 +27,14 @@ export default function ActionDock({ mode }: ActionDockProps) {
   const { renderHTML, mail, templateId, resetMail } = useField();
   const t = useTranslations();
   const { data: session } = useSession();
-
-  const htmlRef = useRef<HTMLDialogElement>(null);
   const previewRef = useRef<HTMLDialogElement>(null);
   const saveRef = useRef<HTMLDialogElement>(null);
 
   const [isClient, setIsClient] = useState(false);
   const [templateName, setTemplateName] = useState("");
   const [saveLoading, setSaveLoading] = useState(false);
-  const [saveMessage, setSaveMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [copying, setCopying] = useState(false);
+  const { addToast } = useToast();
 
   useEffect(() => {
     setIsClient(true);
@@ -52,7 +51,6 @@ export default function ActionDock({ mode }: ActionDockProps) {
     if (mode === "create" && !templateNameToUse.trim()) return;
 
     setSaveLoading(true);
-    setSaveMessage(null);
 
     // If mode is edit, we update the existing template (templateId must be present)
     // If mode is create, we create a new one (pass undefined as id)
@@ -61,18 +59,17 @@ export default function ActionDock({ mode }: ActionDockProps) {
     const result = await saveTemplate(templateNameToUse, mail, idToUpdate ?? undefined);
 
     if (result.error) {
-      setSaveMessage({ type: "error", text: result.error });
+      addToast(result.error, "error");
       setSaveLoading(false);
       return;
     }
 
-    setSaveMessage({ type: "success", text: t("dock.save.success") });
+    addToast(t("dock.save.success"), "success");
     if (mode === "create") {
       setTemplateName("");
     }
     setTimeout(() => {
       saveRef.current?.close();
-      setSaveMessage(null);
     }, 1500);
 
     setSaveLoading(false);
@@ -101,12 +98,27 @@ export default function ActionDock({ mode }: ActionDockProps) {
     }
   }
 
-  function handleHTMLClick() {
-    const generatedHTML = renderHTML();
-    setHTML(generatedHTML);
+  async function handleCopyClick() {
+    setCopying(true);
 
-    if (htmlRef.current) {
-      htmlRef.current.showModal();
+    try {
+      const type = "text/html";
+      const clipboardItemData = {
+        [type]: renderHTML(),
+      };
+
+      const clipboardItem = new ClipboardItem(clipboardItemData);
+
+      await navigator.clipboard.write([clipboardItem]);
+      addToast(t("dock.copy.success"), "success");
+
+      setTimeout(() => {
+        setCopying(false);
+      }, 1500);
+    } catch (error) {
+      console.error("Failed to copy HTML:", error);
+      addToast(t("dock.copy.error"), "error");
+      setCopying(false);
     }
   }
 
@@ -139,14 +151,14 @@ export default function ActionDock({ mode }: ActionDockProps) {
         <Button
           variant={InputVariant.Primary}
           modifier={InputForm.Circle}
-          onClick={handleHTMLClick}
+          onClick={handleCopyClick}
           className="rounded-full"
           tooltip={{
             content: t("dock.code"),
             placement: TooltipPosition.Top,
           }}
         >
-          <IoCode className="size-4" />
+          {copying ? <Spinner /> : <IoCopy className="size-4" />}
         </Button>
         <Button
           variant={InputVariant.Primary}
@@ -188,14 +200,12 @@ export default function ActionDock({ mode }: ActionDockProps) {
           </Button>
         </Link>
       </Dock>
-      <HtmlModal html={html} ref={htmlRef} />
       <PreviewModal html={html} ref={previewRef} />
       <SaveModal
         templateName={templateName}
         setTemplateName={setTemplateName}
         onSave={() => handleSaveTemplate()}
         loading={saveLoading}
-        message={saveMessage}
         ref={saveRef}
       />
     </>

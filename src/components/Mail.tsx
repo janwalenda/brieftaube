@@ -3,7 +3,6 @@
 import { useMailStore } from "@/store/useMailStore";
 import { type Mail as MailType } from "@/types/Mail";
 import FieldList from "./FieldList";
-import FAB from "./FAB";
 import { useEffect } from "react";
 
 interface MailProps {
@@ -19,9 +18,6 @@ export default function Mail({ mail, templateId }: MailProps) {
   }, [mail, templateId, setMailDirect]);
 
   return (
-    <>
-      <FieldList />
-      <FAB />
-    </>
+    <FieldList />
   );
 }

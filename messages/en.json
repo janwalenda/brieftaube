@@ -5,7 +5,7 @@
     "back": "Back"
   },
   "dock": {
-    "code": "View the HTML to copy and paste the code into your email editor",
+    "code": "Copy the HTML code to paste it into your email editor",
     "preview": {
       "tooltip": "Here you can see what your final email will look like",
       "title": "Email preview"
@@ -19,7 +19,9 @@
       "success": "Template saved successfully!"
     },
     "copy": {
-      "title": "HTML to copy"
+      "title": "HTML to copy",
+      "success": "HTML copied successfully!",
+      "error": "Failed to copy HTML."
     },
     "activate-tooltips": {
       "title": "Activate tips that explain the interface"
@@ -35,6 +37,11 @@
     "textblock": "Add text block",
     "image": "Add image",
     "button": "Add button"
+  },
+  "add": {
+    "textblock": "Textblock",
+    "image": "Image",
+    "button": "Button"
   },
   "button-field": {
     "tooltip": "Enter the text and the link for your button"
