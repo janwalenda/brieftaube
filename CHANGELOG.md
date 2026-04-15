@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.2.0
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.1.3...0.2.0)
+
+### 🚀 Enhancements
+
+- **New Field Insertion Logic**: Replaced the floating FAB with inline `AddButton` components between fields for better control over where to insert new elements.
+- **Notification System**: Introduced a new toast notification system using `ToastBox`, `Alert`, and `Toast` components with automated dismiss.
+
+### 🩹 Fixes
+
+- **Email Spacing**: Fixed redundant `marginTop` in default text blocks for cleaner email generation.
+- **Build & Types**: Resolved various build issues and type mismatches in components like `dialog.tsx` and `Mail.tsx`.
+- **UI Logic**: Marked `ToastBox` as a Client Component to resolve runtime errors.
+
+### ♻️ Refactors
+
+- **State Management**: Optimized `useMailStore` insertion logic and removed debug console logs.
+- **Versioning**: Integrated dynamic versioning in the footer from `package.json`.
+
+### 🌍 Internationalization
+
+- Updated German, English, and French translations for new UI components.
+
+
 ## v0.1.3
 
 [compare changes](https://github.com/janwalenda/brieftaube/compare/0.1.2...0.1.3)

@@ -10,6 +10,8 @@ import Header from "@/components/Header";
 import { cn } from "@/lib/utils";
 import ToastBox from "@/components/ToastBox";
 
+import { version } from "../../../package.json";
+
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
   subsets: ["latin"],
@@ -63,7 +65,7 @@ export default async function RootLayout({
               </p>
               <p>
                 <small>
-                  <Link href="https://github.com/janwalenda/brieftaube/releases" className="link">Version 0.1.2</Link>
+                  <Link href="https://github.com/janwalenda/brieftaube/releases" className="link">Version {version}</Link>
                 </small>
               </p>
             </div>
