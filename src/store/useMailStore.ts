@@ -24,20 +24,22 @@ const defaultMail: Mail = {
       id: 1,
       type: FieldType.TextBlock,
       style: TextBlockStyle.Default,
-      content: "# Willkommen zu meinem Newsletter\nDas ist ein Beispieltext. Du kannst ihn ganz einfach bearbeiten, indem du auf das Textfeld klickst und deinen eigenen Text eingibst.",
+      content:
+        "# Willkommen zu meinem Newsletter\nDas ist ein Beispieltext. Du kannst ihn ganz einfach bearbeiten, indem du auf das Textfeld klickst und deinen eigenen Text eingibst.",
     },
     {
       id: 2,
       type: FieldType.TextBlock,
       style: TextBlockStyle.Signature,
-      content: "Max Mustermann\nCEO, Beispiel GmbH\n[01234 23643234](tel:0123423643234)\n[kontakt@maxmustermann.de](mailto:kontakt@maxmustermann.de)",
+      content:
+        "Max Mustermann\nCEO, Beispiel GmbH\n[01234 23643234](tel:0123423643234)\n[kontakt@maxmustermann.de](mailto:kontakt@maxmustermann.de)",
     },
     {
       id: 3,
       type: FieldType.TextBlock,
       style: TextBlockStyle.Disclaimer,
       content: "\nDiese E-Mail wurde von [Organisation/Person] versandt.",
-    }
+    },
   ],
   tooltip: true,
   primaryColor: "#123455",
@@ -47,10 +49,20 @@ const defaultMail: Mail = {
 interface MailState {
   mail: Mail;
   templateId: string | null;
-  addField: (type: FieldType.Image | FieldType.TextBlock | FieldType.Button, index?: number) => number;
+  addField: (
+    type: FieldType.Image | FieldType.TextBlock | FieldType.Button,
+    index?: number,
+  ) => number;
   removeField: (id: UniqueIdentifier) => void;
-  setFieldProperty: (id: UniqueIdentifier, property: FieldKeys, value: string) => void;
-  getFieldProperty: (id: UniqueIdentifier, property: FieldKeys) => string | undefined;
+  setFieldProperty: (
+    id: UniqueIdentifier,
+    property: FieldKeys,
+    value: string,
+  ) => void;
+  getFieldProperty: (
+    id: UniqueIdentifier,
+    property: FieldKeys,
+  ) => string | undefined;
   renderHTML: () => string;
   setMail: (updater: (mail: Mail) => Mail) => void;
   setMailDirect: (mail: Mail, templateId?: string | null) => void;
@@ -63,155 +75,155 @@ interface MailState {
   getFieldCount: () => number;
 }
 
-const persistStore = persist<MailState>((set, get) => ({
-  mail: { ...defaultMail },
-  templateId: null,
+const persistStore = persist<MailState>(
+  (set, get) => ({
+    mail: { ...defaultMail },
+    templateId: null,
 
-  addField: (type, index) => {
-    const { mail } = get();
-    const id = mail.fields.length + 1;
-    const factory = componentRegistry[type].create;
-    const newField = factory(id);
-    
-    index = index ?? mail.fields.length + 1;
+    addField: (type, index) => {
+      const { mail } = get();
+      const id = mail.fields.length + 1;
+      const factory = componentRegistry[type].create;
+      const newField = factory(id);
 
-    set((state) => {
-      const newFields = [...state.mail.fields];
-      newFields.splice(index, 0, newField);
-      return {
+      index = index ?? mail.fields.length + 1;
+
+      set((state) => {
+        const newFields = [...state.mail.fields];
+        newFields.splice(index, 0, newField);
+        return {
+          mail: {
+            ...state.mail,
+            fields: newFields,
+          },
+        };
+      });
+
+      return id;
+    },
+
+    removeField: (id) => {
+      set((state) => ({
         mail: {
           ...state.mail,
+          fields: state.mail.fields.filter((field) => field.id !== id),
+        },
+      }));
+    },
+
+    setFieldProperty: (id, property, value) => {
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          fields: state.mail.fields.map((field) => {
+            if (field.id === id) {
+              return {
+                ...field,
+                [property]: value,
+              };
+            }
+            return field;
+          }),
+        },
+      }));
+    },
+
+    getFieldProperty: (id, property) => {
+      const { mail } = get();
+      const field = mail.fields.find((field) => field.id === id);
+      if (!field) return undefined;
+
+      if (field && property in field) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return (field as any)[property] as string;
+      }
+      return undefined;
+    },
+
+    renderHTML: () => {
+      const { mail } = get();
+      const email = new Email(mail.primaryColor, mail.roundedCorners);
+      email.appendFields(mail.fields);
+      return email.render();
+    },
+
+    setMail: (updater) => {
+      set((state) => ({
+        mail: updater(state.mail),
+      }));
+    },
+
+    setMailDirect: (mail, templateId = null) => {
+      set({ mail, templateId });
+    },
+
+    resetMail: () => {
+      set({ mail: { ...defaultMail }, templateId: null });
+    },
+
+    toggleTooltip: () => {
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          tooltip: !state.mail.tooltip,
+        },
+      }));
+    },
+
+    setPrimaryColor: (primaryColor) => {
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          primaryColor,
+        },
+      }));
+    },
+
+    setRoundedCorners: (roundedCorners) => {
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          roundedCorners,
+        },
+      }));
+    },
+
+    moveField: (id, direction) => {
+      const { mail } = get();
+      const oldIndex = mail.fields.findIndex((field) => field.id === id);
+      if (oldIndex === -1) return;
+
+      const newIndex = direction === "up" ? oldIndex - 1 : oldIndex + 1;
+
+      // Bounds check
+      if (newIndex < 0 || newIndex >= mail.fields.length) return;
+
+      // Use arrayMove from dnd-kit for consistency
+      const newFields = [...mail.fields];
+      const [removed] = newFields.splice(oldIndex, 1);
+      newFields.splice(newIndex, 0, removed);
+
+      set({
+        mail: {
+          ...mail,
           fields: newFields,
         },
-      };
-    });
+      });
+    },
 
-    return id;
+    getFieldIndex: (id) => {
+      const { mail } = get();
+      return mail.fields.findIndex((field) => field.id === id);
+    },
+
+    getFieldCount: () => {
+      const { mail } = get();
+      return mail.fields.length;
+    },
+  }),
+  {
+    name: "mail-storage",
   },
-
-  removeField: (id) => {
-    set((state) => ({
-      mail: {
-        ...state.mail,
-        fields: state.mail.fields.filter(field => field.id !== id),
-      },
-    }));
-  },
-
-  setFieldProperty: (id, property, value) => {
-    set((state) => ({
-      mail: {
-        ...state.mail,
-        fields: state.mail.fields.map(field => {
-          if (field.id === id) {
-            return {
-              ...field,
-              [property]: value,
-            };
-          }
-          return field;
-        }),
-      },
-    }));
-  },
-
-  getFieldProperty: (id, property) => {
-    const { mail } = get();
-    const field = mail.fields.find(field => field.id === id);
-    if (!field) return undefined;
-
-    if (field && property in field) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return (field as any)[property] as string;
-    }
-    return undefined;
-  },
-
-  renderHTML: () => {
-    const { mail } = get();
-    const email = new Email(
-      mail.primaryColor,
-      mail.roundedCorners
-    );
-    email.appendFields(mail.fields);
-    return email.render();
-  },
-
-  setMail: (updater) => {
-    set((state) => ({
-      mail: updater(state.mail),
-    }));
-  },
-
-  setMailDirect: (mail, templateId = null) => {
-    set({ mail, templateId });
-  },
-
-  resetMail: () => {
-    set({ mail: { ...defaultMail }, templateId: null });
-  },
-
-  toggleTooltip: () => {
-    set((state) => ({
-      mail: {
-        ...state.mail,
-        tooltip: !state.mail.tooltip,
-      },
-    }));
-  },
-
-  setPrimaryColor: (primaryColor) => {
-    set((state) => ({
-      mail: {
-        ...state.mail,
-        primaryColor,
-      },
-    }));
-  },
-
-  setRoundedCorners: (roundedCorners) => {
-    set((state) => ({
-      mail: {
-        ...state.mail,
-        roundedCorners,
-      },
-    }));
-  },
-
-  moveField: (id, direction) => {
-    const { mail } = get();
-    const oldIndex = mail.fields.findIndex((field) => field.id === id);
-    if (oldIndex === -1) return;
-
-    const newIndex = direction === "up" ? oldIndex - 1 : oldIndex + 1;
-
-    // Bounds check
-    if (newIndex < 0 || newIndex >= mail.fields.length) return;
-
-    // Use arrayMove from dnd-kit for consistency
-    const newFields = [...mail.fields];
-    const [removed] = newFields.splice(oldIndex, 1);
-    newFields.splice(newIndex, 0, removed);
-
-    set({
-      mail: {
-        ...mail,
-        fields: newFields,
-      },
-    });
-  },
-
-  getFieldIndex: (id) => {
-    const { mail } = get();
-    return mail.fields.findIndex((field) => field.id === id);
-  },
-
-  getFieldCount: () => {
-    const { mail } = get();
-    return mail.fields.length;
-  },
-}), {
-  name: "mail-storage",
-});
+);
 
 export const useMailStore = create<MailState>()(persistStore);

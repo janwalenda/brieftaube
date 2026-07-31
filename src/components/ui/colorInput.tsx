@@ -13,8 +13,8 @@ export type ColorInputProps = {
   className?: string;
   color: string;
   onChange: (newColor: string) => void;
-} & VariantProps<typeof inputVariants> & React.ComponentProps<"div">;
-
+} & VariantProps<typeof inputVariants> &
+  React.ComponentProps<"div">;
 
 export function ColorInput({
   className,
@@ -40,19 +40,18 @@ export function ColorInput({
 
   return (
     <div className={cn("join", className)} {...props}>
-      <LabeledInput startIcon={(
-        <span>HEX</span>
-      )} endIcon={(
-        <span className="size-6" style={{ backgroundColor: color }} />
-      )}
-      onChange={(event) => onChange(event.target.value)}
-      value={color}
-      className="join-item"
-      variant={variant}
-      sizeVariant={sizeVariant}
-      inputStyle={inputStyle}
+      <LabeledInput
+        startIcon={<span>HEX</span>}
+        endIcon={<span className="size-6" style={{ backgroundColor: color }} />}
+        onChange={(event) => onChange(event.target.value)}
+        value={color}
+        className="join-item"
+        variant={variant}
+        sizeVariant={sizeVariant}
+        inputStyle={inputStyle}
       />
-      <Button onClick={handleModalOpen}
+      <Button
+        onClick={handleModalOpen}
         variant={variant}
         modifier={"square"}
         className="join-item"
@@ -60,7 +59,8 @@ export function ColorInput({
         <Pipette className="size-4" />
       </Button>
       <Modal ref={modalRef} backdrop>
-        <HexColorPicker color={color}
+        <HexColorPicker
+          color={color}
           onChange={onChange}
           style={{ width: "100%" }}
         />
@@ -69,5 +69,5 @@ export function ColorInput({
         </ModalAction>
       </Modal>
     </div>
-  )
-} 
+  );
+}

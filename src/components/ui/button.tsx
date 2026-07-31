@@ -1,69 +1,13 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
-import { Tooltip, type TooltipProps } from "./tooltip"
-import { Link } from "@/i18n/navigation"
-
-const buttonVariants = cva(
-  "btn",
-  {
-    variants: {
-      variant: {
-        default: "btn-primary",
-        primary: "btn-primary",
-        secondary: "btn-secondary",
-        neutral: "btn-neutral",
-        accent: "btn-accent",
-        info: "btn-info",
-        success: "btn-success",
-        warning: "btn-warning",
-        error: "btn-error",
-      },
-      buttonStyle: {
-        outline: "btn-outline",
-        dash: "btn-dash",
-        link: "btn-link",
-        soft: "btn-soft",
-        ghost: "btn-ghost",
-      },
-      behavior: {
-        active: "btn-active",
-        disabled: "btn-disabled",
-      },
-      size: {
-        default: "btn-md",
-        xs: "btn-xs",
-        sm: "btn-sm",
-        lg: "btn-lg",
-        xl: "btn-xl",
-        icon: "btn-square",
-      },
-      modifier: {
-        wide: "btn-wide",
-        block: "btn-block",
-        square: "btn-square",
-        circle: "btn-circle",
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
-
-type ButtonProps = React.ComponentProps<"button"> & VariantProps<typeof buttonVariants> & {
-  asLink?: false,
-  asChild?: boolean,
-  tooltip?: TooltipProps,
-}
-
-type LinkProps = React.ComponentProps<"a"> & VariantProps<typeof buttonVariants> & {
-  asLink?: true,
-  asChild?: boolean,
-  tooltip?: TooltipProps,
-}
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cn } from "@/lib/utils";
+import { Tooltip } from "./tooltip";
+import { Link } from "@/i18n/navigation";
+import {
+  buttonVariants,
+  type ButtonProps,
+  type LinkProps,
+} from "./buttonVariants";
 
 function Button(props: ButtonProps): React.JSX.Element;
 function Button(props: LinkProps): React.JSX.Element;
@@ -79,28 +23,40 @@ function Button({
   tooltip,
   ...props
 }: ButtonProps | LinkProps) {
-  const Comp = asChild ? Slot : "button"
+  const Comp = asChild ? Slot : "button";
+  const classes = cn(
+    buttonVariants({
+      variant,
+      size,
+      behavior,
+      modifier,
+      buttonStyle,
+      className,
+    }),
+  );
 
   if (asLink) {
-    const { href, ...linkProps } = props as React.ComponentProps<"a"> & { href: string }
+    const { href, ...linkProps } = props as React.ComponentProps<"a"> & {
+      href: string;
+    };
     return (
-      <Link
-        href={href}
-        className={cn(buttonVariants({ variant, size, behavior, modifier, buttonStyle, className }))}
-        {...linkProps}
-      >
+      <Link href={href} className={classes} {...linkProps}>
         {props.children}
       </Link>
-    )
+    );
   }
 
   return (
     <>
       {tooltip ? (
-        <Tooltip variant={variant} content={tooltip?.content} placement={tooltip?.placement}>
+        <Tooltip
+          variant={variant}
+          content={tooltip?.content}
+          placement={tooltip?.placement}
+        >
           <Comp
             data-slot="button"
-            className={cn(buttonVariants({ variant, size, behavior, modifier, buttonStyle, className }))}
+            className={classes}
             {...(props as React.ComponentProps<"button">)}
           >
             {props.children}
@@ -109,15 +65,14 @@ function Button({
       ) : (
         <Comp
           data-slot="button"
-          className={cn(buttonVariants({ variant, size, behavior, modifier, buttonStyle, className }))}
+          className={classes}
           {...(props as React.ComponentProps<"button">)}
         >
           {props.children}
         </Comp>
       )}
-
     </>
-  )
+  );
 }
 
-export { Button, buttonVariants, type ButtonProps }
+export { Button, buttonVariants, type ButtonProps };

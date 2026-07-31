@@ -5,4 +5,4 @@ export type Mail = {
   tooltip: boolean;
   primaryColor: string;
   roundedCorners: number;
-}
+};

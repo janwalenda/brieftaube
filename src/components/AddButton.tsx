@@ -11,13 +11,13 @@ import { TooltipPosition } from "@/types/tooltipPosition";
 export default function AddButton({ index }: { index: number }) {
   const { addField } = useField();
   const t = useTranslations();
-  
+
   const [isClient, setIsClient] = useState(false);
-  
+
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
+
   if (!isClient) {
     return null;
   }
@@ -25,7 +25,11 @@ export default function AddButton({ index }: { index: number }) {
     <div className="flex flex-row items-center justify-center gap-0 has-[.btn:hover]:gap-2 transition-all duration-300 group">
       <span className="flex-1 bg-primary h-1 group-hover:h-2 transition-all duration-300 rounded-l-box" />
       <Dropdown placement={"center"}>
-        <DropdownButton variant={InputVariant.Primary} modifier={"circle"} size={"sm"}>
+        <DropdownButton
+          variant={InputVariant.Primary}
+          modifier={"circle"}
+          size={"sm"}
+        >
           <IoAdd />
         </DropdownButton>
         <DropdownContent className="gap-2">
@@ -33,7 +37,6 @@ export default function AddButton({ index }: { index: number }) {
           {Object.values(componentRegistry).map((item) => {
             const Icon = item.icon;
             return (
-
               <Button
                 variant={"primary"}
                 onClick={() => addField(item.type, index)}
@@ -42,7 +45,7 @@ export default function AddButton({ index }: { index: number }) {
                 className="flex-1"
                 tooltip={{
                   content: t(item.translationKey),
-                  placement: TooltipPosition.Left
+                  placement: TooltipPosition.Left,
                 }}
                 key={item.type}
               >

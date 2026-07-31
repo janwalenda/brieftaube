@@ -4,14 +4,21 @@ import { FaItalic } from "react-icons/fa6";
 import { EditorButton } from "./EditorButton";
 
 export function ItalicButton({
-  disabled, executeCommand, command
+  disabled,
+  executeCommand,
+  command,
 }: {
   disabled: boolean;
-  executeCommand: (command: commands.ICommand<string>, name?: string) => void; command: commands.ICommand<string>;
+  executeCommand: (command: commands.ICommand<string>, name?: string) => void;
+  command: commands.ICommand<string>;
 }) {
-  return <EditorButton
-    command={command} disabled={disabled} executeCommand={executeCommand}
-  >
-    <FaItalic />
-  </EditorButton>;
+  return (
+    <EditorButton
+      command={command}
+      disabled={disabled}
+      executeCommand={executeCommand}
+    >
+      <FaItalic />
+    </EditorButton>
+  );
 }

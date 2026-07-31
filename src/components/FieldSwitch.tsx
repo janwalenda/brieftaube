@@ -5,7 +5,11 @@ import { componentRegistry } from "@/config/componentRegistry";
 import { useTranslations } from "next-intl";
 import AddButton from "./AddButton";
 
-export default function FieldSwitch({ type, id, index }: Field & { index: number }) {
+export default function FieldSwitch({
+  type,
+  id,
+  index,
+}: Field & { index: number }) {
   const t = useTranslations();
   const registryItem = componentRegistry[type];
 

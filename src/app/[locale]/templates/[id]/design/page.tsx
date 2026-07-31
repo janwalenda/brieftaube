@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { H1 } from "@/components/ui/heading";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
@@ -10,7 +10,11 @@ import { TooltipPosition } from "@/types/tooltipPosition";
 import DesignEditor from "@/components/DesignEditor";
 import { use } from "react";
 
-export default function TemplateDesignPage({ params }: { params: Promise<{ id: string }> }) {
+export default function TemplateDesignPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = use(params);
   const t = useTranslations("design");
   const gt = useTranslations("global");
@@ -31,7 +35,7 @@ export default function TemplateDesignPage({ params }: { params: Promise<{ id: s
           modifier="circle"
           tooltip={{
             content: gt("back"),
-            placement: TooltipPosition.Right
+            placement: TooltipPosition.Right,
           }}
           asChild
         >

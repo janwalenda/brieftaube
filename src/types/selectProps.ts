@@ -1,7 +1,10 @@
 import { type InputVariant } from "@/types/inputVariant";
 import { type TooltipPosition } from "@/types/tooltipPosition";
 
-export type SelectProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> & {
+export type SelectProps = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLSelectElement>,
+  HTMLSelectElement
+> & {
   variant?: InputVariant;
   children?: React.ReactNode;
   tooltip?: string;

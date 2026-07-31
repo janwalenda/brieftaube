@@ -4,7 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @plugin "daisyui" {
-  themes: light --default --preferslight, dark --prefersdark, retro, cyberpunk;
+  themes:
+    light --default --preferslight,
+    dark --prefersdark,
+    retro,
+    cyberpunk;
 }
 
 @plugin "@tailwindcss/typography";
@@ -57,11 +61,11 @@
   --color-primary-content: oklch(39% 0.095 152.535);
   --color-secondary: oklch(30% 0.056 229.695);
   --color-secondary-content: oklch(95% 0.045 203.388);
-  --color-accent: #00B19C;
-  --color-accent-content: #004B5B;
+  --color-accent: #00b19c;
+  --color-accent-content: #004b5b;
   --color-neutral: oklch(14% 0.005 285.823);
   --color-neutral-content: oklch(92% 0.004 286.32);
-  --color-info: #D4D4FF;
+  --color-info: #d4d4ff;
   --color-info-content: oklch(29% 0.066 243.157);
   --color-success: oklch(76% 0.177 163.223);
   --color-success-content: oklch(37% 0.077 168.94);

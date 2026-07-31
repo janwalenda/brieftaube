@@ -1,4 +1,9 @@
-import { IoChevronDown, IoChevronUp, IoReorderThreeOutline, IoTrash } from "react-icons/io5";
+import {
+  IoChevronDown,
+  IoChevronUp,
+  IoReorderThreeOutline,
+  IoTrash,
+} from "react-icons/io5";
 import { useField } from "@/hooks/useField";
 import { Button } from "@/components/ui/button";
 import { useSortable } from "@dnd-kit/sortable";
@@ -8,11 +13,7 @@ import { InputVariant } from "@/types/inputVariant";
 import { TooltipPosition } from "@/types/tooltipPosition";
 import { useTranslations } from "next-intl";
 
-export default function Field({
-  children,
-  fieldId,
-  ...props
-}: FieldProps) {
+export default function Field({ children, fieldId, ...props }: FieldProps) {
   const { removeField, moveField, getFieldIndex, getFieldCount } = useField();
   const t = useTranslations();
 
@@ -60,7 +61,7 @@ export default function Field({
             variant={InputVariant.Neutral}
             tooltip={{
               content: t("field.delete"),
-              placement: TooltipPosition.Left
+              placement: TooltipPosition.Left,
             }}
           >
             <IoTrash />

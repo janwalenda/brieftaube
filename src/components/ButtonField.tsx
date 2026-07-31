@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useField } from "@/hooks/useField";
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import Field from "@/components/ui/field";
@@ -18,26 +18,34 @@ export default function ButtonField({
 
   return (
     <Field legend={legend || "Button"} fieldId={id}>
-      <Input
-        className="w-full"
-        value={getFieldProperty(id, "content")}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFieldProperty(id, "content", event.target.value)}
-        placeholder="Button Text"
-        tooltip={{
-          content: t("button-field.tooltip"),
-          placement: TooltipPosition.Left
-        }}
-      />
-      <Input
-        className="w-full"
-        value={getFieldProperty(id, "href")}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFieldProperty(id, "href", event.target.value)}
-        placeholder="Button Link"
-        tooltip={{
-          content: t("button-field.tooltip"),
-          placement: TooltipPosition.Left
-        }}
-      />
+      <div className="flex gap-2 w-full items-center">
+        <Input
+          className="w-full"
+          value={getFieldProperty(id, "content")}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setFieldProperty(id, "content", event.target.value)
+          }
+          placeholder="Button Text"
+          tooltip={{
+            content: t("button-field.tooltip"),
+            placement: TooltipPosition.Left,
+          }}
+        />
+      </div>
+      <div className="flex gap-2 w-full items-center">
+        <Input
+          className="w-full"
+          value={getFieldProperty(id, "href")}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setFieldProperty(id, "href", event.target.value)
+          }
+          placeholder="Button Link"
+          tooltip={{
+            content: t("button-field.tooltip"),
+            placement: TooltipPosition.Left,
+          }}
+        />
+      </div>
     </Field>
-  )
+  );
 }

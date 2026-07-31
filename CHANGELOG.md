@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### 🏡 Chore
+
+- Add Prettier (printWidth 80) and enforce a stricter ESLint `max-lines` (80) rule on TSX/JSX, splitting oversized components accordingly.
+
 ## v0.2.0
 
 [compare changes](https://github.com/janwalenda/brieftaube/compare/0.1.3...0.2.0)
@@ -23,7 +29,6 @@
 ### 🌍 Internationalization
 
 - Updated German, English, and French translations for new UI components.
-
 
 ## v0.1.3
 

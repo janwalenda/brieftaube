@@ -1,43 +1,40 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const badgeVariants = cva(
-  "badge",
-  {
-    variants: {
-      variant: {
-        default: "badge-primary",
-        secondary: "badge-secondary",
-        neutral: "badge-neutral",
-        accent: "badge-accent",
-        info: "badge-info",
-        success: "badge-success",
-        warning: "badge-warning",
-        error: "badge-error",
-      },
-      style: {
-        outline: "badge-outline",
-        dash: "badge-dash",
-        soft: "badge-soft",
-        ghost: "badge-ghost",
-      },
-      size: {
-        default: "badge-md",
-        xs: "badge-xs",
-        sm: "badge-sm",
-        lg: "badge-lg",
-        xl: "badge-xl",
-      }
+const badgeVariants = cva("badge", {
+  variants: {
+    variant: {
+      default: "badge-primary",
+      secondary: "badge-secondary",
+      neutral: "badge-neutral",
+      accent: "badge-accent",
+      info: "badge-info",
+      success: "badge-success",
+      warning: "badge-warning",
+      error: "badge-error",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    style: {
+      outline: "badge-outline",
+      dash: "badge-dash",
+      soft: "badge-soft",
+      ghost: "badge-ghost",
     },
-  }
-)
+    size: {
+      default: "badge-md",
+      xs: "badge-xs",
+      sm: "badge-sm",
+      lg: "badge-lg",
+      xl: "badge-xl",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
 function Badge({
   className,
@@ -48,9 +45,9 @@ function Badge({
   ...props
 }: React.ComponentProps<"div"> &
   VariantProps<typeof badgeVariants> & {
-    asChild?: boolean,
+    asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot : "span"
+  const Comp = asChild ? Slot : "span";
 
   return (
     <Comp
@@ -60,7 +57,7 @@ function Badge({
     >
       {props.children}
     </Comp>
-  )
+  );
 }
 
-export { Badge, badgeVariants }
+export { Badge, badgeVariants };

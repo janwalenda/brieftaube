@@ -4,14 +4,21 @@ import { EditorButton } from "./EditorButton";
 import { type commands } from "@uiw/react-md-editor";
 
 export function StrikethroughButton({
-  disabled, executeCommand, command
+  disabled,
+  executeCommand,
+  command,
 }: {
   disabled: boolean;
-  executeCommand: (command: commands.ICommand<string>, name?: string) => void; command: commands.ICommand<string>;
+  executeCommand: (command: commands.ICommand<string>, name?: string) => void;
+  command: commands.ICommand<string>;
 }) {
-  return <EditorButton
-    command={command} disabled={disabled} executeCommand={executeCommand}
-  >
-    <FaStrikethrough />
-  </EditorButton>;
+  return (
+    <EditorButton
+      command={command}
+      disabled={disabled}
+      executeCommand={executeCommand}
+    >
+      <FaStrikethrough />
+    </EditorButton>
+  );
 }

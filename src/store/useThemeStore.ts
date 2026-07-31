@@ -5,10 +5,10 @@ import { persist } from "zustand/middleware";
 import { Theme } from "@/types/Theme";
 
 interface ThemeState {
-    theme: Theme;
-    setTheme: (theme: Theme) => void;
-    switchTheme: (theme: Theme) => void;
-    getSystemTheme: () => Theme;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+  switchTheme: (theme: Theme) => void;
+  getSystemTheme: () => Theme;
 }
 
 export const useThemeStore = create<ThemeState>()(
@@ -24,7 +24,9 @@ export const useThemeStore = create<ThemeState>()(
 
       getSystemTheme: () => {
         if (typeof window !== "undefined") {
-          const preferredColorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+          const preferredColorScheme = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          );
           return preferredColorScheme.matches ? Theme.DARK : Theme.LIGHT;
         }
         return Theme.SYSTEM;
@@ -32,6 +34,6 @@ export const useThemeStore = create<ThemeState>()(
     }),
     {
       name: "theme-storage",
-    }
-  )
+    },
+  ),
 );

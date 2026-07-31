@@ -15,7 +15,11 @@ async function getCurrentUser() {
 }
 
 // Save a new template or update existing
-export async function saveTemplate(name: string, content: Mail, templateId?: string) {
+export async function saveTemplate(
+  name: string,
+  content: Mail,
+  templateId?: string,
+) {
   const user = await getCurrentUser();
   if (!user) {
     return { error: "Not authenticated" };

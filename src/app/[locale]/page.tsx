@@ -1,5 +1,5 @@
-import FieldList from "@/components/FieldList"
-import ActionDock from "@/components/Dock"
+import FieldList from "@/components/FieldList";
+import ActionDock from "@/components/Dock";
 
 export default function Page() {
   return (

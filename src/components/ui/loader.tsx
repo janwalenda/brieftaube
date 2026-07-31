@@ -1,48 +1,45 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const loaderVariants = cva(
-  "loading",
-  {
-    variants: {
-      variant: {
-        default: "text-primary",
-        primary: "text-primary",
-        secondary: "text-secondary",
-        neutral: "text-neutral",
-        accent: "text-accent",
-        info: "text-info",
-        success: "text-success",
-        warning: "text-warning",
-        error: "text-error",
-      },
-      style: {
-        default: "loading-spinner",
-        spinner: "loading-spinner",
-        dots: "loading-dots",
-        ring: "loading-ring",
-        ball: "loading-ball",
-        bars: "loading-bars",
-        infinity: "loading-infinity",
-      },
-      size: {
-        default: "loading-md",
-        xs: "loading-xs",
-        sm: "loading-sm",
-        lg: "loading-lg",
-        xl: "loading-xl",
-      }
+const loaderVariants = cva("loading", {
+  variants: {
+    variant: {
+      default: "text-primary",
+      primary: "text-primary",
+      secondary: "text-secondary",
+      neutral: "text-neutral",
+      accent: "text-accent",
+      info: "text-info",
+      success: "text-success",
+      warning: "text-warning",
+      error: "text-error",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-      style: "default",
+    style: {
+      default: "loading-spinner",
+      spinner: "loading-spinner",
+      dots: "loading-dots",
+      ring: "loading-ring",
+      ball: "loading-ball",
+      bars: "loading-bars",
+      infinity: "loading-infinity",
     },
-  }
-)
+    size: {
+      default: "loading-md",
+      xs: "loading-xs",
+      sm: "loading-sm",
+      lg: "loading-lg",
+      xl: "loading-xl",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+    style: "default",
+  },
+});
 
 function Loader({
   className,
@@ -53,9 +50,9 @@ function Loader({
   ...props
 }: React.ComponentProps<"span"> &
   VariantProps<typeof loaderVariants> & {
-    asChild?: boolean,
+    asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot : "span"
+  const Comp = asChild ? Slot : "span";
 
   return (
     <Comp
@@ -65,7 +62,7 @@ function Loader({
     >
       {props.children}
     </Comp>
-  )
+  );
 }
 
-export { Loader, loaderVariants }
+export { Loader, loaderVariants };

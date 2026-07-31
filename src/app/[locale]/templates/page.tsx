@@ -1,80 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useSession } from "@/lib/auth-client";
-import { listTemplates, deleteTemplate, loadTemplate } from "@/actions/templates";
-import { Card, CardBody, CardTitle, CardAction } from "@/components/ui/card";
+import { Card, CardBody, CardAction } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { H2 } from "@/components/ui/heading";
-import { IoTrash, IoOpen, IoDocument, IoArrowBack, IoPencil } from "react-icons/io5";
-import { Link, useRouter } from "@/i18n/navigation";
+import { IoDocument, IoArrowBack } from "react-icons/io5";
+import { Link } from "@/i18n/navigation";
 import { InputVariant } from "@/types/inputVariant";
 import { TooltipPosition } from "@/types/tooltipPosition";
-import { useField } from "@/hooks/useField";
-
-interface Template {
-  id: string;
-  name: string;
-  created_at: Date;
-  updated_at: Date;
-}
+import { useTemplatesPage } from "@/hooks/useTemplatesPage";
+import { TemplateListItem } from "@/components/templatesPage/TemplateListItem";
 
 export default function TemplatesPage() {
-  const { data: session, isPending } = useSession();
-  const router = useRouter();
   const t = useTranslations("templates");
   const gt = useTranslations("global");
-
-  const [templates, setTemplates] = useState<Template[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const { setMailDirect } = useField();
-
-  useEffect(() => {
-    if (!isPending && !session?.user) {
-      router.push("/login");
-      return;
-    }
-
-    if (session?.user) {
-      fetchTemplates();
-    }
-  }, [session, isPending, router]);
-
-  async function fetchTemplates() {
-    setLoading(true);
-    const result = await listTemplates();
-    if (result.error) {
-      setError(result.error);
-    } else {
-      setTemplates(result.templates as Template[]);
-    }
-    setLoading(false);
-  }
-
-  async function handleDelete(templateId: string) {
-    if (!confirm(t("confirmDelete"))) return;
-
-    const result = await deleteTemplate(templateId);
-    if (result.error) {
-      setError(result.error);
-    } else {
-      setTemplates(templates.filter((t) => t.id !== templateId));
-    }
-  }
-
-  async function handleLoad(templateId: string) {
-    const result = await loadTemplate(templateId);
-    if (result.error) {
-      setError(result.error);
-      return;
-    }
-    if (result.template) {
-      setMailDirect(result.template.content, null); // null = new mail, not editing template
-      router.push("/");
-    }
-  }
+  const { isPending, loading, error, templates, handleDelete, handleLoad } =
+    useTemplatesPage();
 
   if (isPending || loading) {
     return (
@@ -95,7 +36,7 @@ export default function TemplatesPage() {
               className="btn-circle"
               tooltip={{
                 content: gt("back"),
-                placement: TooltipPosition.Right
+                placement: TooltipPosition.Right,
               }}
             >
               <IoArrowBack className="size-6" />
@@ -125,41 +66,13 @@ export default function TemplatesPage() {
         ) : (
           <div className="space-y-4">
             {templates.map((template) => (
-              <Card key={template.id} cardStyle="border" className="w-full max-w-4xl">
-                <CardBody className="flex flex-row items-center justify-between">
-                  <div>
-                    <CardTitle>{template.name}</CardTitle>
-                    <p className="text-sm text-base-content/60">
-                      {t("lastUpdated")}: {new Date(template.updated_at).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant="primary"
-                      onClick={() => handleLoad(template.id)}
-                    >
-                      <IoOpen className="size-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="primary"
-                      asChild
-                    >
-                      <Link href={`/templates/${template.id}`}>
-                        <IoPencil className="size-4" />
-                      </Link>
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="error"
-                      onClick={() => handleDelete(template.id)}
-                    >
-                      <IoTrash className="size-4" />
-                    </Button>
-                  </div>
-                </CardBody>
-              </Card>
+              <TemplateListItem
+                key={template.id}
+                template={template}
+                lastUpdatedLabel={t("lastUpdated")}
+                onLoad={handleLoad}
+                onDelete={handleDelete}
+              />
             ))}
           </div>
         )}
