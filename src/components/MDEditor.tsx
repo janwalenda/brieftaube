@@ -5,7 +5,7 @@ import MarkdownEditor, {
 } from "@uiw/react-md-editor";
 import { type CSSProperties, type HTMLAttributes } from "react";
 import { useIsClient } from "@/hooks/useIsClient";
-import { editorCommands } from "@/config/editorCommands";
+import { useEditorCommands } from "@/hooks/useEditorCommands";
 import { cn } from "@/lib/utils";
 import { renderMdToolbarButton } from "@/components/mdEditorButtons/renderToolbarButton";
 
@@ -21,6 +21,7 @@ export default function MDEditor({
   ...props
 }: MDEditorProps) {
   const isClient = useIsClient();
+  const editorCommands = useEditorCommands();
 
   if (!isClient) {
     return null;

@@ -11,6 +11,8 @@ import { LabeledInput } from "@/components/ui/labeledInput";
 import { useTranslations } from "next-intl";
 import { ImageSourceToggle } from "@/components/imageField/ImageSourceToggle";
 import { useImageUpload } from "@/components/imageField/useImageUpload";
+import LoggedIn from "@/components/LoggedIn";
+import { TemplateKeyBindButton } from "@/components/templating/TemplateKeyBindButton";
 
 export default function ImageField({
   legend,
@@ -44,6 +46,9 @@ export default function ImageField({
             onChange={handleURLChange}
             className="w-full"
           />
+          <LoggedIn>
+            <TemplateKeyBindButton fieldId={id} property="url" />
+          </LoggedIn>
         </div>
       )}
       {useFile && <FileInput onChange={handleFileChange} className="w-full" />}

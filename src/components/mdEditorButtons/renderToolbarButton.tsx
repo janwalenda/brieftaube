@@ -13,6 +13,7 @@ import { TableButton } from "./TableButton";
 import { ListButton } from "./ListButton";
 import { HelpButton } from "./HelpButton";
 import { FullscreenButton } from "./FullscreenButton";
+import { TemplateKeyInsertButton } from "@/components/templating/TemplateKeyInsertButton";
 
 type ToolbarButtonProps = {
   command: commands.ICommand<string>;
@@ -54,5 +55,7 @@ export function renderMdToolbarButton({
       return <HelpButton {...props} />;
     case "fullscreen":
       return <FullscreenButton {...props} />;
+    case "insertTemplateKey":
+      return <TemplateKeyInsertButton {...props} />;
   }
 }

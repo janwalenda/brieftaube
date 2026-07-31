@@ -2,9 +2,14 @@
 
 ## Unreleased
 
-### 🏡 Chore
+### 🚀 Enhancements
 
-- Add Prettier (printWidth 80) and enforce a stricter ESLint `max-lines` (80) rule on TSX/JSX, splitting oversized components accordingly.
+- **Templating**: Added per-template keys (`Text`, `Date`, `URL`) that can be inserted as `{{keyId}}` placeholders in Markdown text blocks and bound to Image/Button fields. Keys can be managed from a new keys manager in the editor Dock, and templates can be filled out and copied as HTML directly from the templates list without opening the editor.
+
+### 🛠️ Tooling
+
+- Added Prettier with a shared `.prettierrc`, `format`/`format:check` npm scripts, and integrated `eslint-config-prettier` / `eslint-plugin-prettier` so ESLint and Prettier no longer fight over formatting.
+- Added a `max-lines` ESLint rule (80 lines, blank lines/comments excluded) for `.tsx`/`.jsx` files and split several oversized components (`Dock`, `MDEditor`, `ThemeSwitch`, `ImageField`, `FieldList`, `HtmlModal`, templates page) into smaller components and hooks.
 
 ## v0.2.0
 

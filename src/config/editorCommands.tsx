@@ -1,7 +1,13 @@
 "use client";
 import { commands } from "@uiw/react-md-editor";
 
-export const editorCommands = [
+export const insertTemplateKeyCommand: commands.ICommand<string> = {
+  name: "insertTemplateKey",
+  keyCommand: "insertTemplateKey",
+  buttonProps: { "aria-label": "Insert template key" },
+};
+
+const sharedEditorCommands = [
   commands.bold,
   commands.italic,
   commands.strikethrough,
@@ -40,6 +46,20 @@ export const editorCommands = [
       buttonProps: { "aria-label": "Insert list" },
     },
   ),
+];
+
+/** Toolbar without templating (guests). */
+export const guestEditorCommands = [
+  ...sharedEditorCommands,
+  commands.divider,
+  commands.help,
+];
+
+/** Full toolbar including template-key insert (logged-in). */
+export const editorCommands = [
+  ...sharedEditorCommands,
+  commands.divider,
+  insertTemplateKeyCommand,
   commands.divider,
   commands.help,
 ];

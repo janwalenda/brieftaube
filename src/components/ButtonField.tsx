@@ -5,6 +5,8 @@ import Field from "@/components/ui/field";
 import { useTranslations } from "next-intl";
 import { Input } from "./ui/input";
 import { TooltipPosition } from "@/types/tooltipPosition";
+import LoggedIn from "@/components/LoggedIn";
+import { TemplateKeyBindButton } from "@/components/templating/TemplateKeyBindButton";
 
 export default function ButtonField({
   fieldId: id,
@@ -31,6 +33,9 @@ export default function ButtonField({
             placement: TooltipPosition.Left,
           }}
         />
+        <LoggedIn>
+          <TemplateKeyBindButton fieldId={id} property="content" />
+        </LoggedIn>
       </div>
       <div className="flex gap-2 w-full items-center">
         <Input
@@ -45,6 +50,9 @@ export default function ButtonField({
             placement: TooltipPosition.Left,
           }}
         />
+        <LoggedIn>
+          <TemplateKeyBindButton fieldId={id} property="href" />
+        </LoggedIn>
       </div>
     </Field>
   );

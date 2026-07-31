@@ -4,7 +4,9 @@ import { useIsClient } from "@/hooks/useIsClient";
 import { useActionDock } from "@/hooks/useActionDock";
 import { PreviewModal } from "./PreviewModal";
 import { SaveModal } from "./SaveModal";
+import LoggedIn from "@/components/LoggedIn";
 import { DockPrimaryButtons } from "./dock/DockPrimaryButtons";
+import { TemplateKeysManager } from "./templating/TemplateKeysManager";
 
 export interface ActionDockProps {
   mode: "create" | "edit";
@@ -45,6 +47,9 @@ export default function ActionDock({ mode }: ActionDockProps) {
           onPreview={handlePreviewClick}
           onSave={handleSaveClick}
         />
+        <LoggedIn>
+          <TemplateKeysManager />
+        </LoggedIn>
       </Dock>
       <PreviewModal html={html} ref={previewRef} />
       <SaveModal

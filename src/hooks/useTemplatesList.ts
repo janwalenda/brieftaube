@@ -1,15 +1,15 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useSession } from "@/lib/auth-client";
+import { useRouter } from "@/i18n/navigation";
 import {
   listTemplates,
   deleteTemplate,
   loadTemplate,
 } from "@/actions/templates";
-import { useRouter } from "@/i18n/navigation";
 import { useField } from "@/hooks/useField";
+import type { Mail } from "@/types/Mail";
 
 export interface TemplateSummary {
   id: string;
@@ -18,7 +18,7 @@ export interface TemplateSummary {
   updated_at: Date;
 }
 
-export function useTemplatesPage() {
+export function useTemplatesList() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
   const t = useTranslations("templates");
@@ -27,13 +27,13 @@ export function useTemplatesPage() {
   const [templates, setTemplates] = useState<TemplateSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [fillMail, setFillMail] = useState<Mail | null>(null);
 
   useEffect(() => {
     if (!isPending && !session?.user) {
       router.push("/login");
       return;
     }
-
     if (session?.user) {
       fetchTemplates();
     }
@@ -73,12 +73,25 @@ export function useTemplatesPage() {
     }
   }
 
+  async function handleFill(templateId: string) {
+    const result = await loadTemplate(templateId);
+    if (result.error) {
+      setError(result.error);
+      return;
+    }
+    if (result.template) {
+      setFillMail(result.template.content);
+    }
+  }
+
   return {
     isPending,
     loading,
     error,
     templates,
+    fillMail,
     handleDelete,
     handleLoad,
+    handleFill,
   };
 }

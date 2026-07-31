@@ -10,6 +10,8 @@ import { type UniqueIdentifier } from "@dnd-kit/core";
 import { ImageWidth } from "@/types/ImageWidth";
 import { TextBlockStyle } from "@/types/TextBlockStyle";
 import { persist } from "zustand/middleware";
+import type { TemplateKey } from "@/types/TemplateKey";
+import { applyKeyValues, createKeyId } from "@/helpers/templateKeys";
 
 // Default mail state for new emails
 const defaultMail: Mail = {
@@ -44,6 +46,7 @@ const defaultMail: Mail = {
   tooltip: true,
   primaryColor: "#123455",
   roundedCorners: 0.25,
+  keys: [],
 };
 
 interface MailState {
@@ -63,7 +66,7 @@ interface MailState {
     id: UniqueIdentifier,
     property: FieldKeys,
   ) => string | undefined;
-  renderHTML: () => string;
+  renderHTML: (values?: Record<string, string>) => string;
   setMail: (updater: (mail: Mail) => Mail) => void;
   setMailDirect: (mail: Mail, templateId?: string | null) => void;
   resetMail: () => void;
@@ -73,6 +76,9 @@ interface MailState {
   moveField: (id: UniqueIdentifier, direction: "up" | "down") => void;
   getFieldIndex: (id: UniqueIdentifier) => number;
   getFieldCount: () => number;
+  addKey: (key: Omit<TemplateKey, "id">) => string;
+  updateKey: (id: string, updates: Partial<Omit<TemplateKey, "id">>) => void;
+  removeKey: (id: string) => void;
 }
 
 const persistStore = persist<MailState>(
@@ -140,10 +146,14 @@ const persistStore = persist<MailState>(
       return undefined;
     },
 
-    renderHTML: () => {
+    renderHTML: (values) => {
       const { mail } = get();
-      const email = new Email(mail.primaryColor, mail.roundedCorners);
-      email.appendFields(mail.fields);
+      const mailToRender = values ? applyKeyValues(mail, values) : mail;
+      const email = new Email(
+        mailToRender.primaryColor,
+        mailToRender.roundedCorners,
+      );
+      email.appendFields(mailToRender.fields);
       return email.render();
     },
 
@@ -154,7 +164,7 @@ const persistStore = persist<MailState>(
     },
 
     setMailDirect: (mail, templateId = null) => {
-      set({ mail, templateId });
+      set({ mail: { ...mail, keys: mail.keys ?? [] }, templateId });
     },
 
     resetMail: () => {
@@ -219,6 +229,37 @@ const persistStore = persist<MailState>(
     getFieldCount: () => {
       const { mail } = get();
       return mail.fields.length;
+    },
+
+    addKey: (key) => {
+      const id = createKeyId();
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          keys: [...(state.mail.keys ?? []), { ...key, id }],
+        },
+      }));
+      return id;
+    },
+
+    updateKey: (id, updates) => {
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          keys: (state.mail.keys ?? []).map((key) =>
+            key.id === id ? { ...key, ...updates } : key,
+          ),
+        },
+      }));
+    },
+
+    removeKey: (id) => {
+      set((state) => ({
+        mail: {
+          ...state.mail,
+          keys: (state.mail.keys ?? []).filter((key) => key.id !== id),
+        },
+      }));
     },
   }),
   {

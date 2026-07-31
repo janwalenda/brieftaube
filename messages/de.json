@@ -139,7 +139,50 @@
     "noTemplates": "Du hast noch keine Vorlagen gespeichert.",
     "createFirst": "Erstelle deine erste Vorlage",
     "lastUpdated": "Zuletzt aktualisiert",
-    "confirmDelete": "Möchtest du diese Vorlage wirklich löschen?"
+    "confirmDelete": "Möchtest du diese Vorlage wirklich löschen?",
+    "fillAction": "Vorlage ausfüllen"
+  },
+  "templating": {
+    "manager": {
+      "tooltip": "Vorlagen-Variablen verwalten",
+      "title": "Vorlagen-Variablen",
+      "empty": "Noch keine Variablen angelegt.",
+      "add": "Neue Variable"
+    },
+    "modal": {
+      "createTitle": "Variable erstellen",
+      "editTitle": "Variable bearbeiten",
+      "labelField": "Bezeichnung",
+      "labelPlaceholder": "z. B. Vorname",
+      "typeField": "Typ",
+      "defaultField": "Standardwert (optional)",
+      "requiredField": "Erforderlich",
+      "save": "Speichern"
+    },
+    "types": {
+      "text": "Text",
+      "date": "Datum",
+      "url": "Link"
+    },
+    "picker": {
+      "title": "Variable wählen",
+      "empty": "Keine Variablen vorhanden",
+      "newKey": "Neue Variable erstellen",
+      "clear": "Verknüpfung entfernen"
+    },
+    "insertButton": {
+      "tooltip": "Vorlagen-Variable einfügen"
+    },
+    "bindButton": {
+      "tooltip": "Mit Vorlagen-Variable verknüpfen"
+    },
+    "fill": {
+      "title": "Vorlage ausfüllen",
+      "noKeys": "Diese Vorlage enthält keine Variablen.",
+      "required": "Dieses Feld ist erforderlich.",
+      "preview": "Vorschau",
+      "copy": "HTML kopieren"
+    }
   },
   "account": {
     "title": "Konto",
