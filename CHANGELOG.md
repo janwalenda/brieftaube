@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## v0.3.0
+
+[compare changes](https://github.com/janwalenda/brieftaube/compare/0.2.0...0.3.0)
 
 ### 🚀 Enhancements
 

@@ -32,7 +32,7 @@ export default function FieldList() {
           mt-4 
           relative 
           p-4 
-          space-y-4 
+          space-y-10 
           min-lg:rounded-field 
           min-w-1/3 
           w-full 
