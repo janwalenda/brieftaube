@@ -9,10 +9,15 @@ export default function Dock({
     <nav
       {...props}
       className={cn(className, [
-        "fixed",
-        "bottom-4",
-        "left-1/2",
-        "transform-[translate(-50%,0)]",
+        "sticky",
+        "bottom-0",
+        "left-0",
+        "mt-2",
+        "max-sm:right-0",
+        "max-sm:w-screen",
+        "md:bottom-4",
+        "md:left-1/2",
+        "md:transform-[translate(-50%,0)]",
         "flex",
         "flex-row",
         "justify-center",
@@ -20,10 +25,10 @@ export default function Dock({
         "gap-2",
         "bg-base-100/30",
         "backdrop-blur-lg",
-        "rounded-full",
+        "md:rounded-full",
         "p-2",
         "hover:opacity-100",
-        "border",
+        "md:border",
         "border-primary",
       ])}
     >
