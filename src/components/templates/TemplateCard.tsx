@@ -1,8 +1,18 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { Card, CardBody, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { IoTrash, IoOpen, IoPencil, IoDocumentText } from "react-icons/io5";
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+} from "@/components/ui/dropdown";
+import {
+  IoTrash,
+  IoOpen,
+  IoPencil,
+  IoDocumentText,
+  IoEllipsisVertical,
+} from "react-icons/io5";
 import { Link } from "@/i18n/navigation";
 import type { TemplateSummary } from "@/hooks/useTemplatesList";
 
@@ -23,35 +33,50 @@ export function TemplateCard({
 
   return (
     <Card cardStyle="border" className="w-full max-w-4xl">
-      <CardBody className="flex flex-row items-center justify-between">
-        <div>
+      <CardBody className="flex flex-row items-center justify-between gap-4">
+        <div className="min-w-0">
           <CardTitle>{template.name}</CardTitle>
           <p className="text-sm text-base-content/60">
             {t("lastUpdated")}:{" "}
             {new Date(template.updated_at).toLocaleDateString()}
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button size="sm" variant="primary" onClick={onLoad}>
-            <IoOpen className="size-4" />
-          </Button>
-          <Button
+        <Dropdown placement="end">
+          <DropdownButton
             size="sm"
-            variant="secondary"
-            onClick={onFill}
-            title={t("fillAction")}
+            variant="neutral"
+            modifier="square"
+            aria-label={t("actions")}
           >
-            <IoDocumentText className="size-4" />
-          </Button>
-          <Button size="sm" variant="primary" asChild>
-            <Link href={`/templates/${template.id}`}>
-              <IoPencil className="size-4" />
-            </Link>
-          </Button>
-          <Button size="sm" variant="error" onClick={onDelete}>
-            <IoTrash className="size-4" />
-          </Button>
-        </div>
+            <IoEllipsisVertical className="size-4" />
+          </DropdownButton>
+          <DropdownContent>
+            <li>
+              <button type="button" onClick={onLoad}>
+                <IoOpen className="size-4" />
+                {t("openAction")}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={onFill}>
+                <IoDocumentText className="size-4" />
+                {t("fillAction")}
+              </button>
+            </li>
+            <li>
+              <Link href={`/templates/${template.id}`}>
+                <IoPencil className="size-4" />
+                {t("editAction")}
+              </Link>
+            </li>
+            <li>
+              <button type="button" onClick={onDelete} className="text-error">
+                <IoTrash className="size-4" />
+                {t("deleteAction")}
+              </button>
+            </li>
+          </DropdownContent>
+        </Dropdown>
       </CardBody>
     </Card>
   );

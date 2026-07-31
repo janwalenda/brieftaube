@@ -140,7 +140,11 @@
     "createFirst": "Erstelle deine erste Vorlage",
     "lastUpdated": "Zuletzt aktualisiert",
     "confirmDelete": "Möchtest du diese Vorlage wirklich löschen?",
-    "fillAction": "Vorlage ausfüllen"
+    "actions": "Aktionen",
+    "openAction": "Öffnen",
+    "fillAction": "Vorlage ausfüllen",
+    "editAction": "Bearbeiten",
+    "deleteAction": "Löschen"
   },
   "templating": {
     "manager": {

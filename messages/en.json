@@ -140,7 +140,11 @@
     "createFirst": "Create your first template",
     "lastUpdated": "Last updated",
     "confirmDelete": "Are you sure you want to delete this template?",
-    "fillAction": "Fill template"
+    "actions": "Actions",
+    "openAction": "Open",
+    "fillAction": "Fill template",
+    "editAction": "Edit",
+    "deleteAction": "Delete"
   },
   "templating": {
     "manager": {

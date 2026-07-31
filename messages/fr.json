@@ -139,7 +139,11 @@
     "createFirst": "Créez votre premier modèle",
     "lastUpdated": "Dernière mise à jour",
     "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce modèle ?",
-    "fillAction": "Remplir le modèle"
+    "actions": "Actions",
+    "openAction": "Ouvrir",
+    "fillAction": "Remplir le modèle",
+    "editAction": "Modifier",
+    "deleteAction": "Supprimer"
   },
   "templating": {
     "manager": {
