@@ -14,7 +14,7 @@ export default function Dock({
         "left-0",
         "mt-2",
         "max-sm:right-0",
-        "max-sm:w-screen",
+        "max-sm:w-full",
         "md:bottom-4",
         "md:left-1/2",
         "md:transform-[translate(-50%,0)]",

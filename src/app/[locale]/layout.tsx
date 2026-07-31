@@ -52,8 +52,8 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className={cn(interTight.className, "antialiased")}>
+    <html lang={locale} className="overflow-x-clip" suppressHydrationWarning>
+      <body className={cn(interTight.className, "antialiased overflow-x-clip")}>
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="w-full h-full flex flex-col items-center justify-center md:px-4 bg-base-200 pb-20">
