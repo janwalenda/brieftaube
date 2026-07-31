@@ -1,9 +1,6 @@
-"use client"
+"use client";
 import { H3 } from "@/components/ui/heading";
-import {
-  type ChangeEventHandler,
-  type FormEventHandler,
-} from "react";
+import { type ChangeEventHandler, type FormEventHandler } from "react";
 import { useMailStore } from "@/store/useMailStore";
 import { InputVariant } from "@/types/inputVariant";
 import { ColorInput } from "@/components/ui/colorInput";
@@ -16,18 +13,17 @@ export default function DesignEditor() {
   const { mail, setPrimaryColor, setRoundedCorners } = useMailStore();
   const t = useTranslations("design");
 
-  const handleRangeChange:
-    ChangeEventHandler<HTMLInputElement> = (newRoundedCorners) =>
-      setRoundedCorners(parseFloat(newRoundedCorners.target.value));
+  const handleRangeChange: ChangeEventHandler<HTMLInputElement> = (
+    newRoundedCorners,
+  ) => setRoundedCorners(parseFloat(newRoundedCorners.target.value));
 
-  const handleInputChange:
-    ChangeEventHandler<HTMLInputElement> = (newRoundedCorners) =>
-      setRoundedCorners(parseFloat(newRoundedCorners.target.value));
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (
+    newRoundedCorners,
+  ) => setRoundedCorners(parseFloat(newRoundedCorners.target.value));
 
-  const handleColorInputChange:
-    ((newColor: string) => void) &
+  const handleColorInputChange: ((newColor: string) => void) &
     FormEventHandler<HTMLDivElement> = (newColor) =>
-      setPrimaryColor(newColor as string);
+    setPrimaryColor(newColor as string);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -48,7 +44,9 @@ export default function DesignEditor() {
       <Card className="w-full">
         <CardBody>
           <H3>{t("roundedCorners.label")}</H3>
-          <p className="text-sm opacity-70 mb-4">{t("roundedCorners.description")}</p>
+          <p className="text-sm opacity-70 mb-4">
+            {t("roundedCorners.description")}
+          </p>
           <div className="flex gap-4 items-center">
             <Range
               className="flex-1"

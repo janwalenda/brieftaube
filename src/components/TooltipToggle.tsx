@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Tooltip } from "@/components/ui/tooltip";
 import { InputVariant } from "@/types/inputVariant";
 import { useField } from "@/hooks/useField";
@@ -21,20 +21,25 @@ export default function TooltipToggle() {
     return null;
   }
 
-  const tooltipButtonTitle = mail.tooltip ?
-    t("dock.deactivate-tooltips.title") :
-    t("dock.activate-tooltips.title");
+  const tooltipButtonTitle = mail.tooltip
+    ? t("dock.deactivate-tooltips.title")
+    : t("dock.activate-tooltips.title");
 
   return (
-    <Tooltip variant={InputVariant.Secondary}
+    <Tooltip
+      variant={InputVariant.Secondary}
       content={tooltipButtonTitle}
       placement={TooltipPosition.Left}
     >
       <label className="toggle toggle-xl toggle-secondary text-base-content">
-        <input type="checkbox" checked={mail.tooltip} onChange={toggleTooltip} />
+        <input
+          type="checkbox"
+          checked={mail.tooltip}
+          onChange={toggleTooltip}
+        />
         <IoHelp aria-label="enabled" />
         <IoClose aria-label="disabled" />
       </label>
     </Tooltip>
-  )
+  );
 }

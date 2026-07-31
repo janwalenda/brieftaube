@@ -7,7 +7,7 @@ export default class Email {
   private document = document.implementation.createHTMLDocument();
   private body = this.document.body;
   private container = this.document.createElement("div");
-  private primaryColor = "#ff0000"
+  private primaryColor = "#ff0000";
   private roundedCorners = 0.25;
 
   private prepareBody() {
@@ -24,7 +24,7 @@ export default class Email {
     const r = parseInt(rgb[1], 16);
     const g = parseInt(rgb[2], 16);
     const b = parseInt(rgb[3], 16);
-    const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
     return yiq >= 128 ? "#000" : "#fff";
   }
 
@@ -47,19 +47,18 @@ export default class Email {
     this.prepareContainer();
   }
 
-
   appendFields(fields: Field[]) {
-    fields.forEach(field => {
+    fields.forEach((field) => {
       switch (field.type) {
-      case FieldType.Image:
-        this.appendImage(field.url, field.width);
-        break;
-      case FieldType.TextBlock:
-        this.appendTextBlock(field.content, field.style);
-        break;
-      case FieldType.Button:
-        this.appendButton(field.content, field.href);
-        break;
+        case FieldType.Image:
+          this.appendImage(field.url, field.width);
+          break;
+        case FieldType.TextBlock:
+          this.appendTextBlock(field.content, field.style);
+          break;
+        case FieldType.Button:
+          this.appendButton(field.content, field.href);
+          break;
       }
     });
   }
@@ -69,7 +68,7 @@ export default class Email {
 
     image.src = url;
     image.style.width = width;
-    image.alt = "Logo Image"
+    image.alt = "Logo Image";
 
     image.onerror = function () {
       // Fallback for broken images
@@ -102,7 +101,10 @@ export default class Email {
     this.container.appendChild(button);
   }
 
-  appendTextBlock(content: string = "", style: TextBlockStyle = TextBlockStyle.Default) {
+  appendTextBlock(
+    content: string = "",
+    style: TextBlockStyle = TextBlockStyle.Default,
+  ) {
     const article = this.document.createElement("article");
 
     article.innerHTML = marked.parse(content, {
@@ -110,33 +112,33 @@ export default class Email {
     }) as string;
 
     switch (style) {
-    case TextBlockStyle.Signature: {
-      article.style.marginTop = "20px";
-      article.style.fontSize = "0.9em";
-      article.style.color = "#777";
-      article.style.borderTop = "1px solid #eee";
-      article.style.paddingTop = "10px";
+      case TextBlockStyle.Signature: {
+        article.style.marginTop = "20px";
+        article.style.fontSize = "0.9em";
+        article.style.color = "#777";
+        article.style.borderTop = "1px solid #eee";
+        article.style.paddingTop = "10px";
 
-      break;
-    }
+        break;
+      }
 
-    case TextBlockStyle.Disclaimer: {
-      article.style.marginTop = "20px";
-      article.style.fontSize = "0.9em";
-      article.style.color = "#777";
-      article.style.textAlign = "center";
-      article.style.borderTop = "1px solid #eee";
-      article.style.paddingTop = "10px";
+      case TextBlockStyle.Disclaimer: {
+        article.style.marginTop = "20px";
+        article.style.fontSize = "0.9em";
+        article.style.color = "#777";
+        article.style.textAlign = "center";
+        article.style.borderTop = "1px solid #eee";
+        article.style.paddingTop = "10px";
 
-      break
-    }
+        break;
+      }
 
-    case TextBlockStyle.Default:
-    default: {
-      article.style.marginBottom = "15px";
+      case TextBlockStyle.Default:
+      default: {
+        article.style.marginBottom = "15px";
 
-      break;
-    }
+        break;
+      }
     }
 
     article.querySelectorAll("strong,h1,h2,h3,h4,h5,h6,a").forEach((strong) => {
@@ -151,6 +153,6 @@ export default class Email {
   }
 
   render(): string {
-    return `${this.document.documentElement.outerHTML}`
+    return `${this.document.documentElement.outerHTML}`;
   }
 }

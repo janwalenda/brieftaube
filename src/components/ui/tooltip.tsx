@@ -1,47 +1,43 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-const tooltipVariants = cva(
-  "tooltip",
-  {
-    variants: {
-      variant: {
-        default: "tooltip-primary",
-        primary: "tooltip-primary",
-        secondary: "tooltip-secondary",
-        neutral: "tooltip-neutral",
-        accent: "tooltip-accent",
-        info: "tooltip-info",
-        success: "tooltip-success",
-        warning: "tooltip-warning",
-        error: "tooltip-error",
-      },
-
-      placement: {
-        left: "tooltip-left",
-        right: "tooltip-right",
-        top: "tooltip-top",
-        bottom: "tooltip-bottom",
-      },
-      modifier: {
-        open: "tooltip-open",
-      }
+const tooltipVariants = cva("tooltip", {
+  variants: {
+    variant: {
+      default: "tooltip-primary",
+      primary: "tooltip-primary",
+      secondary: "tooltip-secondary",
+      neutral: "tooltip-neutral",
+      accent: "tooltip-accent",
+      info: "tooltip-info",
+      success: "tooltip-success",
+      warning: "tooltip-warning",
+      error: "tooltip-error",
     },
-    defaultVariants: {
-      variant: "default",
-      placement: "top",
-    },
-  }
-)
 
-type TooltipProps = React.ComponentProps<"div">
-  & VariantProps<typeof tooltipVariants>
-  & {
-    asChild?: boolean,
-    content?: React.ReactNode,
-  }
+    placement: {
+      left: "tooltip-left",
+      right: "tooltip-right",
+      top: "tooltip-top",
+      bottom: "tooltip-bottom",
+    },
+    modifier: {
+      open: "tooltip-open",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    placement: "top",
+  },
+});
+
+type TooltipProps = React.ComponentProps<"div"> &
+  VariantProps<typeof tooltipVariants> & {
+    asChild?: boolean;
+    content?: React.ReactNode;
+  };
 
 function Tooltip({
   variant,
@@ -53,16 +49,18 @@ function Tooltip({
   asChild = false,
   ...props
 }: TooltipProps) {
-  const Comp = asChild ? Slot : "div"
+  const Comp = asChild ? Slot : "div";
   return (
     <Comp
       data-slot="div"
-      className={cn(tooltipVariants({
-        variant,
-        placement,
-        modifier,
-        className
-      }))}
+      className={cn(
+        tooltipVariants({
+          variant,
+          placement,
+          modifier,
+          className,
+        }),
+      )}
       {...props}
     >
       {content && (
@@ -75,8 +73,4 @@ function Tooltip({
   );
 }
 
-export {
-  Tooltip,
-  tooltipVariants,
-  type TooltipProps,
-}
+export { Tooltip, tooltipVariants, type TooltipProps };

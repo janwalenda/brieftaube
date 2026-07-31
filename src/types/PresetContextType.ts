@@ -8,4 +8,4 @@ export type PresetContextType = {
   removePreset: (id: string) => void;
   setPresetGlobally: (id: string) => void;
   presets: Preset[];
-}
+};

@@ -3,21 +3,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 
-const selectVariants = cva(
-  "select",
-  {
-    variants: {
-      variant: {
-        primary: "select-primary",
-        secondary: "select-secondary",
-        neutral: "select-neutral",
-      },
+const selectVariants = cva("select", {
+  variants: {
+    variant: {
+      primary: "select-primary",
+      secondary: "select-secondary",
+      neutral: "select-neutral",
     },
-    defaultVariants: {
-      variant: "primary",
-    },
-  }
-)
+  },
+  defaultVariants: {
+    variant: "primary",
+  },
+});
 
 export default function Select({
   variant,
@@ -26,14 +23,14 @@ export default function Select({
   tooltip,
   asChild,
   ...props
-}: React.ComponentProps<"select"> & VariantProps<typeof selectVariants> & {
-  asChild?: boolean,
-  tooltip?: TooltipProps,
-}) {
+}: React.ComponentProps<"select"> &
+  VariantProps<typeof selectVariants> & {
+    asChild?: boolean;
+    tooltip?: TooltipProps;
+  }) {
   const variantClasses = selectVariants({ variant });
   const classN = cn(variantClasses, className);
-  const Comp = asChild ? Slot : "select"
-
+  const Comp = asChild ? Slot : "select";
 
   return (
     <Tooltip variant={variant} {...tooltip}>
@@ -41,5 +38,5 @@ export default function Select({
         {children}
       </Comp>
     </Tooltip>
-  )
+  );
 }

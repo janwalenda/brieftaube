@@ -12,16 +12,17 @@ export default function ToastBox() {
   return (
     <Toast className="md:toast-bottom toast-end toast-top z-500">
       {toasts.map((toast) => (
-        <Alert
-          key={toast.id}
-          variant={toast.variant}
-        >
+        <Alert key={toast.id} variant={toast.variant}>
           {toast.message}
-          <Button buttonStyle={"ghost"} modifier={"circle"} onClick={() => removeToast(toast.id)}>
+          <Button
+            buttonStyle={"ghost"}
+            modifier={"circle"}
+            onClick={() => removeToast(toast.id)}
+          >
             <IoClose />
           </Button>
         </Alert>
       ))}
     </Toast>
-  )
+  );
 }

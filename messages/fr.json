@@ -138,7 +138,54 @@
     "noTemplates": "Vous n'avez pas encore enregistré de modèles.",
     "createFirst": "Créez votre premier modèle",
     "lastUpdated": "Dernière mise à jour",
-    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce modèle ?"
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce modèle ?",
+    "actions": "Actions",
+    "openAction": "Ouvrir",
+    "fillAction": "Remplir le modèle",
+    "editAction": "Modifier",
+    "deleteAction": "Supprimer"
+  },
+  "templating": {
+    "manager": {
+      "tooltip": "Gérer les variables du modèle",
+      "title": "Variables du modèle",
+      "empty": "Aucune variable créée pour le moment.",
+      "add": "Nouvelle variable"
+    },
+    "modal": {
+      "createTitle": "Créer une variable",
+      "editTitle": "Modifier la variable",
+      "labelField": "Libellé",
+      "labelPlaceholder": "p. ex. Prénom",
+      "typeField": "Type",
+      "defaultField": "Valeur par défaut (optionnel)",
+      "requiredField": "Obligatoire",
+      "save": "Enregistrer"
+    },
+    "types": {
+      "text": "Texte",
+      "date": "Date",
+      "url": "Lien"
+    },
+    "picker": {
+      "title": "Choisir une variable",
+      "empty": "Aucune variable disponible",
+      "newKey": "Créer une nouvelle variable",
+      "clear": "Supprimer la liaison"
+    },
+    "insertButton": {
+      "tooltip": "Insérer une variable du modèle"
+    },
+    "bindButton": {
+      "tooltip": "Lier à une variable du modèle"
+    },
+    "fill": {
+      "title": "Remplir le modèle",
+      "noKeys": "Ce modèle ne contient aucune variable.",
+      "required": "Ce champ est obligatoire.",
+      "preview": "Aperçu",
+      "copy": "Copier le HTML"
+    }
   },
   "account": {
     "title": "Compte",

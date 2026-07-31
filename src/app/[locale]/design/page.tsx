@@ -1,9 +1,6 @@
-"use client"
+"use client";
 import { H1 } from "@/components/ui/heading";
-import {
-  useEffect,
-  useState
-} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { IoArrowBack } from "react-icons/io5";
@@ -32,7 +29,7 @@ export default function DesignPage() {
           modifier="circle"
           tooltip={{
             content: gt("back"),
-            placement: TooltipPosition.Right
+            placement: TooltipPosition.Right,
           }}
           asChild
         >

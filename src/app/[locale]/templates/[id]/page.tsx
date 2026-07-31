@@ -9,8 +9,11 @@ import { getTranslations } from "next-intl/server";
 import { IoArrowBack } from "react-icons/io5";
 import ActionDock from "@/components/Dock";
 
-
-export default async function TemplatePage({ params }: { params: Promise<{ id: string }> }) {
+export default async function TemplatePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const gt = await getTranslations("global");
   const { id } = await params;
   const result = await loadTemplate(id);
@@ -32,7 +35,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
           modifier="circle"
           tooltip={{
             content: gt("back"),
-            placement: TooltipPosition.Right
+            placement: TooltipPosition.Right,
           }}
           asChild
         >

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useMailStore } from "@/store/useMailStore";
 import { type Mail as MailType } from "@/types/Mail";
@@ -17,7 +17,5 @@ export default function Mail({ mail, templateId }: MailProps) {
     setMailDirect(mail, templateId ?? null);
   }, [mail, templateId, setMailDirect]);
 
-  return (
-    <FieldList />
-  );
+  return <FieldList />;
 }

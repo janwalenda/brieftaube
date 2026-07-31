@@ -55,7 +55,7 @@ export const SaveModal = forwardRef<HTMLDialogElement, SaveModalProps>(
         </ModalAction>
       </Modal>
     );
-  }
+  },
 );
 
 SaveModal.displayName = "SaveModal";

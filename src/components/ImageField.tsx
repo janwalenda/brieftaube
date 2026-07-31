@@ -1,17 +1,18 @@
 import type { ReactNode } from "react";
-import { IoImage, IoLink } from "react-icons/io5";
+import { IoLink } from "react-icons/io5";
 import { useState } from "react";
 import { useField } from "@/hooks/useField";
 import Select from "@/components/ui/select";
 import { ImageWidth } from "@/types/ImageWidth";
-import { InputVariant } from "@/types/inputVariant";
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import Field from "@/components/ui/field";
-import { Button } from "@/components/ui/button";
 import { Input as FileInput } from "@/components/ui/fileInput";
 import { LabeledInput } from "@/components/ui/labeledInput";
-import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { ImageSourceToggle } from "@/components/imageField/ImageSourceToggle";
+import { useImageUpload } from "@/components/imageField/useImageUpload";
+import LoggedIn from "@/components/LoggedIn";
+import { TemplateKeyBindButton } from "@/components/templating/TemplateKeyBindButton";
 
 export default function ImageField({
   legend,
@@ -20,78 +21,39 @@ export default function ImageField({
   legend?: ReactNode;
   fieldId: UniqueIdentifier;
 }) {
-  const [switchState, setSwitchState] = useState(false);
+  const [useFile, setUseFile] = useState(false);
   const { setFieldProperty, getFieldProperty } = useField();
+  const { handleFileChange } = useImageUpload(id);
   const t = useTranslations();
-
-  const urlButtonClass = cn("join-item", {
-    "btn-active": !switchState,
-  });
-
-  const fileButtonClass = cn("join-item", {
-    "btn-active": switchState,
-  });
 
   const handleURLChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFieldProperty(id, "url", event.target.value);
-  }
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    const file = files && files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e: ProgressEvent<FileReader>) {
-        const result = e.target?.result as string | undefined; // Base64 data
-        // Typescript-friendly: handle result appropriately, e.g., set state or call setProperty
-        setFieldProperty(id, "url", result || "");
-
-        const urlInput =
-          document.getElementById("headerImageUrl") as HTMLInputElement | null;
-
-        if (urlInput) {
-          urlInput.value = "";
-        }
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setFieldProperty(id, "url", "");
-    }
-  }
+  };
 
   const handleWidthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFieldProperty(id, "width", event.target.value);
-  }
+  };
 
   return (
     <Field legend={legend} fieldId={id}>
-      <div className="join">
-        <Button className={urlButtonClass}
-          onClick={() => setSwitchState(false)}
-          tooltip={{ content: t("image-field.button.url") }}
-          variant={InputVariant.Neutral}
-        >
-          <IoLink />
-        </Button>
-        <Button className={fileButtonClass}
-          onClick={() => setSwitchState(true)}
-          tooltip={{ content: t("image-field.button.upload") }}
-          variant={InputVariant.Neutral}
-        >
-          <IoImage />
-        </Button>
-      </div>
-      {!switchState && <LabeledInput placeholder="URL"
-        startIcon={<IoLink />}
-        value={getFieldProperty(id, "url")}
-        onChange={handleURLChange}
-        className="w-full"
-      />}
-      {switchState && <FileInput onChange={handleFileChange}
-        className="w-full"
-      />}
-      <Select id={`image_width_${id}`}
+      <ImageSourceToggle useFile={useFile} onChange={setUseFile} />
+      {!useFile && (
+        <div className="flex gap-2 w-full items-center">
+          <LabeledInput
+            placeholder="URL"
+            startIcon={<IoLink />}
+            value={getFieldProperty(id, "url")}
+            onChange={handleURLChange}
+            className="w-full"
+          />
+          <LoggedIn>
+            <TemplateKeyBindButton fieldId={id} property="url" />
+          </LoggedIn>
+        </div>
+      )}
+      {useFile && <FileInput onChange={handleFileChange} className="w-full" />}
+      <Select
+        id={`image_width_${id}`}
         defaultValue={getFieldProperty(id, "width")}
         onChange={handleWidthChange}
         tooltip={{ content: t("image-field.width") }}

@@ -13,9 +13,7 @@ export default function UserMenu() {
   const t = useTranslations("userMenu");
 
   if (isPending) {
-    return (
-      <div className="w-8 h-8 rounded-full bg-base-300 animate-pulse" />
-    );
+    return <div className="w-8 h-8 rounded-full bg-base-300 animate-pulse" />;
   }
 
   if (!session?.user) {
@@ -49,7 +47,9 @@ export default function UserMenu() {
         <li>
           <div className="p-3 border-b border-base-300">
             <p className="font-medium truncate">{session.user.name}</p>
-            <p className="text-sm text-base-content/60 truncate">{session.user.email}</p>
+            <p className="text-sm text-base-content/60 truncate">
+              {session.user.email}
+            </p>
           </div>
         </li>
         <li>

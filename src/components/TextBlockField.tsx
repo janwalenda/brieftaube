@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useField } from "@/hooks/useField";
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import Field from "@/components/ui/field";
@@ -16,9 +16,13 @@ export default function TextBlockField({
 
   return (
     <Field legend="Text Block" fieldId={id}>
-      <Select tooltip={{
-        content: "Style",
-      }} value={getFieldProperty(id, "style")} onChange={(event) => setFieldProperty(id, "style", event.target.value)}>
+      <Select
+        tooltip={{
+          content: "Style",
+        }}
+        value={getFieldProperty(id, "style")}
+        onChange={(event) => setFieldProperty(id, "style", event.target.value)}
+      >
         <option value="default">{t("text-block.style.default")}</option>
         <option value="signature">{t("text-block.style.signatur")}</option>
         <option value="disclaimer">{t("text-block.style.disclaimer")}</option>
@@ -31,5 +35,5 @@ export default function TextBlockField({
         tooltip={{ content: t("text-block.textarea") }}
       />
     </Field>
-  )
+  );
 }

@@ -19,12 +19,10 @@ const db = new Kysely<Record<string, unknown>>({
 export const auth = betterAuth({
   database: {
     db,
-    type: "postgres"
+    type: "postgres",
   },
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [
-    passkey(),
-  ],
+  plugins: [passkey()],
 });
